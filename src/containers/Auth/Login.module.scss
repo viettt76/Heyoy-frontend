@@ -5,9 +5,9 @@
 }
 
 .login-container {
+    width: 400px;
     background-color: white;
-    border-radius: 25px;
-    width: 33%;
+    border-radius: 18px;
     position: fixed;
     top: 10vh;
     left: 50%;
@@ -30,14 +30,31 @@
             font-size: 16px;
             margin-top: 2px;
         }
+
+        .input-password {
+            position: relative;
+
+            i {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 12px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .error-message {
+        margin-top: 4px;
+        color: red;
     }
 
     .btn-login {
         background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
-        margin: 15px 0;
+        margin: 3px 0 15px;
         width: 100%;
         border: none;
-        border-radius: 25px;
+        border-radius: 18px;
         font-size: 16px;
         color: #fff;
         font-weight: 600;
@@ -46,14 +63,25 @@
 
     .forgot-password {
         text-align: right;
+        cursor: pointer;
     }
 
     .social-login {
         margin-top: 5px;
 
         i {
-            margin: 7px;
+            margin: 4px;
+            padding: 3px;
             font-size: 20px;
+            cursor: pointer;
         }
+    }
+}
+
+
+
+@media (max-width: 576px) {
+    .login-container {
+        width: 300px;
     }
 }
