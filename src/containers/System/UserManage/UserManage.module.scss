@@ -1,3 +1,14 @@
+@import '../../../styles/styles.scss';
+
+.container-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: $base-size + 4px;
+    margin-top: 15px;
+    color: $colormain;
+}
+
 .table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -8,6 +19,7 @@
 .table th {
     border: 1px solid #ddd;
     padding: 8px;
+    vertical-align: middle;
 }
 
 .table tr:nth-child(even) {
@@ -21,19 +33,36 @@
 .table th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #04aa6d;
     color: white;
 }
 
+.btn-add {
+    float: right;
+    margin: 5px 20px 15px;
+}
+
 .btn-edit {
     background-color: transparent;
-    color: #ffc107;
-    padding: 0 20px;
+    color: #ffc107 !important;
+    padding: 0 10px;
+    margin: 0 10px;
+
+    &:hover {
+        color: #f4cd59 !important;
+        background-color: transparent;
+    }
 }
 
 .btn-delete {
     background-color: transparent;
-    color: #dc3545;
-    padding: 0 20px;
+    color: #dc3545 !important;
+    padding: 0 10px;
+    margin: 0 10px;
+
+    &:hover {
+        color: #da626e !important;
+        background-color: transparent;
+    }
 }

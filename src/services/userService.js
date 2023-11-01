@@ -12,3 +12,7 @@ export const getUserApi = (id) => {
         params: { id },
     });
 };
+
+export const createUserApi = (data) => {
+    return axios.post('/api/create-user', data);
+};

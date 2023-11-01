@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import './styles/styles.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
-import IntlProviderWrapper from "./hoc/IntlProviderWrapper";
-
+import './styles/styles.scss';
+import IntlProviderWrapper from './hoc/IntlProviderWrapper';
 
 import { Provider } from 'react-redux';
 import reduxStore, { persistor } from './redux';
@@ -16,10 +16,10 @@ const renderApp = () => {
     ReactDOM.render(
         <Provider store={reduxStore}>
             <IntlProviderWrapper>
-                <App persistor={persistor}/>
+                <App persistor={persistor} />
             </IntlProviderWrapper>
         </Provider>,
-        document.getElementById('root')
+        document.getElementById('root'),
     );
 };
 

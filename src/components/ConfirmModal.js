@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { Modal } from 'reactstrap';
+import { Modal } from 'react-bootstrap';
 
 import './ConfirmModal.scss';
 import * as actions from "../store/actions";
