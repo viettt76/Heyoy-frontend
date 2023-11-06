@@ -35,6 +35,6 @@ const reduxStore = createStore(rootReducer, composeEnhancers(applyMiddleware(...
 
 export const dispatch = reduxStore.dispatch;
 
-export const persistor = persistStore(reduxStore);
+export const persist = persistStore(reduxStore);
 
 export default reduxStore;

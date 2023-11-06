@@ -1,0 +1,17 @@
+.carousel {
+    .carousel-indicators {
+        bottom: -57px;
+
+        button {
+            width: 10px !important;
+            height: 10px !important;
+            background-color: rgb(255, 220, 117);
+            border-radius: 100%;
+            margin: 0 20px;
+        }
+        
+        .active {
+            scale: 1.4;
+        }
+    }
+}

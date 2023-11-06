@@ -1,46 +1,127 @@
 import { useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
 import clsx from 'clsx';
 import styles from './UserManage.module.scss';
-import { getUserApi } from '../../../services/userService';
-import Modal from '../../../components/Modal';
+import { getUserService, createUserService, deleteUserService, updateUserService } from '../../../services/userService';
+import ModalAddNewUser from './ModalAddNewUser';
+import ModalEditUser from './ModalEditUser';
+import { toast } from 'react-toastify';
 
 function UserManage() {
     const [listUsers, setListUsers] = useState([]);
-    const [isShowModal, setIsShowModal] = useState(false)
+    const [isShowModalAddNewUser, setIsShowModalAddNewUser] = useState(false);
+    const [isShowModalEditUser, setIsShowModalEditUser] = useState(false);
+    const [currentUser, setCurrentUser] = useState({});
 
     useEffect(() => {
-        const fetchApi = async () => {
-            let res = await getUserApi('all');
+        getUserApi();
+    }, []);
+
+    const getUserApi = async () => {
+        try {
+            let res = await getUserService('all');
             if (res?.errCode === 0) {
                 setListUsers(res.listUsers);
             }
-        };
-        fetchApi();
-    }, []);
-
-    const handleAddNewUser = () => {
-        setIsShowModal(true)
+        } catch (error) {
+            console.log(error);
+        }
     };
 
-    const toggleModal = () => {
-        setIsShowModal(!isShowModal)
-    }
+    const toggleModalAddNewUser = () => {
+        setIsShowModalAddNewUser(!isShowModalAddNewUser);
+    };
 
-    const handleEditUser = () => {
-        setIsShowModal(true)
+    const toggleModalEditUser = () => {
+        setIsShowModalEditUser(!isShowModalEditUser);
+        getUserApi();
+    };
+
+    const handleAddNewUser = async (dataUser) => {
+        try {
+            let res = await createUserService(dataUser);
+            if (res?.errCode === 0) {
+                toggleModalAddNewUser();
+                getUserApi();
+                toast.success('Add a new user successfully', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                });
+            } else {
+                alert(res?.message);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleEditUser = (user) => {
+        setCurrentUser(user);
+        setIsShowModalEditUser(true);
+    };
+
+    const saveEditUser = async (dataUser) => {
+        let res = await updateUserService(dataUser);
+        if (res?.errCode === 0) {
+            toggleModalEditUser();
+            toast.success('Change information about user successfully', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            });
+        } else {
+            alert(res?.message);
+        }
+    };
+
+    const handleDeleteUser = async (id) => {
+        try {
+            let res = await deleteUserService(id);
+            if (res?.errCode === 0) {
+                getUserApi();
+                toast.success('Delete user succeed', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
         <div className={clsx('text-center')}>
-            <Modal isShowModal={isShowModal} toggleModal={toggleModal} />
+            <div>Hello</div>
+            <ModalAddNewUser
+                isShowModalAddNewUser={isShowModalAddNewUser}
+                toggleModalAddNewUser={toggleModalAddNewUser}
+                handleAddNewUser={handleAddNewUser}
+            />
+            <ModalEditUser
+                isShowModalEditUser={isShowModalEditUser}
+                currentUser={currentUser}
+                toggleModalEditUser={toggleModalEditUser}
+                saveEditUser={saveEditUser}
+            />
             <div className={clsx('title', 'text-center', styles['container-title'])}>Manage users</div>
             <div>
-                <button
-                    className={clsx('btn', 'btn-primary', styles['btn-add'])}
-                    onClick={handleAddNewUser}
-                >
+                <button className={clsx('btn', 'btn-primary', styles['btn-add'])} onClick={toggleModalAddNewUser}>
                     <i className="fa-solid fa-plus"></i> &nbsp;Add new user
                 </button>
             </div>
@@ -69,11 +150,14 @@ function UserManage() {
                                         <td>
                                             <button
                                                 className={clsx(styles['btn-edit'])}
-                                                onClick={handleEditUser}
+                                                onClick={() => handleEditUser(user)}
                                             >
                                                 <i className="fa-solid fa-pencil"></i>
                                             </button>
-                                            <button className={clsx(styles['btn-delete'])}>
+                                            <button
+                                                className={clsx(styles['btn-delete'])}
+                                                onClick={() => handleDeleteUser(user.id)}
+                                            >
                                                 <i className="fa-solid fa-trash"></i>
                                             </button>
                                         </td>
@@ -87,12 +171,4 @@ function UserManage() {
     );
 }
 
-const mapStateToProps = (state) => {
-    return {};
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserManage);
+export default UserManage;

@@ -1,29 +1,23 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Slide from '~/components/Slide';
 
-class Home extends Component {
+const Home = () => {
+    const isLoggedIn = useSelector((state) => {
+        let localIsLoggedIn = localStorage.getItem('persist:user');
+        console.log(typeof localIsLoggedIn);
+        return localIsLoggedIn || state.user.isLoggedIn;
+    });
 
-    render() {
-        const { isLoggedIn } = this.props;
-        let linkToRedirect = isLoggedIn ? '/system/user-manage' : '/login';
+    let linkToNavigate = isLoggedIn ? '/' : '/login';
 
-        return (
-            <Redirect to={linkToRedirect} />
-        );
-    }
-
-}
-
-const mapStateToProps = state => {
-    return {
-        isLoggedIn: state.user.isLoggedIn
-    };
+    console.log(linkToNavigate);
+    return (
+        <div>
+            <Navigate to={linkToNavigate} />
+            <Slide />
+        </div>
+    );
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;

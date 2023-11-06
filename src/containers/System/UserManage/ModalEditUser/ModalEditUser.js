@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { connect } from 'react-redux';
-import { Button, Modal as ModalBootstrap, Col, Form, InputGroup, Row } from 'react-bootstrap';
-import { createUserApi } from '../../services/userService';
+import { Button, Modal, Col, Form, InputGroup, Row } from 'react-bootstrap';
 
-function Modal({ isShowModal, toggleModal }) {
+function ModalEditUser({ isShowModalEditUser, currentUser, toggleModalEditUser, saveEditUser }) {
     const [validated, setValidated] = useState(false);
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [address, setAddress] = useState('');
@@ -15,73 +12,52 @@ function Modal({ isShowModal, toggleModal }) {
     const formRef = useRef(null);
 
     useEffect(() => {
-        if (!isShowModal) {
-            setValidated(false);
+        if (isShowModalEditUser) {
+            setEmail(currentUser.email);
+            setFirstName(currentUser.firstName);
+            setLastName(currentUser.lastName);
+            setAddress(currentUser.address);
         }
-    }, [isShowModal]);
+    }, [isShowModalEditUser, currentUser]);
 
-    const handleSubmit = async () => {
-        const form = formRef.current;
-        if (form.checkValidity() === true) {
-            let dataUser = {
-                email,
-                password,
-                firstName,
-                lastName,
-                address,
-            };
-            let res = await createUserApi(dataUser);
-            if (res?.errCode === 0) {
-                toggleModal();
-                setEmail('');
-                setPassword('');
-                setFirstName('');
-                setLastName('');
-                setAddress('');
+    const handleSubmit = () => {
+        try {
+            const form = formRef.current;
+            if (form.checkValidity() === true) {
+                let dataUser = {
+                    email,
+                    firstName,
+                    lastName,
+                    address,
+                };
+                saveEditUser(dataUser);
             } else {
-                alert(res?.message);
+                setValidated(true);
             }
-        } else {
-            setValidated(true);
+        } catch (error) {
+            console.log(error);
         }
     };
-    console.log(validated);
+
     return (
         <>
-            <ModalBootstrap show={isShowModal} onHide={toggleModal} size="lg">
-                <ModalBootstrap.Header closeButton>
-                    <ModalBootstrap.Title>Add a new user</ModalBootstrap.Title>
-                </ModalBootstrap.Header>
-                <ModalBootstrap.Body>
+            <Modal show={isShowModalEditUser} onHide={toggleModalEditUser} size="lg">
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit user's email</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     <Form ref={formRef} validated={validated}>
                         <Row className="mb-3">
-                            <Form.Group as={Col} md="6">
+                            <Form.Group as={Col} md="12">
                                 <Form.Label>Email</Form.Label>
                                 <InputGroup hasValidation>
                                     <Form.Control
-                                        autoFocus
                                         value={email}
                                         type="text"
                                         placeholder="Email"
                                         aria-describedby="inputGroupPrepend"
-                                        required
+                                        disabled
                                         onChange={(e) => setEmail(e.target.value)}
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                        Please choose a username.
-                                    </Form.Control.Feedback>
-                                </InputGroup>
-                            </Form.Group>
-                            <Form.Group as={Col} md="6">
-                                <Form.Label>Password</Form.Label>
-                                <InputGroup hasValidation>
-                                    <Form.Control
-                                        value={password}
-                                        type="text"
-                                        placeholder="Password"
-                                        aria-describedby="inputGroupPrepend"
-                                        required
-                                        onChange={(e) => setPassword(e.target.value)}
                                     />
                                     <Form.Control.Feedback type="invalid">
                                         Please choose a username.
@@ -93,6 +69,7 @@ function Modal({ isShowModal, toggleModal }) {
                             <Form.Group as={Col} md="6">
                                 <Form.Label>First name</Form.Label>
                                 <Form.Control
+                                    autoFocus
                                     value={firstName}
                                     required
                                     type="text"
@@ -124,26 +101,18 @@ function Modal({ isShowModal, toggleModal }) {
                             </Form.Group>
                         </Row>
                     </Form>
-                </ModalBootstrap.Body>
-                <ModalBootstrap.Footer>
-                    <Button variant="secondary" onClick={toggleModal}>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={toggleModalEditUser}>
                         Close
                     </Button>
                     <Button type="submit" onClick={handleSubmit}>
-                        Add
+                        Save changes
                     </Button>
-                </ModalBootstrap.Footer>
-            </ModalBootstrap>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 }
 
-const mapStateToProps = (state) => {
-    return {};
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default ModalEditUser;

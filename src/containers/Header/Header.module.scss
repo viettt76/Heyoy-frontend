@@ -1,0 +1,96 @@
+@import '../../styles/common.scss';
+
+.header-container {
+    z-index: 99;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(237, 255, 250);
+    color: #000;
+    height: 78px;
+    position: sticky;
+    padding: 8px 50px;
+
+    .header-left {
+        display: flex;
+
+        .menu {
+            font-size: 32px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo {
+            width: 46px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+
+            .menu-item {
+                font-size: 18px;
+                font-weight: 400;
+
+                a {
+                    padding: 5px 10px;
+                    margin-right: 20px;
+                }
+            }
+        }
+
+        .search-input {
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            height: 46px;
+            background-color: #fff;
+            border: 1px solid rgb(221, 221, 221);
+            border-radius: 25px;
+            min-width: 250px;
+            
+            input {
+                border-radius: 25px;
+                color: rgba(153,153,153,1.00);
+                padding: 0 10px;
+                font-size: 15px;
+            }
+        }
+    }
+
+    .header-right {
+        .header-right-item {
+            display: inline-flex;
+            text-align: center;
+            align-items: center;
+            flex-direction: column;
+            color: #45c3d3;
+
+            span {
+                color: currentColor;
+                font-weight: 600;
+            }
+
+            & + .header-right-item {
+                margin-left: 20px;
+            }
+        }
+    }
+
+    // .btn-logout {
+
+    //     line-height: 40px;
+    //     height: 40px;
+    //     padding: 0 10px;
+    //     &:hover {
+    //         background-color: darken($colormain, 5);
+    //     }
+    //     i {
+    //         font-size: $base-size + 1px;
+    //     }
+    // }
+}

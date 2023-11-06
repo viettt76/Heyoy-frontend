@@ -1,35 +1,36 @@
 import messages_vi from '../translations/vi.json';
 import messages_en from '../translations/en.json';
 
-const flattenMessages = ((nestedMessages, prefix = '') => {
+const flattenMessages = (nestedMessages, prefix = '') => {
     if (nestedMessages == null) {
-        return {}
+        return {};
     }
     return Object.keys(nestedMessages).reduce((messages, key) => {
         const value = nestedMessages[key];
         const prefixedKey = prefix ? `${prefix}.${key}` : key;
 
         if (typeof value === 'string') {
-            Object.assign(messages, {[prefixedKey]: value})
+            Object.assign(messages, { [prefixedKey]: value });
         } else {
-            Object.assign(messages, flattenMessages(value, prefixedKey))
+            Object.assign(messages, flattenMessages(value, prefixedKey));
         }
 
-        return messages
-    }, {})
-});
-
-const messages = {
-    'vi': flattenMessages(messages_vi),
-    'en': flattenMessages(messages_en),
+        return messages;
+    }, {});
 };
 
-export default class LanguageUtils {
-    static getMessageByKey(key, lang) {
-        return messages[lang][key]
-    }
+const messages = {
+    vi: flattenMessages(messages_vi),
+    en: flattenMessages(messages_en),
+};
 
-    static getFlattenedMessages() {
+const LanguageUtils = {
+    getMessageByKey(key, lang) {
+        return messages[lang][key];
+    },
+    getFlattenedMessages() {
         return messages;
-    }
-}
+    },
+};
+
+export default LanguageUtils;
