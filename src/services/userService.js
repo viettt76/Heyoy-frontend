@@ -1,4 +1,4 @@
-import axios from '../axios';
+import axios from '~/utils/axios';
 
 export const handleLoginService = (email, password) => {
     return axios.post('/api/login', {
@@ -19,12 +19,12 @@ export const createUserService = (data) => {
 
 export const updateUserService = (data) => {
     return axios.put('/api/update-user', data);
-}
+};
 
 export const deleteUserService = (id) => {
     return axios.delete('/api/delete-user', {
         params: {
-            id
-        }
+            id,
+        },
     });
 };

@@ -1,21 +1,25 @@
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Slide from '~/components/Slide';
+import Section from '~/components/Section';
 
 const Home = () => {
     const isLoggedIn = useSelector((state) => {
         let localIsLoggedIn = localStorage.getItem('persist:user');
-        console.log(typeof localIsLoggedIn);
         return localIsLoggedIn || state.user.isLoggedIn;
     });
 
-    let linkToNavigate = isLoggedIn ? '/' : '/login';
+    // let linkToNavigate = isLoggedIn ? '/' : '/login';
 
-    console.log(linkToNavigate);
     return (
         <div>
-            <Navigate to={linkToNavigate} />
+            {/* <Navigate to={linkToNavigate} /> */}
             <Slide />
+            <div>
+                <Section label='Chuyên khoa' buttonSeeMore />
+                <Section label='Cơ sở y tế' />
+                <Section label='Bệnh viện' buttonSeeMore />
+            </div>
         </div>
     );
 };

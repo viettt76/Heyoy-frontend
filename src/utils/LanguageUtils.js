@@ -1,5 +1,5 @@
-import messages_vi from '../translations/vi.json';
-import messages_en from '../translations/en.json';
+import messages_vi from '~/translations/vi.json';
+import messages_en from '~/translations/en.json';
 
 const flattenMessages = (nestedMessages, prefix = '') => {
     if (nestedMessages == null) {

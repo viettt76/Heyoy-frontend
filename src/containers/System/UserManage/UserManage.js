@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import styles from './UserManage.module.scss';
-import { getUserService, createUserService, deleteUserService, updateUserService } from '../../../services/userService';
+import { getUserService, createUserService, deleteUserService, updateUserService } from '~/services/userService';
 import ModalAddNewUser from './ModalAddNewUser';
 import ModalEditUser from './ModalEditUser';
 import { toast } from 'react-toastify';
@@ -107,7 +107,6 @@ function UserManage() {
 
     return (
         <div className={clsx('text-center')}>
-            <div>Hello</div>
             <ModalAddNewUser
                 isShowModalAddNewUser={isShowModalAddNewUser}
                 toggleModalAddNewUser={toggleModalAddNewUser}

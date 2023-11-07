@@ -1,4 +1,11 @@
 {
+    "header": {
+        "at-home": "At home",
+        "at-hospital": "At hospital",
+        "live-healthy": "Live healthy",
+        "appointment-schedule": "Appointment schedule",
+        "support": "Support"
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",

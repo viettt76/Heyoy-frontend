@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { history } from '../redux';
+import { history } from './redux';
 import { ToastContainer } from 'react-toastify';
+import Header from './containers/Header/Header';
+import { publicRoutes } from './routes';
 
-import { path } from '../utils';
-
-import Home from '../routes/Home';
-import Login from './Auth/Login';
-import Header from './Header/Header';
-import System from '../routes/System';
 const App = ({ persist, onBeforeLift }) => {
     const isLoggedIn = useSelector((state) => {
         let localIsLoggedIn = localStorage.getItem('isLoggedIn');
@@ -38,13 +34,15 @@ const App = ({ persist, onBeforeLift }) => {
         <>
             <BrowserRouter navigator={history}>
                 <div className="main-container">
-                    {isLoggedIn && <Header />}
+                    {/* {isLoggedIn && <Header />} */}
+                    <Header />
 
                     <span className="content-container">
                         <Routes>
-                            <Route path={path.HOME} element={<Home />} />
-                            <Route path={path.LOGIN} element={<Login />} />
-                            <Route path={path.SYSTEM} element={<System />} />
+                            {publicRoutes.map((route, index) => {
+                                const Page = route.component;
+                                return <Route key={`route-${index}`} path={route.path} element={<Page />} />;
+                            })}
                         </Routes>
                     </span>
 

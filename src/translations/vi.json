@@ -1,4 +1,11 @@
 {
+    "header": {
+        "at-home": "Tại nhà",
+        "at-hospital": "Tại viện",
+        "live-healthy": "Sống khoẻ",
+        "appointment-schedule": "Lịch hẹn",
+        "support": "Hỗ trợ"
+    },
     "common": {
         "add": "Thêm",
         "edit": "Sửa",

@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { push } from 'connected-react-router';
 import clsx from 'clsx';
 
-import * as actions from '../../store/actions';
+import * as actions from '~/store/actions';
 import styles from './Login.module.scss';
-import { handleLoginService } from '../../services/userService';
+import { handleLoginService } from '~/services/userService';
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
+const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -58,7 +57,6 @@ function Login() {
 
     return (
         <>
-            
             <div className={clsx(styles['login-background'])}>
                 <div className={clsx(styles['login-container'])}>
                     <div className={clsx(styles['login-content'], 'row')}>
@@ -113,6 +111,6 @@ function Login() {
             </div>
         </>
     );
-}
+};
 
 export default Login;
