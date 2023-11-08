@@ -5,6 +5,7 @@ import { history } from './redux';
 import { ToastContainer } from 'react-toastify';
 import Header from './containers/Header/Header';
 import { publicRoutes } from './routes';
+import Footer from './containers/Footer';
 
 const App = ({ persist, onBeforeLift }) => {
     const isLoggedIn = useSelector((state) => {
@@ -45,7 +46,9 @@ const App = ({ persist, onBeforeLift }) => {
                             })}
                         </Routes>
                     </span>
-
+                    
+                    <Footer />
+                    {/* {isLoggedIn && <Footer />} */}
                     <ToastContainer />
                 </div>
             </BrowserRouter>

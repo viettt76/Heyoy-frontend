@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import { Button } from 'react-bootstrap';
 import SectionItem from './SectionItem';
 import styles from './Section.module.scss';
+import './Section.scss'
 import { ChevronLeftIcon, ChevronRightIcon } from '../Icons';
 
 const NextArrow = ({ className, style, onClick }) => {
@@ -21,7 +22,7 @@ const PrevArrow = ({ className, style, onClick }) => {
     );
 };
 
-const Section = ({ label, buttonSeeMore }) => {
+const Section = ({ label, buttonSeeMore, listSectionItems = [], numberItemInSlide = 1 }) => {
     return (
         <div className={clsx(styles['wrapper'])}>
             <div className={clsx(styles['section-top'])}>
@@ -29,37 +30,41 @@ const Section = ({ label, buttonSeeMore }) => {
                 {buttonSeeMore && <Button className={clsx(styles['btn-see-more'])}>Xem thêm</Button>}
             </div>
             <Slider
-                infinite={true}
+                infinite={false}
                 speed={1000}
-                slidesToShow={1}
-                slidesToScroll={1}
+                slidesToShow={numberItemInSlide}
+                slidesToScroll={numberItemInSlide}
                 nextArrow={<NextArrow />}
                 prevArrow={<PrevArrow />}
+                responsive={[
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                        },
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                        },
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        },
+                    },
+                ]}
             >
-                <div className={clsx(styles['slide'])}>
-                    <SectionItem
-                        title="Cơ xương khớp"
-                        src="https://cdn.bookingcare.vn/fo/w640/2023/06/20/112457-co-xuong-khop.jpg"
-                    />
-                    <SectionItem
-                        title="Thần kinh"
-                        src="https://cdn.bookingcare.vn/fo/w640/2023/06/20/113208-than-kinh.jpg"
-                    />
-                    <SectionItem
-                        title="Tiêu hoá"
-                        src="https://cdn.bookingcare.vn/fo/w640/2023/06/20/112457-co-xuong-khop.jpg"
-                    />
-                </div>
-                <div className={clsx(styles['slide'])}>
-                    <SectionItem
-                        title="Tim mạch"
-                        src="https://cdn.bookingcare.vn/fo/w640/2023/06/20/112457-co-xuong-khop.jpg"
-                    />
-                    <SectionItem
-                        title="Tai mũi họng"
-                        src="https://cdn.bookingcare.vn/fo/w640/2023/06/20/112457-co-xuong-khop.jpg"
-                    />
-                </div>
+                {listSectionItems.map((item, index) => {
+                    return (
+                        <SectionItem numberItemInSlide={numberItemInSlide} key={`section-item-${index}`} data={item} />
+                    );
+                })}
             </Slider>
         </div>
     );

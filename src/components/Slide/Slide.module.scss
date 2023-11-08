@@ -9,3 +9,9 @@
     background-size: cover;
     margin: 0 35px;
 }
+
+@media (max-width: 768px) {
+    .slide {
+        margin: 0;
+    }
+}

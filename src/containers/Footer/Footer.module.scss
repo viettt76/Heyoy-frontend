@@ -1,0 +1,46 @@
+.footer {
+    background-color: rgb(239, 239, 239);
+    padding: 30px 50px;
+    font-size: 15px;
+
+    .logo {
+        margin-bottom: 14px;
+    }
+
+    span {
+        display: block;
+    }
+
+    .hotline {
+        display: inline-block;
+        color: rgb(69, 195, 210);
+    }
+}
+
+.list-menu {
+    padding: 0;
+    li {
+        a {
+            display: block;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            color: rgb(69, 195, 210);
+        }
+    }
+}
+
+.partner {
+    display: flex;
+    align-items: center;
+
+    .partner-image {
+        width: 65px;
+        height: 65px;
+        object-fit: contain;
+        margin-right: 4px;
+    }
+
+    .partner-content {
+        flex: 1;
+    }
+}

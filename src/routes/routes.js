@@ -1,7 +1,7 @@
 import { path } from '~/utils'
 
 import Home from '~/pages/Home'
-import Login from '~/pages/Login/Login'
+import Login from '~/pages/Login'
 import SystemUserManage from '~/pages/SystemUserManage'
 
 export const publicRoutes = [

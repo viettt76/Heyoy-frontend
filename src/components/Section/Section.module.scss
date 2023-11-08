@@ -18,17 +18,16 @@
 }
 
 .next-btn {
-    right: -17px;
+    right: 0;
 }
 
 .prev-btn {
-    left: -17px;
+    left: 0;
 }
 
 .wrapper {
-    margin-top: 45px;
-    margin-bottom: 30px;
     padding: 0 35px 30px;
+    margin: 45px -21px 30px;
 
     .section-top {
         margin-bottom: 32px;
@@ -40,9 +39,11 @@
             font-weight: 600;
             color: rgb(26, 26, 26);
             font-size: 24px;
+            margin-left: 21px;
         }
 
         .btn-see-more {
+            margin-right: 21px;
             background-color: rgb(218, 243, 246);
             padding: 10px 8px;
             border-radius: 16px;
@@ -57,6 +58,6 @@
     .slide {
         display: flex !important;
         gap: 43px;
-        height: 323px;
+        min-height: 323px;
     }
 }
