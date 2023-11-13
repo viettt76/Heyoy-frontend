@@ -2,11 +2,11 @@ export const path = {
     HOME: '/',
     LOGIN: '/login',
     LOG_OUT: '/logout',
-    SYSTEM_USER_MANAGE: '/system/user-manage',
-    SYSTEM_PRODUCT_MANAGE: '/system/product-manage',
+    SYSTEM_MANAGE_USER: '/system/manage-user',
+    SYSTEM_MANAGE_ADMIN : '/system/manage-admin'
 };
 
-export const languages = {
+export const LANGUAGES = {
     VI: 'vi',
     EN: 'en',
 };

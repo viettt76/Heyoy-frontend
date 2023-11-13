@@ -1,0 +1,54 @@
+.wrapper {
+    max-width: 700px;
+}
+
+.doctor-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .doctor-name {
+        color: #337ab7;
+        font-weight: 600;
+    }
+
+    .day {
+        margin-left: 10px;
+        color: #555;
+    }
+}
+
+.price {
+    margin-top: 25px;
+    border: 1px solid #f89008;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
+.btn-submit {
+    margin: 10px 0;
+    width: 100%;
+    color: #fff;
+    background-color: #ffc107;
+    height: 40px;
+    border-radius: 6px;
+
+    &:hover {
+    background-color: #fbc729;
+
+        color: #fff;
+    }
+}
+
+@media (min-width: 500px) {
+    .price {
+        width: 200px;
+    }
+}

@@ -1,51 +1,66 @@
 import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import Slide from '~/components/Slide';
 import Section from '~/components/Section';
 
 const Home = () => {
-    const isLoggedIn = useSelector((state) => {
-        return state.user.isLoggedIn;
-    });
+    const isLoggedIn = JSON.parse(localStorage.getItem('persist:user')).isLoggedIn;
 
     let linkToNavigate = isLoggedIn ? '/' : '/login';
 
     const listSection = [
         {
-            label: 'Cơ xương khớp',
+            label: 'Chuyên khoa',
             numberItemInSlide: 3,
-            buttonSeeMore: true,
+            buttonSeeMore: false,
             data: [
                 {
-                    title: 'Cơ xương khớp',
-                    src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/112457-co-xuong-khop.jpg',
-                },
-                {
                     title: 'Thần kinh',
-                    src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/113208-than-kinh.jpg',
+                    src: 'https://cdn.bookingcare.vn/fo/2023/06/20/113208-than-kinh.jpg',
+                    to: '/chuyen-khoa-than-kinh'
                 },
                 {
-                    title: 'Tiêu',
-                    src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/112457-co-xuong-khop.jpg',
-                },
-                {
-                    title: 'Hoá',
-                    src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/112457-co-xuong-khop.jpg',
-                },
-                {
-                    title: 'Miu',
-                    src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/112457-co-xuong-khop.jpg',
-                },
-                {
-                    title: 'Mèo',
-                    src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/113208-than-kinh.jpg',
-                },
-                {
-                    title: 'Quỷ',
-                    src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/113208-than-kinh.jpg',
+                    title: 'Cơ xương khớp',
+                    src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/113340-noi-khoa.jpg',
+                    to: '/chuyen-khoa-co-xuong-khop'
+
                 },
             ],
         },
+        // {
+        //     label: 'Cơ xương khớp',
+        //     numberItemInSlide: 3,
+        //     buttonSeeMore: true,
+        //     data: [
+        //         {
+        //             title: 'Cơ xương khớp',
+        //             src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/112457-co-xuong-khop.jpg',
+        //         },
+        //         {
+        //             title: 'Thần kinh',
+        //             src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/113208-than-kinh.jpg',
+        //         },
+        //         {
+        //             title: 'Tiêu',
+        //             src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/112457-co-xuong-khop.jpg',
+        //         },
+        //         {
+        //             title: 'Hoá',
+        //             src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/112457-co-xuong-khop.jpg',
+        //         },
+        //         {
+        //             title: 'Miu',
+        //             src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/112457-co-xuong-khop.jpg',
+        //         },
+        //         {
+        //             title: 'Mèo',
+        //             src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/113208-than-kinh.jpg',
+        //         },
+        //         {
+        //             title: 'Quỷ',
+        //             src: 'https://cdn.bookingcare.vn/fo/w640/2023/06/20/113208-than-kinh.jpg',
+        //         },
+        //     ],
+        // },
         {
             label: 'Bác sĩ nổi bật',
             numberItemInSlide: 4,
@@ -178,10 +193,10 @@ const Home = () => {
             ],
         },
     ];
-    
+
     return (
         <div>
-            {/* <Navigate to={linkToNavigate} /> */}
+            <Navigate to={linkToNavigate} />
             <Slide />
             <div>
                 {listSection.map((section, index) => {

@@ -1,0 +1,60 @@
+.menu-wrapper {
+    position: relative;
+    cursor: pointer;
+
+    .menu-label {
+        min-width: 170px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-width: 13vw;
+        max-width: 18vw;
+        border-right: 1px solid #dee2e6;
+    }
+
+    &:hover .menu {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+        position: absolute;
+        background-color: #edfffa;
+        min-width: 13vw;
+        max-width: 18vw;
+
+        .menu-item {
+            position: relative;
+            min-width: 13vw;
+            max-width: 18vw;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            &:hover {
+                background-color: #b5e9da;
+            }
+
+            &:hover>.submenu {
+                display: block;
+            }
+
+            &.active {
+                background-color: #b5e9da;
+            }
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background-color: #edfffa;
+        }
+    }
+}

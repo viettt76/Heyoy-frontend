@@ -1,5 +1,3 @@
-@import '../../styles/common.scss';
-
 .header-container {
     z-index: 99;
     display: flex;
@@ -28,6 +26,7 @@
         .logo {
             display: flex;
             align-items: center;
+            margin-right: 15px;
 
             img {
                 width: 46px;
@@ -83,6 +82,7 @@
             align-items: center;
             flex-direction: column;
             color: #45c3d3;
+            cursor: pointer;
 
             .header-right-item-label {
                 color: currentColor;
@@ -92,11 +92,11 @@
     }
 }
 
-.offcanvas {
+.off-canvas {
     min-width: 200px !important;
     max-width: 260px !important;
 
-    .offcanvas-body {
+    .off-canvas-body {
         padding: 0;
         .menu-popup {
             padding: 0;

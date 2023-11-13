@@ -10,6 +10,11 @@ const actionTypes = Object.freeze({
     USER_LOGIN_SUCCESS: 'USER_LOGIN_SUCCESS',
     USER_LOGIN_FAIL: 'USER_LOGIN_FAIL',
     PROCESS_LOGOUT: 'PROCESS_LOGOUT',
+
+    // Admin
+    GET_GENDER_USER: 'GET_GENDER_USER',
+    GET_ROLE_USER: 'GET_ROLE_USER',
+    GET_POSITION_USER: 'GET_POSITION_USER',
 });
 
 export default actionTypes;

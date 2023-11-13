@@ -28,3 +28,9 @@ export const deleteUserService = (id) => {
         },
     });
 };
+
+export const getAllCodeService = (type) => {
+    return axios.get('/api/get-all-code', {
+        params: { type },
+    });
+};

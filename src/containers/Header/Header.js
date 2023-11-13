@@ -1,21 +1,20 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Offcanvas, Container, Navbar } from 'react-bootstrap';
-
-import { Link, NavLink } from 'react-router-dom';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 import clsx from 'clsx';
 
 import logo from '~/assets/images/logo.png';
 import styles from './Header.module.scss';
 import * as actions from '~/store/actions';
 import { BarsIcon, ClockRotateLeftIcon, HeadsetIcon, SearchIcon } from '~/components/Icons';
-import { languages } from '~/utils';
+import { LANGUAGES } from '~/utils';
 
 const Header = () => {
-    const dispatch = useDispatch();
+    const location = useLocation();
 
-    const intl = useIntl();
+    const dispatch = useDispatch();
 
     const processLogout = () => dispatch(actions.processLogout());
 
@@ -28,6 +27,10 @@ const Header = () => {
         dispatch(actions.appChangeLanguage(language));
     };
 
+    if (location.pathname.includes('/system') || location.pathname === '/login') {
+        return null;
+    }
+
     return (
         <>
             <Navbar expand="lg" className={clsx('bg-body-tertiary', styles['header-container'])}>
@@ -36,8 +39,8 @@ const Header = () => {
                         <div className={clsx(styles['menu-popup-icon'])} onClick={handleShowMenu}>
                             <BarsIcon />
                         </div>
-                        <Offcanvas className={clsx(styles['offcanvas'])} show={showMenu} onHide={handleCloseMenu}>
-                            <Offcanvas.Body className={clsx(styles['offcanvas-body'])}>
+                        <Offcanvas className={clsx(styles['off-canvas'])} show={showMenu} onHide={handleCloseMenu}>
+                            <Offcanvas.Body className={clsx(styles['off-canvas-body'])}>
                                 <ul className={clsx(styles['menu-popup'])}>
                                     <li className={clsx(styles['menu-popup-item'])}>
                                         <div className={clsx(styles['btn-logout'])} onClick={processLogout}>
@@ -46,9 +49,15 @@ const Header = () => {
                                     </li>
                                     <li className={clsx(styles['menu-popup-item'])}>
                                         <div>
-                                            <div onClick={() => handleChangeLanguage(languages.EN)}>{languages.EN}</div>
-                                            <div onClick={() => handleChangeLanguage(languages.VI)}>{languages.VI}</div>
+                                            <div onClick={() => handleChangeLanguage(LANGUAGES.EN)}>{LANGUAGES.EN}</div>
+                                            <div onClick={() => handleChangeLanguage(LANGUAGES.VI)}>{LANGUAGES.VI}</div>
                                         </div>
+                                    </li>
+                                    <li>
+                                        <Link to="/system/manage-user">Manage user</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/login">Login</Link>
                                     </li>
                                 </ul>
                             </Offcanvas.Body>
