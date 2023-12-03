@@ -1,44 +1,24 @@
-// import { useEffect, useState } from 'react';
-// import { useSelector } from 'react-redux';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { history } from './redux';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import LoadingOverlay from 'react-loading-overlay';
 import Header from './containers/Header/Header';
+import { history } from './redux';
 import { publicRoutes } from './routes';
 import Footer from './containers/Footer';
 import ScrollToTop from './containers/ScrollTop';
+import SystemHeader from './containers/System/SystemHeader';
 
-const App = ({ persist, onBeforeLift }) => {
-    // const isLoggedIn = useSelector((state) => {
-    //     return state.user.isLoggedIn;
-    // });
-
-    // const isLoggedInUser = JSON.parse(localStorage.getItem('persist:user')).isLoggedIn
-
-    // const [bootstrapped, setBootstrapped] = useState(persist.getState());
-
-    // useEffect(() => {
-    //     handlePersistState();
-    // });
-
-    // const handlePersistState = () => {
-    //     if (bootstrapped) {
-    //         if (onBeforeLift) {
-    //             Promise.resolve(onBeforeLift())
-    //                 .then(() => setBootstrapped(true))
-    //                 .catch(() => setBootstrapped(true));
-    //         } else {
-    //             setBootstrapped(true);
-    //         }
-    //     }
-    // };
+const App = () => {
+    let loading = useSelector((state) => state.app.loading);
 
     return (
-        <>
+        <LoadingOverlay active={loading} spinner>
             <BrowserRouter navigator={history}>
+                <ScrollToTop />
                 <div className="main-container">
-                    {/* {isLoggedInUser && <Header />} */}
                     <Header />
+                    <SystemHeader />
 
                     <span className="content-container">
                         <Routes>
@@ -50,12 +30,13 @@ const App = ({ persist, onBeforeLift }) => {
                     </span>
 
                     <Footer />
-                    {/* {isLoggedInUser && <Footer />} */}
                     <ToastContainer />
                 </div>
             </BrowserRouter>
-        </>
+        </LoadingOverlay>
     );
 };
+
+LoadingOverlay.propTypes = undefined;
 
 export default App;

@@ -4,6 +4,7 @@ const initialState = {
     started: true,
     language: 'vi',
     systemMenuPath: '/',
+    loading: false,
 }
 
 const appReducer = (state = initialState, action) => {
@@ -17,6 +18,16 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 language: action.payload
+            }
+        case actionTypes.APP_START_LOADING:
+            return {
+                ...state,
+                loading: true
+            }
+        case actionTypes.APP_END_LOADING:
+            return {
+                ...state,
+                loading: false
             }
         default:
             return state;

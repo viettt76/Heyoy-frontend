@@ -4,7 +4,22 @@
         "at-hospital": "At hospital",
         "live-healthy": "Live healthy",
         "appointment-schedule": "Appointment schedule",
-        "support": "Support"
+        "support": "Support",
+        "day": "Day",
+        "doctor": "Doctor",
+        "specialty": "specialty"
+    },
+    "login": {
+        "login": "Login",
+        "username": "Username",
+        "password": "Password",
+        "forgot-password": "Forgot your password?"
+    },
+    "register": {
+        "register": "Register",
+        "username": "Username",
+        "password": "Password",
+        "retype-password": "Retype password"
     },
     "menu": {
         "system": {
@@ -26,20 +41,32 @@
             "manage-patient": "Manage patient",
             "clinic": "Clinic",
             "manage-clinic": "Manage clinic",
-            "specialist": "Specialist",
-            "manage-specialist": "Manage specialist",
+            "specialty": "Specialty",
+            "manage-specialty": "Manage specialty",
             "handbook": "Handbook",
             "manage-handbook": "Manage handbook"
+        },
+        "doctor": {
+            "manage-schedule": "Manage schedule",
+            "manage-patient": "Manage patient",
+            "manage-doctor": "Manage doctor",
+            "manage-info": "Manage information"
         }
+    },
+    "homepage": {
+        "specialty": "Specialty",
+        "clinic": "Clinic",
+        "outstanding-doctor": "Outstanding doctor",
+        "see-more": "See more"
     },
     "system": {
         "header": {
             "welcome": "Welcome"
         },
         "manage-user": {
-            "add-user": "Add user"
-        },
-        "manage-admin": {
+            "manage-user": "Manage user",
+            "add-user": "Add new user",
+            "edit-info-user": "Edit info user",
             "email": "Email",
             "password": "Password",
             "first-name": "First name",
@@ -54,7 +81,97 @@
             "upload-image": "Upload image",
             "add": "Add",
             "email-required": "Email is required",
-            "password-required": "Password is required"
+            "password-required": "Password is required",
+            "close": "Close",
+            "save": "Save"
+        },
+        "manage-doctor": {
+            "add-description-of-doctor": "Add description of doctor",
+            "choose-doctor": "Choose doctor",
+            "introductory-information": "Introductory information",
+            "choose-price": "Choose price",
+            "choose-payment": "Choose payment",
+            "choose-province": "Choose province",
+            "enter-address": "Enter address",
+            "choose-clinic": "Choose clinic",
+            "choose-specialty": "Choose specialty",
+            "note": "Note",
+            "save": "Save"
+        },
+        "manage-schedule": {
+            "manage-doctor's-medical-examination-plans": "Manage doctors' medical examination plans",
+            "choose-doctor": "Choose doctor",
+            "choose-day": "Choose day",
+            "save": "Save"
+        },
+        "manage-specialty": {
+            "manage-specialty": "Manage specialty",
+            "specialty-name": "Specialty name",
+            "specialty-image": "Specialty image",
+            "specialty-description": "Specialty description",
+            "save": "Save"
+        },
+        "manage-clinic": {
+            "manage-clinic": "Manage clinic",
+            "clinic-name": "Clinic name",
+            "clinic-address": "Clinic address",
+            "clinic-image": "Clinic image",
+            "clinic-description": "Clinic description",
+            "save": "Save"
+        },
+        "manage-patient": {
+            "doctor's-patient-management": "Doctor's patient management",
+            "ordinals": "Ordinals",
+            "time": "Time",
+            "full-name": "Full name",
+            "gender": "Gender",
+            "birthday": "Birthday",
+            "address": "Address",
+            "reason": "Reason",
+            "actions": "Actions",
+            "confirm": "Confirm"
         }
+    },
+    "detail-doctor": {
+        "examination-schedule": "Examination schedule",
+        "no-schedule": "Doctors do not have appointments during this time, please choose another time!",
+        "choose": "Choose",
+        "book-free": "book (Schedule fee 0 VND)",
+        "address-clinic": "Address clinic",
+        "price": "Price",
+        "insurance-applicable": "Type of insurance applicable",
+        "see-detail": "See detail",
+        "examination-prices-for-foreigners": "Examination prices for foreigners",
+        "patients-can-pay-costs": "Patients can pay costs:",
+        "hide-price-list": "Hide price list",
+        "state-health-insurance": "State Health Insurance",
+        "do-not-apply": "Do not apply",
+        "direct-guarantee-insurance": "Direct guarantee insurance",
+        "direct-cold-insurance-does-not-apply": "The clinic currently does not apply direct cold insurance and has not issued financial invoices (red invoices).",
+        "collapse": "Collapse"
+    },
+    "detail-specialty": {
+        "read-more": "Read more",
+        "hide-less": "Hide less",
+        "no-doctor": "This specialty currently has no doctors"
+    },
+
+    "modal-booking": {
+        "make-an-appointment": "Make an appointment",
+        "price": "Examination price",
+        "full-name": "Full name",
+        "phone-number": "Phone number",
+        "birthday": "Birthday",
+        "email": "Email",
+        "address": "Address",
+        "profession": "Profession",
+        "reason-for-examination": "Reason for examination",
+        "close": "Close",
+        "save": "Save",
+        "need-login-to-booking": "You need to log in to schedule an appointment",
+        "please-login": "Please login",
+        "login": "Login",
+        "not-account": "If you do not already have an account",
+        "register": "Register"
     }
 }

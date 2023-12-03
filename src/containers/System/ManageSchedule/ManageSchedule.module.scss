@@ -1,0 +1,36 @@
+.title {
+    font-weight: 600;
+    font-size: 20px;
+    margin: 20px auto;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.date-picker {
+    border: 1px solid #999;
+}
+
+.wrapper-timeline {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .timeline {
+        background-color: #fff8ae;
+        min-width: 11%;
+        line-height: 1.3333;
+        display: inline-block;
+        vertical-align: middle;
+        white-space: nowrap;
+        text-align: center;
+        color: #333;
+        font-weight: bolder;
+        padding: 10px;
+        position: relative;
+    }
+
+    .active {
+        background-color: #fbe601;
+    }
+}

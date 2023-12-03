@@ -30,3 +30,24 @@ a {
     text-decoration: none;
     color: #000;
 }
+
+._loading_overlay_overlay.css-df17o1 {
+    z-index: 10000000000 !important;
+    position: fixed !important;
+    width: 100vw;
+    height: 100vh;
+}
+
+.editor-container {
+    ul {
+        list-style: disc !important;
+    }
+}
+
+.ant-image-preview-wrap {
+    z-index: 100000 !important;
+
+    .ant-image-preview-img {
+        z-index: 1000000 !important;
+    }
+}

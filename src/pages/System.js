@@ -1,12 +1,11 @@
-import { Routes, Route } from 'react-router-dom'
-import ManageAdmin from '~/containers/System/ManageAdmin'
+import System from '~/containers/System';
 
-const System = () => {
-    return <div>
-        <Routes>
-            <Route path='/system/manage-admin' element={<ManageAdmin />} />
-        </Routes>
-    </div>
-}
+const SystemPage = () => {
+    return (
+        <>
+            <System />
+        </>
+    );
+};
 
-export default System
+export default SystemPage;

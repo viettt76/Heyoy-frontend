@@ -4,7 +4,22 @@
         "at-hospital": "Tại viện",
         "live-healthy": "Sống khoẻ",
         "appointment-schedule": "Lịch hẹn",
-        "support": "Hỗ trợ"
+        "support": "Hỗ trợ",
+        "day": "Ngày",
+        "doctor": "Bác sĩ",
+        "specialty": "chuyên khoa"
+    },
+    "login": {
+        "login": "Đăng nhập",
+        "username": "Tài khoản",
+        "password": "Mật khẩu",
+        "forgot-password": "Quên mật khẩu?"
+    },
+    "register": {
+        "register": "Đăng ký",
+        "username": "Tài khoản",
+        "password": "Mật khẩu",
+        "retype-password": "Nhập lại mật khẩu"
     },
     "menu": {
         "system": {
@@ -26,20 +41,32 @@
             "manage-patient": "Quản lý bệnh nhân",
             "clinic": "Phòng khám",
             "manage-clinic": "Quản lý phòng khám",
-            "specialist": "Chuyên khoa",
-            "manage-specialist": "Quản lý chuyên khoa",
+            "specialty": "Chuyên khoa",
+            "manage-specialty": "Quản lý chuyên khoa",
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lý cẩm nang"
+        },
+        "doctor": {
+            "manage-schedule": "Quản lý lịch khám",
+            "manage-patient": "Quản lý bệnh nhân",
+            "manage-doctor": "Quản lý bác sĩ",
+            "manage-info": "Quản lý thông tin"
         }
+    },
+    "homepage": {
+        "specialty": "Chuyên khoa",
+        "clinic": "Phòng khám",
+        "outstanding-doctor": "Bác sĩ nổi bật",
+        "see-more": "Xem thêm"
     },
     "system": {
         "header": {
             "welcome": "Xin chào"
         },
         "manage-user": {
-            "add-user": "Thêm người dùng"
-        },
-        "manage-admin": {
+            "manage-user": "Quản lý người dùng",
+            "add-user": "Thêm người dùng",
+            "edit-info-user": "Sửa thông tin người dùng",
             "email": "Email",
             "password": "Mật khẩu",
             "first-name": "Tên",
@@ -54,7 +81,96 @@
             "upload-image": "Tải ảnh",
             "add": "Thêm",
             "email-required": "Email là bắt buộc",
-            "password-required": "Mật khẩu là bắt buộc"
+            "password-required": "Mật khẩu là bắt buộc",
+            "close": "Đóng",
+            "save": "Lưu"
+        },
+        "manage-doctor": {
+            "add-description-of-doctor": "Tạo thêm thông tin bác sĩ",
+            "choose-doctor": "Chọn bác sĩ",
+            "introductory-information": "Thông tin giới thiệu",
+            "choose-price": "Chọn giá",
+            "choose-payment": "Chọn phương thức thanh toán",
+            "choose-province": "Chọn thành phố",
+            "enter-address": "Nhập địa chỉ",
+            "choose-clinic": "Chọn phòng khám",
+            "choose-specialty": "Chọn chuyên khoa",
+            "note": "Ghi chú",
+            "save": "Lưu"
+        },
+        "manage-schedule": {
+            "manage-doctor's-medical-examination-plans": "Quản lý kế hoạch khám bệnh của bác sĩ",
+            "choose-doctor": "Chọn bác sĩ",
+            "choose-day": "Chọn ngày",
+            "save": "Lưu"
+        },
+        "manage-specialty": {
+            "manage-specialty": "Quản lý chuyên khoa",
+            "specialty-name": "Tên chuyên khoa",
+            "specialty-image": "Ảnh chuyên khoa",
+            "specialty-description": "Miêu tả về chuyên khoa",
+            "save": "Lưu"
+        },
+        "manage-clinic": {
+            "manage-clinic": "Quản lý phòng khám",
+            "clinic-name": "Tên phòng khám",
+            "clinic-address": "Địa chỉ phòng khám",
+            "clinic-image": "Ảnh phòng khám",
+            "clinic-description": "Miêu tả về phòng khám",
+            "save": "Lưu"
+        },
+        "manage-patient": {
+            "doctor's-patient-management": "Quản lý bệnh nhân của bác sĩ",
+            "ordinals": "STT",
+            "time": "Thời gian",
+            "full-name": "Họ và tên",
+            "gender": "Giới tính",
+            "birthday": "Ngày sinh",
+            "address": "Địa chỉ",
+            "reason": "Lý do",
+            "actions": "Hành động",
+            "confirm": "Xác nhận"
         }
+    },
+    "detail-doctor": {
+        "examination-schedule": "Lịch khám",
+        "no-schedule": "Bác sĩ không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!",
+        "choose": "Chọn",
+        "book-free": "và đặt (Phí đặt lịch 0đ)",
+        "address-clinic": "Địa chỉ khám",
+        "price": "Giá khám",
+        "insurance-applicable": "Loại bảo hiểm áp dụng",
+        "see-detail": "Xem chi tiết",
+        "examination-prices-for-foreigners": "Giá khám cho người nước ngoài",
+        "patients-can-pay-costs": "Người bệnh có thể thanh toán chi phí bằng hình thức:",
+        "hide-price-list": "Ẩn bảng giá",
+        "state-health-insurance": "Bảo hiểm Y tế nhà nước",
+        "do-not-apply": "Không áp dụng",
+        "direct-guarantee-insurance": "Bảo hiểm bảo lãnh trực tiếp",
+        "direct-cold-insurance-does-not-apply": "Phòng khám hiện không áp dụng bảo hiểm bảo lạnh trực tiếp và chưa có xuất hóa đơn tài chính (hóa đơn đỏ)",
+        "collapse": "Thu gọn"
+    },
+    "detail-specialty": {
+        "read-more": "Đọc thêm",
+        "hide-less": "Ẩn bớt",
+        "no-doctor": "Chuyên khoa này hiện không có bác sĩ"
+    },
+    "modal-booking": {
+        "make-an-appointment": "Đặt lịch khám",
+        "price": "Giá khám",
+        "full-name": "Họ tên",
+        "phone-number": "Số điện thoại",
+        "birthday": "Ngày sinh",
+        "email": "Email",
+        "address": "Địa chỉ liên hệ",
+        "profession": "Nghề nghiệp",
+        "reason-for-examination": "Lý do khám",
+        "close": "Đóng",
+        "save": "Lưu",
+        "need-login-to-booking": "Bạn cần đăng nhập để đặt lịch",
+        "please-login": "Vui lòng đăng nhập",
+        "login": "Đăng nhập",
+        "not-account": "Nếu bạn chưa có tài khoản",
+        "register": "Đăng ký"
     }
 }

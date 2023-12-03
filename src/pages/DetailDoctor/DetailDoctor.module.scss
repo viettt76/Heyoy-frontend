@@ -1,0 +1,192 @@
+.doctor-info {
+    padding: 0 70px;
+}
+
+.doctor-intro {
+    display: flex;
+    padding: 15px 0px;
+    align-items: center;
+
+    .doctor-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .doctor-name {
+        h5 {
+            font-size: 27px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        p,
+        div {
+            color: #555;
+            font-size: 13px;
+            line-height: 19.5px;
+        }
+    }
+}
+
+.select-day {
+    margin: 15px 0;
+    color: #337ab7;
+    background: transparent;
+    border: none;
+    color: #337ab7;
+    border-bottom: 1px solid #999;
+    border-radius: 0;
+    font-weight: bold;
+    padding: 3px;
+    outline: none;
+    text-transform: capitalize;
+}
+
+.examination-schedule-title {
+    margin-bottom: 5px;
+}
+
+.examination-schedule-wrapper {
+    display: flex;
+    padding-bottom: 25px;
+
+    .wrapper-timeline {
+        min-width: 55%;
+        max-width: 55%;
+
+        .timeline {
+            background-color: #fff04b;
+            min-width: 22%;
+            display: inline-block;
+            vertical-align: middle;
+            white-space: nowrap;
+            text-align: center;
+            color: #333;
+            font-weight: bolder;
+            padding: 10px;
+            position: relative;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+    }
+
+    .address-price {
+        border-left: 1px solid #eee;
+        padding-left: 20px;
+
+        .address-wrapper {
+            border-bottom: 1px solid rgb(221, 221, 221);
+            padding-bottom: 8px;
+
+            .address-label {
+                display: block;
+                text-transform: uppercase;
+                font-size: 14px;
+                color: #666;
+                font-weight: bold;
+            }
+
+            .name-clinic {
+                display: block;
+                font-weight: bold;
+                font-size: 14px;
+                padding: 3px 0;
+            }
+
+            .address-clinic {
+                font-size: 14px;
+                padding: 3px 0;
+            }
+        }
+
+        .price-wrapper {
+            margin-top: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgb(221, 221, 221);
+
+            .price-label {
+                text-transform: uppercase;
+                font-size: 14px;
+                color: #666;
+                font-weight: bold;
+            }
+        }
+
+        .insurance {
+            margin-top: 8px;
+
+            .insurance-title {
+                text-transform: uppercase;
+                font-size: 14px;
+                color: #666;
+                font-weight: bold;
+            }
+        }
+
+        .see-detail {
+            margin-left: 6px;
+            color: #45c3d2;
+            cursor: pointer;
+        }
+
+        .hide-detail {
+            color: #45c3d2;
+            cursor: pointer;
+        }
+
+        .see-detail-info {
+            border: 1px solid #ddd;
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08);
+            background: #f8f8f8;
+            position: relative;
+            margin: 10px 0;
+
+            .border {
+                border: 1px solid rgb(221, 221, 221);
+                padding: 2px;
+            }
+
+            .price {
+                position: absolute;
+                top: 0;
+                right: 3px;
+            }
+
+            .text {
+                display: block;
+                color: #666;
+                font-size: small;
+            }
+
+            .text-mr-80 {
+                margin-right: 80px;
+            }
+        }
+    }
+}
+
+.doctor-detail-info {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background-color: #efefef;
+    padding: 15px 70px;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    ul,
+    ol {
+        list-style: disc;
+        margin: 10px 0px 10px 25px;
+    }
+}

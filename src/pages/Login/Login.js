@@ -6,6 +6,7 @@ import * as actions from '~/store/actions';
 import styles from './Login.module.scss';
 import { handleLoginService } from '~/services/userService';
 import { useNavigate } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -60,9 +61,13 @@ const Login = () => {
             <div className={clsx(styles['login-background'])}>
                 <div className={clsx(styles['login-container'])}>
                     <div className={clsx(styles['login-content'], 'row')}>
-                        <div className={clsx('col-12', styles['form-label'])}>Login</div>
+                        <div className={clsx('col-12', styles['form-label'])}>
+                            <FormattedMessage id="login.login" />
+                        </div>
                         <div className={clsx('col-12 form-group', styles['login-input'])}>
-                            <label>Username:</label>
+                            <label>
+                                <FormattedMessage id="login.username" />:
+                            </label>
                             <input
                                 autoFocus
                                 value={username}
@@ -72,7 +77,9 @@ const Login = () => {
                             />
                         </div>
                         <div className={clsx('col-12 form-group', styles['login-input'])}>
-                            <label>Password:</label>
+                            <label>
+                                <FormattedMessage id="login.password" />:
+                            </label>
                             <div className={clsx(styles['input-password'])}>
                                 <input
                                     value={password}
@@ -93,19 +100,21 @@ const Login = () => {
                         {message && <div className={clsx(styles['error-message'])}>{message}</div>}
                         <div className={clsx('col-12')}>
                             <button className={clsx(styles['btn-login'])} onClick={handleSubmitLogin}>
-                                Login
+                                <FormattedMessage id="login.login" />
                             </button>
                         </div>
                         <div className={clsx('col-12', styles['forgot-password'])}>
-                            <span>Forgot your password?</span>
+                            <span>
+                                <FormattedMessage id="login.forgot-password" />
+                            </span>
                         </div>
-                        <div className={clsx('col-12', 'text-center', styles['social-login'])}>
+                        {/* <div className={clsx('col-12', 'text-center', styles['social-login'])}>
                             <span>Or sign in with</span>
                             <div>
                                 <i className="fa-brands fa-google"></i>
                                 <i className="fa-brands fa-facebook"></i>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'react-toastify/dist/ReactToastify.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "slick-carousel/slick/slick.css";
-
-import './styles/styles.scss';
+import { Provider } from 'react-redux';
+import reduxStore, { persist } from './redux';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import IntlProviderWrapper from './hoc/IntlProviderWrapper';
 
-import { Provider } from 'react-redux';
-import reduxStore, { persist } from './redux';
+import 'react-toastify/dist/ReactToastify.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'slick-carousel/slick/slick.css';
+import 'react-markdown-editor-lite/lib/index.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import './styles/styles.scss';
+import 'tippy.js/dist/tippy.css';
 
 const renderApp = () => {
     ReactDOM.render(

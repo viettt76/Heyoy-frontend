@@ -30,6 +30,14 @@
 
     .header-right {
         display: flex;
+        align-items: center;
+
+        .avatar {
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+        }
 
         .welcome {
             text-align: center;

@@ -3,8 +3,10 @@ import Slider from 'react-slick';
 import { Button } from 'react-bootstrap';
 import SectionItem from './SectionItem';
 import styles from './Section.module.scss';
-import './Section.scss'
+import './Section.scss';
 import { ChevronLeftIcon, ChevronRightIcon } from '../Icons';
+import { FormattedMessage } from 'react-intl';
+import PropTypes, { oneOfType } from 'prop-types';
 
 const NextArrow = ({ className, style, onClick }) => {
     return (
@@ -22,12 +24,18 @@ const PrevArrow = ({ className, style, onClick }) => {
     );
 };
 
-const Section = ({ label, buttonSeeMore, listSectionItems = [], numberItemInSlide = 1 }) => {
+const Section = ({ label, buttonSeeMore, listSectionItems, numberItemInSlide = 1 }) => {
     return (
         <div className={clsx(styles['wrapper'])}>
             <div className={clsx(styles['section-top'])}>
-                <h5 className={clsx(styles['section-label'])}>{label}</h5>
-                {buttonSeeMore && <Button className={clsx(styles['btn-see-more'])}>Xem thêm</Button>}
+                <h5 className={clsx(styles['section-label'])}>
+                    <FormattedMessage id={label} />
+                </h5>
+                {buttonSeeMore && (
+                    <Button className={clsx(styles['btn-see-more'])}>
+                        <FormattedMessage id="homepage.see-more" />
+                    </Button>
+                )}
             </div>
             <Slider
                 infinite={false}
@@ -60,14 +68,26 @@ const Section = ({ label, buttonSeeMore, listSectionItems = [], numberItemInSlid
                     },
                 ]}
             >
-                {listSectionItems.map((item, index) => {
-                    return (
-                        <SectionItem numberItemInSlide={numberItemInSlide} key={`section-item-${index}`} data={item} />
-                    );
-                })}
+                {listSectionItems?.length > 0 &&
+                    listSectionItems.map((item, index) => {
+                        return (
+                            <SectionItem
+                                numberItemInSlide={numberItemInSlide}
+                                key={`section-item-${index}`}
+                                data={item}
+                            />
+                        );
+                    })}
             </Slider>
         </div>
     );
+};
+
+Section.propTypes = {
+    label: PropTypes.string.isRequired,
+    buttonSeeMore: PropTypes.bool,
+    listSectionItems: oneOfType([PropTypes.array.isRequired, PropTypes.bool.isRequired]),
+    numberItemInSlide: PropTypes.number,
 };
 
 export default Section;

@@ -1,0 +1,33 @@
+.wrapper {
+    padding: 5px;
+
+    .heading {
+        font-weight: 600;
+        font-size: 20px;
+        margin: 20px auto;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .more-info {
+        display: flex;
+
+        .more-info-left {
+            width: 30%;
+        }
+
+        .more-info-right {
+            flex: 1;
+            margin-left: 15px;
+        }
+    }
+
+    .select {
+        line-height: 20px;
+    }
+
+    .btn-save {
+        margin: 20px 40px;
+        float: right;
+    }
+}

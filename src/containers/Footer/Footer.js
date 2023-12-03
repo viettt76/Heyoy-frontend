@@ -6,10 +6,15 @@ import logo from '~/assets/images/logo.png';
 const Footer = () => {
     const location = useLocation();
 
-    if (location.pathname.includes('/system') || location.pathname === '/login') {
+    if (
+        location.pathname.includes('/system') ||
+        location.pathname === '/login' ||
+        location.pathname === '/register' ||
+        location.pathname === '/verify-booking'
+    ) {
         return null;
     }
-    
+
     return (
         <div className={clsx('d-md-flex', styles['footer'])}>
             <div className={clsx('col-md-6')}>
