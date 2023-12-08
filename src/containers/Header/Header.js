@@ -1,26 +1,23 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Offcanvas, Container, Navbar } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { Container, Navbar } from 'react-bootstrap';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import clsx from 'clsx';
+import _ from 'lodash';
 import Tippy from '@tippyjs/react/headless';
 import logo from '~/assets/images/logo.png';
 import styles from './Header.module.scss';
-import * as actions from '~/store/actions';
 import { BarsIcon, ClockRotateLeftIcon, HeadsetIcon, SearchIcon } from '~/components/Icons';
-import { LANGUAGES } from '~/utils';
+import { LANGUAGES, path } from '~/utils';
 import { getAppointmentByPatientService } from '~/services';
+import MenuOffcanvas from '~/components/MenuOffcanvas';
 
 const Header = () => {
     const location = useLocation();
-    const dispatch = useDispatch();
 
     const language = useSelector((state) => state.app.language);
-    const isLoggedIn = useSelector((state) => state.user?.isLoggedIn);
     const userInfo = useSelector((state) => state.user?.userInfo);
-
-    const processLogout = () => dispatch(actions.processLogout());
 
     const [listAppointments, setListAppointments] = useState([]);
 
@@ -29,23 +26,25 @@ const Header = () => {
     const handleCloseMenu = () => setShowMenu(false);
     const handleShowMenu = () => setShowMenu(true);
 
-    const handleChangeLanguage = (language) => {
-        dispatch(actions.appChangeLanguage(language));
-    };
-
     useEffect(() => {
         if (userInfo?.roleId === 'R3') {
             let fetchAppointmentByPatientService = async () => {
                 let res = await getAppointmentByPatientService(userInfo?.id);
                 if (res?.data) {
-                    setListAppointments(res.data);
+                    let data = res.data;
+                    let arr = _.sortBy(data, ['date', 'timeType'], ['asc']);
+                    setListAppointments(arr);
                 }
             };
             fetchAppointmentByPatientService();
         }
     }, [userInfo, location]);
 
-    if (location.pathname.includes('/system') || location.pathname === '/login' || location.pathname === '/register') {
+    if (
+        location.pathname.includes('/system') ||
+        location.pathname === path.LOGIN ||
+        location.pathname === path.REGISTER
+    ) {
         return null;
     }
 
@@ -57,53 +56,7 @@ const Header = () => {
                         <div className={clsx(styles['menu-popup-icon'])} onClick={handleShowMenu}>
                             <BarsIcon />
                         </div>
-                        <Offcanvas className={clsx(styles['off-canvas'])} show={showMenu} onHide={handleCloseMenu}>
-                            <Offcanvas.Body className={clsx(styles['off-canvas-body'])}>
-                                <ul className={clsx(styles['menu-popup'])}>
-                                    {isLoggedIn ? (
-                                        <li className={clsx(styles['menu-popup-item'])}>
-                                            <div className={clsx(styles['btn-logout'])} onClick={processLogout}>
-                                                <i className="fas fa-sign-out-alt"></i>
-                                            </div>
-                                        </li>
-                                    ) : (
-                                        <li className={clsx(styles['menu-popup-item'])}>
-                                            <Link to="/login">Login</Link>
-                                        </li>
-                                    )}
-                                    <li className={clsx(styles['menu-popup-item'])}>
-                                        <span
-                                            className={clsx(styles['languages'], {
-                                                [styles['active']]: language === LANGUAGES.EN,
-                                            })}
-                                            onClick={() => handleChangeLanguage(LANGUAGES.EN)}
-                                        >
-                                            {LANGUAGES.EN}
-                                        </span>
-                                        <span
-                                            className={clsx(styles['languages'], {
-                                                [styles['active']]: language === LANGUAGES.VI,
-                                            })}
-                                            onClick={() => handleChangeLanguage(LANGUAGES.VI)}
-                                        >
-                                            {LANGUAGES.VI}
-                                        </span>
-                                    </li>
-                                    {userInfo?.roleId === 'R1' ||
-                                        (userInfo?.roleId === 'R2' && (
-                                            <li className={clsx(styles['menu-popup-item'])}>
-                                                <Link to="/">Home</Link>
-                                            </li>
-                                        ))}
-                                    {userInfo?.roleId === 'R1' ||
-                                        (userInfo?.roleId === 'R2' && (
-                                            <li className={clsx(styles['menu-popup-item'])}>
-                                                <Link to="/system/manage-user">System</Link>
-                                            </li>
-                                        ))}
-                                </ul>
-                            </Offcanvas.Body>
-                        </Offcanvas>
+                        <MenuOffcanvas showMenu={showMenu} handleCloseMenu={handleCloseMenu} />
 
                         <Link className={clsx(styles['logo'])} to="/">
                             <img src={logo} alt="" />
@@ -137,6 +90,7 @@ const Header = () => {
                         <div className={clsx(styles['header-right'])}>
                             <Tippy
                                 arrow={true}
+                                placement="bottom"
                                 interactive
                                 delay={[100, 200]}
                                 render={(attrs) => (

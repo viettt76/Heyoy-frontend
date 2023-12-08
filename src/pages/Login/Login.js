@@ -5,8 +5,9 @@ import clsx from 'clsx';
 import * as actions from '~/store/actions';
 import styles from './Login.module.scss';
 import { handleLoginService } from '~/services/userService';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { path } from '~/utils';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const Login = () => {
             }
             if (res?.errCode === 0) {
                 dispatchUserLoginSuccess(res.data);
-                navigate('/');
+                navigate(path.HOME);
             }
         } catch (error) {
             if (error?.response?.data?.message) {
@@ -103,10 +104,16 @@ const Login = () => {
                                 <FormattedMessage id="login.login" />
                             </button>
                         </div>
-                        <div className={clsx('col-12', styles['forgot-password'])}>
-                            <span>
+                        <div className={clsx('col-12', styles['user-features'])}>
+                            <span className={clsx(styles['forgot-password'])}>
                                 <FormattedMessage id="login.forgot-password" />
                             </span>
+                            <div>
+                                <FormattedMessage id="login.do-not-have-account" />?{' '}
+                                <Link className={clsx(styles['register'])} to="/register">
+                                    <FormattedMessage id="login.register" />
+                                </Link>
+                            </div>
                         </div>
                         {/* <div className={clsx('col-12', 'text-center', styles['social-login'])}>
                             <span>Or sign in with</span>

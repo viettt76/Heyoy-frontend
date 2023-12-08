@@ -29,3 +29,13 @@ export const convertDateToTimestamp = (date) => {
 export const convertTimestampToDate = (timestamp) => {
 
 };
+
+
+// date format 'yyyy-MM-dd' sort
+export const sortDate = (dates) => {
+    return dates.sort(function(a, b){
+        var aa = a.split('/').reverse().join(),
+            bb = b.split('/').reverse().join();
+        return aa < bb ? -1 : (aa > bb ? 1 : 0);
+    });
+}

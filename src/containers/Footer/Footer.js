@@ -2,15 +2,16 @@ import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './Footer.module.scss';
 import logo from '~/assets/images/logo.png';
+import { path } from '~/utils';
 
 const Footer = () => {
     const location = useLocation();
 
     if (
         location.pathname.includes('/system') ||
-        location.pathname === '/login' ||
-        location.pathname === '/register' ||
-        location.pathname === '/verify-booking'
+        location.pathname === path.LOGIN ||
+        location.pathname === path.REGISTER ||
+        location.pathname === path.VERIFY_BOOKING
     ) {
         return null;
     }

@@ -9,6 +9,8 @@ import * as actions from '~/store/actions';
 import { BarsIcon } from '~/components/Icons';
 import { LANGUAGES, convertBufferToString } from '~/utils';
 import MenuMultiLevelHover from '~/components/MenuMultiLevelHover';
+import { FormattedMessage } from 'react-intl';
+import MenuOffcanvas from '~/components/MenuOffcanvas';
 
 const adminMenus = [
     {
@@ -132,47 +134,16 @@ const SystemHeader = () => {
     if (!location.pathname.includes('/system')) {
         return null;
     }
-    
+
     return (
         <>
-            <Navbar expand="lg" className={clsx('bg-body-tertiary', styles['header-container'])}>
-                <Container fluid>
+            <Navbar expand="lg" className={clsx(styles['header-container'])}>
+                <Container>
                     <div className={clsx(styles['header-left'])}>
                         <div className={clsx(styles['menu-popup-icon'])} onClick={handleShowMenu}>
                             <BarsIcon />
                         </div>
-                        <Offcanvas className={clsx(styles['offcanvas'])} show={showMenu} onHide={handleCloseMenu}>
-                            <Offcanvas.Body className={clsx(styles['offcanvas-body'])}>
-                                <ul className={clsx(styles['menu-popup'])}>
-                                    <li className={clsx(styles['menu-popup-item'])}>
-                                        <div className={clsx(styles['btn-logout'])} onClick={processLogout}>
-                                            <i className="fas fa-sign-out-alt"></i>
-                                        </div>
-                                    </li>
-                                    <li className={clsx(styles['menu-popup-item'])}>
-                                        <div>
-                                            <div onClick={() => handleChangeLanguage(LANGUAGES.EN)}>{LANGUAGES.EN}</div>
-                                            <div onClick={() => handleChangeLanguage(LANGUAGES.VI)}>{LANGUAGES.VI}</div>
-                                        </div>
-                                    </li>
-                                    <li className={clsx(styles['menu-popup-item'])}>
-                                        <Link to="/">Home</Link>
-                                    </li>
-                                    <li className={clsx(styles['menu-popup-item'])}>
-                                        <Link
-                                            to={
-                                                menus?.length > 0 && menus[0]?.menu?.length > 0 && menus[0]?.menu[0]?.to
-                                            }
-                                        >
-                                            System
-                                        </Link>
-                                    </li>
-                                    <li className={clsx(styles['menu-popup-item'])}>
-                                        <Link to="/login">Login</Link>
-                                    </li>
-                                </ul>
-                            </Offcanvas.Body>
-                        </Offcanvas>
+                        <MenuOffcanvas showMenu={showMenu} handleCloseMenu={handleCloseMenu} />
 
                         <div className={clsx(styles['nav-menu'])}>
                             {menus.map((menu, index) => {

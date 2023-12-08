@@ -7,19 +7,26 @@
         "support": "Support",
         "day": "Day",
         "doctor": "Doctor",
-        "specialty": "specialty"
+        "specialty": "specialty",
+        "home": "Home",
+        "system": "System",
+        "login": "Login"
     },
     "login": {
         "login": "Login",
         "username": "Username",
         "password": "Password",
-        "forgot-password": "Forgot your password?"
+        "forgot-password": "Forgot your password?",
+        "do-not-have-account": "Do not have account",
+        "register": "Register"
     },
     "register": {
         "register": "Register",
         "username": "Username",
         "password": "Password",
-        "retype-password": "Retype password"
+        "retype-password": "Retype password",
+        "do-have-account": "Do have account",
+        "login": "Login"
     },
     "menu": {
         "system": {

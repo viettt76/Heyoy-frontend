@@ -44,6 +44,7 @@ const Section = ({ label, buttonSeeMore, listSectionItems, numberItemInSlide = 1
                 slidesToScroll={numberItemInSlide}
                 nextArrow={<NextArrow />}
                 prevArrow={<PrevArrow />}
+                className={clsx({ 'float-left': listSectionItems?.length < numberItemInSlide })}
                 responsive={[
                     {
                         breakpoint: 992,

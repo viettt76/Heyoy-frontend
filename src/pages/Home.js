@@ -127,13 +127,15 @@ const Home = () => {
             <div>
                 {listSection.map((section, index) => {
                     return (
-                        <Section
-                            key={`section-${index}`}
-                            label={section.label}
-                            buttonSeeMore={section.buttonSeeMore}
-                            listSectionItems={section.data}
-                            numberItemInSlide={section.numberItemInSlide}
-                        />
+                        section.data && (
+                            <Section
+                                key={`section-${index}`}
+                                label={section.label}
+                                buttonSeeMore={section.buttonSeeMore}
+                                listSectionItems={section.data}
+                                numberItemInSlide={section.numberItemInSlide}
+                            />
+                        )
                     );
                 })}
             </div>

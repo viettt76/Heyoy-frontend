@@ -61,9 +61,17 @@
         height: 35px;
     }
 
-    .forgot-password {
+    .user-features {
         text-align: right;
-        cursor: pointer;
+
+        .forgot-password {
+            cursor: pointer;
+        }
+
+        .register {
+            color: orange;
+            cursor: pointer;
+        }
     }
 
     .social-login {
@@ -77,8 +85,6 @@
         }
     }
 }
-
-
 
 @media (max-width: 576px) {
     .login-container {

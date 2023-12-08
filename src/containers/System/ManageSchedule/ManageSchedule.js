@@ -20,6 +20,20 @@ const ManageSchedule = () => {
     const [listTimelineChose, setListTimelineChose] = useState([]);
 
     const language = useSelector((state) => state.app.language);
+    const userInfo = useSelector((state) => state.user.userInfo);
+
+    const [isDoctor, setIsDoctor] = useState(false);
+    console.log(userInfo?.id);
+
+    useEffect(() => {
+        if (userInfo?.roleId === 'R2') {
+            setIsDoctor(true);
+            setDoctor({
+                label: '',
+                value: userInfo?.id,
+            });
+        }
+    }, [userInfo]);
 
     useEffect(() => {
         const fetchAllDoctors = async () => {
@@ -117,19 +131,21 @@ const ManageSchedule = () => {
             }
         }
     };
-
+    
     return (
         <Container>
             <h5 className={clsx(styles['title'])}>
                 <FormattedMessage id="system.manage-schedule.manage-doctor's-medical-examination-plans" />
             </h5>
             <div className={clsx('row', 'mt-3')}>
-                <div className={clsx('col-4')}>
-                    <label>
-                        <FormattedMessage id="system.manage-schedule.choose-doctor" />
-                    </label>
-                    <Select defaultValue={doctor} onChange={setDoctor} options={listDoctors} />
-                </div>
+                {!isDoctor && (
+                    <div className={clsx('col-4')}>
+                        <label>
+                            <FormattedMessage id="system.manage-schedule.choose-doctor" />
+                        </label>
+                        <Select defaultValue={doctor} onChange={setDoctor} options={listDoctors} />
+                    </div>
+                )}
                 <div className={clsx('col-4')}>
                     <label style={{ display: 'block' }}>
                         <FormattedMessage id="system.manage-schedule.choose-day" />

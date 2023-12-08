@@ -178,7 +178,7 @@ const ManageSchedule = () => {
                                         </td>
                                         <td>{birthday}</td>
                                         <td>{patient?.Patient_Info?.User?.address}</td>
-                                        <td>{patient?.Patient_Info?.reason}</td>
+                                        <td>{patient?.reason}</td>
                                         <td>
                                             <button className="btn btn-primary" onClick={() => handleConfirm(patient)}>
                                                 <FormattedMessage id="system.manage-patient.confirm" />

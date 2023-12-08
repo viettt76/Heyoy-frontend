@@ -5,3 +5,9 @@
 .slick-disabled {
     display: none !important;
 }
+
+.float-left {
+    .slick-track {
+        float: left;
+    }
+}

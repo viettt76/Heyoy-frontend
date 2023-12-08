@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import * as actions from '~/store/actions';
 import styles from './Register.module.scss';
 import { createUserService } from '~/services/userService';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { useRef } from 'react';
@@ -142,7 +142,7 @@ const Register = () => {
                 };
                 let res = await createUserService(dataUser);
                 if (res?.errCode === 0) {
-                    navigate('/login')
+                    navigate('/login');
                     toast.success(
                         language === LANGUAGES.VI ? 'Tạo tài khoản thành công!' : 'Create account successfully!',
                     );
@@ -201,13 +201,13 @@ const Register = () => {
                                     required
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
-                                <span onClick={handleShowPassword}>
+                                {/* <span onClick={handleShowPassword}>
                                     {isShowPassword ? (
                                         <i className="fa-solid fa-eye"></i>
                                     ) : (
                                         <i className="fa-solid fa-eye-slash"></i>
                                     )}
-                                </span>
+                                </span> */}
                             </InputGroup>
                         </Form.Group>
                     </Row>
@@ -335,10 +335,16 @@ const Register = () => {
                         </Form.Group>
                     </Row>
                 </Form>
-                <div className={clsx('col-12', styles['wrapper-btn-register'])}>
+                <div className={clsx('col-12', styles['user-features'])}>
                     <button className={clsx('btn', styles['btn-register'])} onClick={handleSubmitRegister}>
                         <FormattedMessage id="register.register" />
                     </button>
+                    <div>
+                        <FormattedMessage id="register.do-have-account" />?{' '}
+                        <Link className={clsx(styles['login'])} to='/login'>
+                            <FormattedMessage id="register.login" />
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

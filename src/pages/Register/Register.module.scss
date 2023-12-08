@@ -34,7 +34,7 @@
     }
 }
 
-.wrapper-btn-register {
+.user-features {
     text-align: center;
 
     .btn-register {
@@ -46,6 +46,10 @@
         color: #fff;
         font-weight: 600;
         height: 35px;
+    }
+
+    .login {
+        color: orange;
     }
 }
 

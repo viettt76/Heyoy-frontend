@@ -45,31 +45,6 @@
     }
 }
 
-.offcanvas {
-    min-width: 200px !important;
-    max-width: 260px !important;
-
-    .offcanvas-body {
-        padding: 0;
-        .menu-popup {
-            padding: 0;
-
-            .menu-popup-item {
-                border: 0.666667px solid rgba(238, 238, 238, 1);
-                padding: 0 10px;
-                font-size: 17px;
-
-                .btn-logout {
-                    line-height: 40px;
-                    height: 40px;
-                    padding: 0;
-                    cursor: pointer;
-                }
-            }
-        }
-    }
-}
-
 @media (max-width: 767px) {
     .nav-menu {
         display: none !important;

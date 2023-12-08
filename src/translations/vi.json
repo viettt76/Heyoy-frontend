@@ -7,19 +7,26 @@
         "support": "Hỗ trợ",
         "day": "Ngày",
         "doctor": "Bác sĩ",
-        "specialty": "chuyên khoa"
+        "specialty": "chuyên khoa",
+        "home": "Trang chủ",
+        "system": "Hệ thống",
+        "login": "Đăng nhập"
     },
     "login": {
         "login": "Đăng nhập",
         "username": "Tài khoản",
         "password": "Mật khẩu",
-        "forgot-password": "Quên mật khẩu?"
+        "forgot-password": "Quên mật khẩu?",
+        "do-not-have-account": "Do not have account",
+        "register": "Register"
     },
     "register": {
         "register": "Đăng ký",
         "username": "Tài khoản",
         "password": "Mật khẩu",
-        "retype-password": "Nhập lại mật khẩu"
+        "retype-password": "Nhập lại mật khẩu",
+        "do-have-account": "Đã có tài khoản",
+        "login": "Đăng nhập"
     },
     "menu": {
         "system": {
