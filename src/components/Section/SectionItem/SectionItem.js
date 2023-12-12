@@ -5,9 +5,10 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { LANGUAGES } from '~/utils';
 import styles from './SectionItem.module.scss';
+import { languageSelector } from '~/store/seletors';
 
 const SectionItem = ({ data }) => {
-    let language = useSelector((state) => state.app.language);
+    let language = useSelector(languageSelector);
 
     const wrapperTitleRef = useRef(null);
     const titleRef = useRef(null);

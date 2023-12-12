@@ -16,3 +16,12 @@ export const userLoginFail = () => ({
 export const processLogout = () => ({
     type: actionTypes.PROCESS_LOGOUT,
 });
+
+export const getInfoTemporary = (userInfo) => ({
+    type: actionTypes.GET_INFO_TEMPORARY,
+    payload: userInfo
+})
+
+export const deleteInfoTemporary = () => ({
+    type: actionTypes.DELETE_INFO_TEMPORARY,
+})

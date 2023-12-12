@@ -10,7 +10,8 @@
         "specialty": "specialty",
         "home": "Home",
         "system": "System",
-        "login": "Login"
+        "login": "Login",
+        "personal-information": "Personal information"
     },
     "login": {
         "login": "Login",
@@ -27,6 +28,11 @@
         "retype-password": "Retype password",
         "do-have-account": "Do have account",
         "login": "Login"
+    },
+    "change-information": {
+        "change-information": "Change information",
+        "save": "Save",
+        "cancel": "Cancel"
     },
     "menu": {
         "system": {

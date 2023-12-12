@@ -10,9 +10,13 @@ import { getPatientByDoctorAndDateService, sendInvoiceRemedyService } from '~/se
 import { LANGUAGES, convertDateToTimestamp } from '~/utils';
 import ModalInvoiceRemedy from './ModalInvoiceRemedy';
 import * as actions from '~/store/actions';
+import { languageSelector, userInfoSelector } from '~/store/seletors';
 
 const ManageSchedule = () => {
     const dispatch = useDispatch();
+
+    const language = useSelector(languageSelector);
+    const userInfo = useSelector(userInfoSelector);
 
     const [currentDate, setCurrentDate] = useState(new Date());
     const [listPatients, setListPatients] = useState([]);
@@ -31,9 +35,6 @@ const ManageSchedule = () => {
 
     const handleCloseModalInvoiceRemedy = () => setShowModalInvoiceRemedy(false);
     const handleShowModalInvoiceRemedy = () => setShowModalInvoiceRemedy(true);
-
-    const language = useSelector((state) => state.app.language);
-    const userInfo = useSelector((state) => state.user.userInfo);
 
     let fetchPatientByDoctorAndDate = async () => {
         let timestamp = convertDateToTimestamp(currentDate);

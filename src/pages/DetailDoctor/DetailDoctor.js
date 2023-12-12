@@ -10,11 +10,12 @@ import styles from './DetailDoctor.module.scss';
 import { getDetailDoctorService, getExaminationScheduleService } from '~/services';
 import { LANGUAGES, convertBufferToString } from '~/utils';
 import ModalBooking from '~/components/ModalBooking';
+import { languageSelector } from '~/store/seletors';
 
 const DetailDoctor = () => {
     const { id } = useParams();
 
-    let language = useSelector((state) => state.app.language);
+    let language = useSelector(languageSelector);
 
     const [detailDoctor, setDetailDoctor] = useState({});
     const [allDay, setAllday] = useState([]);

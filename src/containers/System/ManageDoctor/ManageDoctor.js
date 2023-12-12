@@ -10,10 +10,13 @@ import { getAllCodeService, getQuantityClinicService, getQuantityDoctorService }
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '~/utils';
 import { createDetailDoctorService, getDetailDoctorService, getQuantitySpecialtyService } from '~/services';
+import { languageSelector } from '~/store/seletors';
 
 const mdParser = new MarkdownIt();
 
 const ManageDoctor = () => {
+    const language = useSelector(languageSelector);
+
     const [listDoctorsFromApi, setListDoctorsFromApi] = useState([]);
     const [listPriceFromApi, setListPriceFromApi] = useState([]);
     const [listPaymentFromApi, setListPaymentFromApi] = useState([]);
@@ -33,8 +36,6 @@ const ManageDoctor = () => {
     const [contentMarkdown, setContentMarkdown] = useState('');
     const [contentHTML, setContentHTML] = useState('');
     const [detailDoctor, setDetailDoctor] = useState({});
-
-    const language = useSelector((state) => state.app.language);
 
     useEffect(() => {
         const fetchAllDoctors = async () => {

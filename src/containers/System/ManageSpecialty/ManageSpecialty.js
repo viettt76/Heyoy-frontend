@@ -8,11 +8,12 @@ import { toast } from 'react-toastify';
 import styles from './ManageSpecialty.module.scss';
 import { LANGUAGES, convertBase64 } from '~/utils';
 import { createSpecialtyService } from '~/services/specialtyService';
+import { languageSelector } from '~/store/seletors';
 
 let mdParser = new MarkdownIt();
 
 const ManageSpecialty = () => {
-    const language = useSelector((state) => state.app.language);
+    const language = useSelector(languageSelector);
 
     const [previewImage, setPreviewImage] = useState(undefined);
     const [name, setName] = useState('');

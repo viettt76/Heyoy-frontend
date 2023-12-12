@@ -12,6 +12,7 @@ import { LANGUAGES, convertDateToTimestamp, path } from '~/utils';
 import { getAllCodeService } from '~/services';
 import { postBookAppointmentService } from '~/services';
 import * as actions from '~/store/actions';
+import { isLoggedInSelector, languageSelector, userInfoSelector } from '~/store/seletors';
 
 const ModalBooking = ({
     doctorId,
@@ -24,10 +25,10 @@ const ModalBooking = ({
     handleCloseModalBooking,
 }) => {
     const dispatch = useDispatch();
-    const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+    const isLoggedIn = useSelector(isLoggedInSelector);
 
-    const language = useSelector((state) => state.app.language);
-    const userId = useSelector((state) => state.user.userInfo?.id);
+    const language = useSelector(languageSelector);
+    const userInfo = useSelector(userInfoSelector);
 
     const [listGendersFromApi, setListGendersFromApi] = useState([]);
     const [listBookingForFromApi, setListBookingForFromApi] = useState([]);
@@ -74,7 +75,7 @@ const ModalBooking = ({
             address,
             profession,
             reason,
-            userId,
+            userId: userInfo?.id,
             doctorId,
             doctorName,
             time: time.timeType,

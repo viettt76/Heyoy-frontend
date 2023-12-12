@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
-import { Offcanvas, Container, Navbar } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { Container, Navbar } from 'react-bootstrap';
 import clsx from 'clsx';
 
 import styles from './SystemHeader.module.scss';
-import * as actions from '~/store/actions';
 import { BarsIcon } from '~/components/Icons';
 import { LANGUAGES, convertBufferToString } from '~/utils';
 import MenuMultiLevelHover from '~/components/MenuMultiLevelHover';
-import { FormattedMessage } from 'react-intl';
 import MenuOffcanvas from '~/components/MenuOffcanvas';
+import { languageSelector, userInfoSelector } from '~/store/seletors';
 
 const adminMenus = [
     {
@@ -86,23 +85,19 @@ const doctorMenus = [
 ];
 
 const SystemHeader = () => {
-    const dispatch = useDispatch();
-
     const location = useLocation();
 
-    const processLogout = () => dispatch(actions.processLogout());
+    const userInfo = useSelector(userInfoSelector);
+    const language = useSelector(languageSelector);
 
     const [role, setRole] = useState('');
     const [showMenu, setShowMenu] = useState(false);
     const [srcImage, setSrcImage] = useState('');
     const [menus, setMenus] = useState([]);
 
-    const userInfo = useSelector((state) => state?.user?.userInfo);
-    const language = useSelector((state) => state.app.language);
-
     useEffect(() => {
         if (userInfo?.image?.type === 'Buffer') {
-            const src = convertBufferToString(userInfo?.image);
+            const src = convertBufferToString(userInfo?.image || '');
             setSrcImage(src);
         } else if (userInfo?.image) {
             setSrcImage(userInfo?.image);
@@ -127,17 +122,13 @@ const SystemHeader = () => {
     const handleCloseMenu = () => setShowMenu(false);
     const handleShowMenu = () => setShowMenu(true);
 
-    const handleChangeLanguage = (language) => {
-        dispatch(actions.appChangeLanguage(language));
-    };
-
     if (!location.pathname.includes('/system')) {
         return null;
     }
 
     return (
-        <>
-            <Navbar expand="lg" className={clsx(styles['header-container'])}>
+        <div className={clsx(styles['header-container'])}>
+            <Navbar expand="lg">
                 <Container>
                     <div className={clsx(styles['header-left'])}>
                         <div className={clsx(styles['menu-popup-icon'])} onClick={handleShowMenu}>
@@ -175,7 +166,7 @@ const SystemHeader = () => {
                     </div>
                 </Container>
             </Navbar>
-        </>
+        </div>
     );
 };
 

@@ -9,11 +9,12 @@ import { useSelector } from 'react-redux';
 import { LANGUAGES } from '~/utils';
 import { useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { languageSelector } from '~/store/seletors';
 
 const DetailSpecialty = () => {
     let { id } = useParams();
 
-    let language = useSelector((state) => state.app.language);
+    let language = useSelector(languageSelector);
 
     const [descriptionHTML, setDescriptionHTML] = useState('');
     const [listDoctors, setListDoctors] = useState([]);

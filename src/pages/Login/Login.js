@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 import clsx from 'clsx';
-
 import * as actions from '~/store/actions';
 import styles from './Login.module.scss';
 import { handleLoginService } from '~/services/userService';
-import { Link, useNavigate } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
 import { path } from '~/utils';
 
 const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const dispatchUserLoginSuccess = (userInfo) => dispatch(actions.userLoginSuccess(userInfo));
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -47,7 +44,7 @@ const Login = () => {
                 setMessage(res.message);
             }
             if (res?.errCode === 0) {
-                dispatchUserLoginSuccess(res.data);
+                dispatch(actions.userLoginSuccess(res.data));
                 navigate(path.HOME);
             }
         } catch (error) {

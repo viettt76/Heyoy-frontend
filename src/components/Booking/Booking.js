@@ -10,9 +10,10 @@ import { getDetailDoctorService, getExaminationScheduleService } from '~/service
 import styles from './Booking.module.scss';
 import { LANGUAGES, convertBufferToString } from '~/utils';
 import ModalBooking from '~/components/ModalBooking';
+import { languageSelector } from '~/store/seletors';
 
 const Booking = ({ data }) => {
-    let language = useSelector((state) => state.app.language);
+    let language = useSelector(languageSelector);
 
     const [detailDoctor, setDetailDoctor] = useState({});
     const [allDay, setAllday] = useState([]);

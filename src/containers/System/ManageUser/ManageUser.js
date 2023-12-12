@@ -10,6 +10,7 @@ import ModalAddNewUser from './ModalAddNewUser';
 import ModalEditUser from './ModalEditUser';
 import * as actions from '~/store/actions';
 import { LANGUAGES, convertBufferToString } from '~/utils';
+import { languageSelector } from '~/store/seletors';
 
 function ManageUser() {
     const [listUsers, setListUsers] = useState([]);
@@ -18,7 +19,7 @@ function ManageUser() {
     const [currentUser, setCurrentUser] = useState({});
 
     const dispatch = useDispatch();
-    const language = useSelector((state) => state.app.language);
+    const language = useSelector(languageSelector);
 
     const getUserApi = async () => {
         try {
@@ -236,13 +237,14 @@ function ManageUser() {
                                             <td>{user.phoneNumber}</td>
                                             <td>{user.address}</td>
                                             <td>
-                                                {' '}
-                                                <img
-                                                    width={80}
-                                                    height={80}
-                                                    src={srcImage}
-                                                    alt={`${user.lastName} ${user.firstName}`}
-                                                />
+                                                {srcImage && (
+                                                    <img
+                                                        width={80}
+                                                        height={80}
+                                                        src={srcImage}
+                                                        alt={`${user.lastName} ${user.firstName}`}
+                                                    />
+                                                )}
                                             </td>
                                             <td>
                                                 <button

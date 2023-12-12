@@ -6,11 +6,12 @@ import PropTypes from 'prop-types';
 import * as actions from '~/store/actions';
 import { LANGUAGES, convertBufferToString } from '~/utils';
 import { convertBase64 } from '~/utils';
+import { languageSelector } from '~/store/seletors';
 
 function ModalEditUser({ isShowModalEditUser, currentUser, toggleModalEditUser, saveEditUser }) {
     const [validated, setValidated] = useState(false);
     const dispatch = useDispatch();
-    const language = useSelector((state) => state.app.language);
+    const language = useSelector(languageSelector);
 
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -118,7 +119,6 @@ function ModalEditUser({ isShowModalEditUser, currentUser, toggleModalEditUser, 
                         <Row className="mb-3">
                             <Form.Group as={Col} md="12">
                                 <Form.Label>
-                                    {' '}
                                     <FormattedMessage id="system.manage-user.email" />
                                 </Form.Label>
                                 <InputGroup hasValidation>

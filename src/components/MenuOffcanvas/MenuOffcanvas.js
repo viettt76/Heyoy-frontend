@@ -7,14 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './MenuOffcanvas.module.scss';
 import { LANGUAGES, path } from '~/utils';
 import * as actions from '~/store/actions';
+import { isLoggedInSelector, languageSelector, userInfoSelector } from '~/store/seletors';
 
 const MenuOffcanvas = ({ showMenu, handleCloseMenu }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const language = useSelector((state) => state.app.language);
-    const userInfo = useSelector((state) => state.user?.userInfo);
-    const isLoggedIn = useSelector((state) => state.user?.isLoggedIn);
+    const language = useSelector(languageSelector);
+    const isLoggedIn = useSelector(isLoggedInSelector);
+    const userInfo = useSelector(userInfoSelector);
 
     const [isDoctorOrAdmin, setIsDoctorOrAdmin] = useState(false);
 
@@ -52,9 +53,12 @@ const MenuOffcanvas = ({ showMenu, handleCloseMenu }) => {
                             </Link>
                         </li>
                     )}
+
                     {isLoggedIn && (
                         <li className={clsx(styles['menu-popup-item'])}>
-                            <Link to="/me/personal-information">Thông tin cá nhân</Link>
+                            <Link to="/me/personal-information">
+                                <FormattedMessage id="header.personal-information" />
+                            </Link>
                         </li>
                     )}
                     <li className={clsx(styles['menu-popup-item'])}>

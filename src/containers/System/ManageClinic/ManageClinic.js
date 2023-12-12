@@ -8,11 +8,12 @@ import styles from './ManageClinic.module.scss';
 import { LANGUAGES, convertBase64 } from '~/utils';
 import { createClinicService } from '~/services';
 import { useSelector } from 'react-redux';
+import { languageSelector } from '~/store/seletors';
 
 let mdParser = new MarkdownIt();
 
 const ManageClinic = () => {
-    const language = useSelector((state) => state.app.language);
+    const language = useSelector(languageSelector);
 
     const [previewImage, setPreviewImage] = useState(undefined);
     const [name, setName] = useState('');

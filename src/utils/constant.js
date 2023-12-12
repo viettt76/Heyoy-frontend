@@ -2,7 +2,7 @@ export const path = {
     HOME: '/',
     LOGIN: '/login',
     REGISTER: '/register',
-    PERSONAL_INFO: '/me/personal_info',
+    PERSONAL_INFO: '/me/personal-information',
 
     SYSTEM: '/system/*',
     SYSTEM_MANAGE_USER: '/manage-user',

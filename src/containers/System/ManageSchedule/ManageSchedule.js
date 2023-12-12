@@ -11,16 +11,17 @@ import { createExaminationScheduleService, getExaminationScheduleService, getQua
 import { LANGUAGES, convertDateToTimestamp } from '~/utils';
 import styles from './ManageSchedule.module.scss';
 import { getAllCodeService } from '~/services';
+import { languageSelector, userInfoSelector } from '~/store/seletors';
 
 const ManageSchedule = () => {
+    const language = useSelector(languageSelector);
+    const userInfo = useSelector(userInfoSelector);
+
     const [listDoctors, setListDoctors] = useState([]);
     const [doctor, setDoctor] = useState({});
     const [currentDate, setCurrentDate] = useState(new Date());
     const [listTimelineFromApi, setListTimelineFromApi] = useState([]);
     const [listTimelineChose, setListTimelineChose] = useState([]);
-
-    const language = useSelector((state) => state.app.language);
-    const userInfo = useSelector((state) => state.user.userInfo);
 
     const [isDoctor, setIsDoctor] = useState(false);
     console.log(userInfo?.id);
@@ -131,7 +132,7 @@ const ManageSchedule = () => {
             }
         }
     };
-    
+
     return (
         <Container>
             <h5 className={clsx(styles['title'])}>

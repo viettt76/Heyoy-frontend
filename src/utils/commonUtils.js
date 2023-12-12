@@ -13,12 +13,16 @@ export const convertBase64 = (file) => {
     });
 };
 
-export const useFormatMessage = (messageId) => {
-    return useIntl().formatMessage({ id: messageId });
+export const convertBufferToString = (buffer = '') => {
+    if (buffer) {
+        return new Buffer(buffer, 'base64').toString('binary');
+    } else {
+        return '';
+    }
 };
 
-export const convertBufferToString = (buffer = '') => {
-    return new Buffer(buffer, 'base64').toString('binary');
+export const useFormatMessage = (messageId) => {
+    return useIntl().formatMessage({ id: messageId });
 };
 
 export const convertDateToTimestamp = (date) => {
@@ -26,16 +30,13 @@ export const convertDateToTimestamp = (date) => {
 };
 
 // date format 'dd/MM/yyyy'
-export const convertTimestampToDate = (timestamp) => {
-
-};
-
+export const convertTimestampToDate = (timestamp) => {};
 
 // date format 'yyyy-MM-dd' sort
 export const sortDate = (dates) => {
-    return dates.sort(function(a, b){
+    return dates.sort(function (a, b) {
         var aa = a.split('/').reverse().join(),
             bb = b.split('/').reverse().join();
-        return aa < bb ? -1 : (aa > bb ? 1 : 0);
+        return aa < bb ? -1 : aa > bb ? 1 : 0;
     });
-}
+};

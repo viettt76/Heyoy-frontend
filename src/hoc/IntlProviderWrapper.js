@@ -10,11 +10,12 @@ import '@formatjs/intl-relativetimeformat/locale-data/en';
 import '@formatjs/intl-relativetimeformat/locale-data/vi';
 
 import { LanguageUtils } from '~/utils';
+import { languageSelector } from '~/store/seletors';
 
 const messages = LanguageUtils.getFlattenedMessages();
 
 const IntlProviderWrapper = ({ children }) => {
-    const language = useSelector((state) => state.app.language);
+    const language = useSelector(languageSelector);
 
     return (
         <IntlProvider locale={language} messages={messages[language]} defaultLocale="vi">

@@ -1,0 +1,16 @@
+.btn-disable {
+    background-color: #e9ecef !important;
+    color: red;
+    border-color: transparent !important;
+    outline-color: transparent !important;
+
+    &:hover {
+        border-color: transparent !important;
+        outline-color: transparent !important;
+        cursor: default;
+    }
+}
+
+.btn-cancel {
+    margin-left: 8px;
+}

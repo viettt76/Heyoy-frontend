@@ -10,7 +10,8 @@
         "specialty": "chuyên khoa",
         "home": "Trang chủ",
         "system": "Hệ thống",
-        "login": "Đăng nhập"
+        "login": "Đăng nhập",
+        "personal-information": "Thông tin cá nhân"
     },
     "login": {
         "login": "Đăng nhập",
@@ -27,6 +28,11 @@
         "retype-password": "Nhập lại mật khẩu",
         "do-have-account": "Đã có tài khoản",
         "login": "Đăng nhập"
+    },
+    "change-information": {
+        "change-information": "Chỉnh sửa thông tin",
+        "save": "Lưu",
+        "cancel": "Huỷ"
     },
     "menu": {
         "system": {

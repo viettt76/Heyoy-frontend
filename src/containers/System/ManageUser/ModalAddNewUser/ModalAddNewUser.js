@@ -7,6 +7,7 @@ import { LANGUAGES } from '~/utils';
 import * as actions from '~/store/actions';
 import { convertBase64 } from '~/utils';
 import { toast } from 'react-toastify';
+import { languageSelector } from '~/store/seletors';
 
 function ModalAddNewUser({ isShowModalAddNewUser, toggleModalAddNewUser, handleAddNewUser }) {
     const [validated, setValidated] = useState(false);
@@ -15,7 +16,7 @@ function ModalAddNewUser({ isShowModalAddNewUser, toggleModalAddNewUser, handleA
 
     const formRef = useRef(null);
 
-    const language = useSelector((state) => state.app.language);
+    const language = useSelector(languageSelector);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

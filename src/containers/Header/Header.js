@@ -12,12 +12,13 @@ import { BarsIcon, ClockRotateLeftIcon, HeadsetIcon, SearchIcon } from '~/compon
 import { LANGUAGES, path } from '~/utils';
 import { getAppointmentByPatientService } from '~/services';
 import MenuOffcanvas from '~/components/MenuOffcanvas';
+import { languageSelector, userInfoSelector } from '~/store/seletors';
 
 const Header = () => {
     const location = useLocation();
 
-    const language = useSelector((state) => state.app.language);
-    const userInfo = useSelector((state) => state.user?.userInfo);
+    const language = useSelector(languageSelector);
+    const userInfo = useSelector(userInfoSelector);
 
     const [listAppointments, setListAppointments] = useState([]);
 
@@ -49,8 +50,8 @@ const Header = () => {
     }
 
     return (
-        <div>
-            <Navbar expand="lg" className={clsx(styles['header-container'])}>
+        <div className={clsx(styles['header-container'])}>
+            <Navbar expand="lg">
                 <Container>
                     <div className={clsx(styles['header-left'])}>
                         <div className={clsx(styles['menu-popup-icon'])} onClick={handleShowMenu}>

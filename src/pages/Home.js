@@ -3,34 +3,8 @@ import Slide from '~/components/Slide';
 import Section from '~/components/Section';
 import { getQuantityDoctorService, getQuantitySpecialtyService, getQuantityClinicService } from '~/services';
 import { convertBufferToString } from '~/utils';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { path } from '~/utils';
 
 const Home = () => {
-    // const navigate = useNavigate();
-
-    // let userInfo = useSelector((state) => state.user.userInfo);
-
-    // let link = '';
-    // if (userInfo?.roleId) {
-    //     switch (userInfo.roleId) {
-    //         case 'R1':
-    //             link = path.SYSTEM;
-    //             break;
-    //         case 'R2':
-    //             link = path.SYSTEM;
-    //             break;
-    //         case 'R3':
-    //             link = path.HOME;
-    //             break;
-    //         default:
-    //             link = path.HOME;
-    //     }
-    // }
-
-    // navigate(link);
-
     const [listDoctors, setListDoctors] = useState([]);
     const [listSpecialty, setListSpecialty] = useState([]);
     const [listClinic, setListClinic] = useState([]);
