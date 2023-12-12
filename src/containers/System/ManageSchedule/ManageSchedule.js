@@ -11,7 +11,7 @@ import { createExaminationScheduleService, getExaminationScheduleService, getQua
 import { LANGUAGES, convertDateToTimestamp } from '~/utils';
 import styles from './ManageSchedule.module.scss';
 import { getAllCodeService } from '~/services';
-import { languageSelector, userInfoSelector } from '~/store/seletors';
+import { languageSelector, userInfoSelector } from '~/store/selectors';
 
 const ManageSchedule = () => {
     const language = useSelector(languageSelector);

@@ -7,7 +7,7 @@ import { LANGUAGES } from '~/utils';
 import * as actions from '~/store/actions';
 import { convertBase64 } from '~/utils';
 import { toast } from 'react-toastify';
-import { languageSelector } from '~/store/seletors';
+import { languageSelector } from '~/store/selectors';
 
 function ModalAddNewUser({ isShowModalAddNewUser, toggleModalAddNewUser, handleAddNewUser }) {
     const [validated, setValidated] = useState(false);
@@ -107,7 +107,7 @@ function ModalAddNewUser({ isShowModalAddNewUser, toggleModalAddNewUser, handleA
     const handleSubmit = async () => {
         try {
             const form = formRef.current;
-            
+
             if (form.checkValidity() === true) {
                 let dataUser = {
                     email,
@@ -123,8 +123,8 @@ function ModalAddNewUser({ isShowModalAddNewUser, toggleModalAddNewUser, handleA
                 };
                 handleAddNewUser(dataUser);
             } else {
-                if(!image) {
-                    toast.error('Ảnh không hợp lệ')
+                if (!image) {
+                    toast.error('Ảnh không hợp lệ');
                 }
                 setValidated(true);
             }

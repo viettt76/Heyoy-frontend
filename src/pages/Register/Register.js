@@ -11,7 +11,7 @@ import { Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { useRef } from 'react';
 import { LANGUAGES, convertBase64 } from '~/utils';
 import { toast } from 'react-toastify';
-import { languageSelector } from '~/store/seletors';
+import { languageSelector } from '~/store/selectors';
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -342,7 +342,7 @@ const Register = () => {
                     </button>
                     <div>
                         <FormattedMessage id="register.do-have-account" />?{' '}
-                        <Link className={clsx(styles['login'])} to='/login'>
+                        <Link className={clsx(styles['login'])} to="/login">
                             <FormattedMessage id="register.login" />
                         </Link>
                     </div>

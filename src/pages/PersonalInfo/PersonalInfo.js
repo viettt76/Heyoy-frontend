@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import clsx from 'clsx';
 import styles from './PersonalInfo.module.scss';
 import { getUserService, updateUserService } from '~/services';
-import { languageSelector, userInfoSelector } from '~/store/seletors';
+import { languageSelector, userInfoSelector } from '~/store/selectors';
 import { LANGUAGES, convertBase64, convertBufferToString } from '~/utils';
 import * as actions from '~/store/actions';
 
@@ -277,9 +277,12 @@ const PersonalInfo = () => {
                                 disabled={disable}
                                 onChange={(e) => handleChangeImage(e)}
                             />
-                            <Form.Label className={clsx('btn btn-light', {
-                                [styles['btn-disable']]: disable
-                            })} htmlFor="upImage">
+                            <Form.Label
+                                className={clsx('btn btn-light', {
+                                    [styles['btn-disable']]: disable,
+                                })}
+                                htmlFor="upImage"
+                            >
                                 <FormattedMessage id="system.manage-user.upload-image" />{' '}
                                 <i className="fa-solid fa-upload"></i>
                             </Form.Label>

@@ -9,7 +9,7 @@ import { BarsIcon } from '~/components/Icons';
 import { LANGUAGES, convertBufferToString } from '~/utils';
 import MenuMultiLevelHover from '~/components/MenuMultiLevelHover';
 import MenuOffcanvas from '~/components/MenuOffcanvas';
-import { languageSelector, userInfoSelector } from '~/store/seletors';
+import { languageSelector, userInfoSelector } from '~/store/selectors';
 
 const adminMenus = [
     {
@@ -119,7 +119,6 @@ const SystemHeader = () => {
         }
     }, [role, userInfo]);
 
-    const handleCloseMenu = () => setShowMenu(false);
     const handleShowMenu = () => setShowMenu(true);
 
     if (!location.pathname.includes('/system')) {
@@ -134,7 +133,7 @@ const SystemHeader = () => {
                         <div className={clsx(styles['menu-popup-icon'])} onClick={handleShowMenu}>
                             <BarsIcon />
                         </div>
-                        <MenuOffcanvas showMenu={showMenu} handleCloseMenu={handleCloseMenu} />
+                        <MenuOffcanvas showMenu={showMenu} setShowMenu={setShowMenu} />
 
                         <div className={clsx(styles['nav-menu'])}>
                             {menus.map((menu, index) => {

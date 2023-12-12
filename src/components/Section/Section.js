@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import Slider from 'react-slick';
-import { Button } from 'react-bootstrap';
 import SectionItem from './SectionItem';
 import styles from './Section.module.scss';
 import './Section.scss';
@@ -32,9 +31,9 @@ const Section = ({ label, buttonSeeMore, listSectionItems, numberItemInSlide = 1
                     <FormattedMessage id={label} />
                 </h5>
                 {buttonSeeMore && (
-                    <Button className={clsx(styles['btn-see-more'])}>
+                    <button className={clsx(styles['btn-see-more'])}>
                         <FormattedMessage id="homepage.see-more" />
-                    </Button>
+                    </button>
                 )}
             </div>
             <Slider

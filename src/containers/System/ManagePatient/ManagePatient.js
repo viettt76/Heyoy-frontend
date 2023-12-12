@@ -10,7 +10,7 @@ import { getPatientByDoctorAndDateService, sendInvoiceRemedyService } from '~/se
 import { LANGUAGES, convertDateToTimestamp } from '~/utils';
 import ModalInvoiceRemedy from './ModalInvoiceRemedy';
 import * as actions from '~/store/actions';
-import { languageSelector, userInfoSelector } from '~/store/seletors';
+import { languageSelector, userInfoSelector } from '~/store/selectors';
 
 const ManageSchedule = () => {
     const dispatch = useDispatch();

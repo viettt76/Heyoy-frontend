@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Offcanvas } from 'react-bootstrap';
 import clsx from 'clsx';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './MenuOffcanvas.module.scss';
 import { LANGUAGES, path } from '~/utils';
 import * as actions from '~/store/actions';
-import { isLoggedInSelector, languageSelector, userInfoSelector } from '~/store/seletors';
+import { isLoggedInSelector, languageSelector, userInfoSelector } from '~/store/selectors';
 
-const MenuOffcanvas = ({ showMenu, handleCloseMenu }) => {
+const MenuOffcanvas = ({ showMenu, setShowMenu }) => {
+    const location = useLocation();
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -20,12 +22,18 @@ const MenuOffcanvas = ({ showMenu, handleCloseMenu }) => {
     const [isDoctorOrAdmin, setIsDoctorOrAdmin] = useState(false);
 
     useEffect(() => {
+        setShowMenu(false);
+    }, [location]);
+
+    useEffect(() => {
         if (userInfo?.roleId === 'R1' || userInfo?.roleId === 'R2') {
             setIsDoctorOrAdmin(true);
         } else {
             setIsDoctorOrAdmin(false);
         }
     }, [userInfo]);
+
+    const handleCloseMenu = () => setShowMenu(false);
 
     const processLogout = () => {
         dispatch(actions.processLogout());

@@ -12,7 +12,7 @@ import { LANGUAGES, convertDateToTimestamp, path } from '~/utils';
 import { getAllCodeService } from '~/services';
 import { postBookAppointmentService } from '~/services';
 import * as actions from '~/store/actions';
-import { isLoggedInSelector, languageSelector, userInfoSelector } from '~/store/seletors';
+import { isLoggedInSelector, languageSelector, userInfoSelector } from '~/store/selectors';
 
 const ModalBooking = ({
     doctorId,

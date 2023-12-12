@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import * as actions from '~/store/actions';
 import { LANGUAGES, convertBufferToString } from '~/utils';
 import { convertBase64 } from '~/utils';
-import { languageSelector } from '~/store/seletors';
+import { languageSelector } from '~/store/selectors';
 
 function ModalEditUser({ isShowModalEditUser, currentUser, toggleModalEditUser, saveEditUser }) {
     const [validated, setValidated] = useState(false);

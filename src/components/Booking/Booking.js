@@ -10,7 +10,7 @@ import { getDetailDoctorService, getExaminationScheduleService } from '~/service
 import styles from './Booking.module.scss';
 import { LANGUAGES, convertBufferToString } from '~/utils';
 import ModalBooking from '~/components/ModalBooking';
-import { languageSelector } from '~/store/seletors';
+import { languageSelector } from '~/store/selectors';
 
 const Booking = ({ data }) => {
     let language = useSelector(languageSelector);
@@ -85,7 +85,7 @@ const Booking = ({ data }) => {
         setTimeline(key);
         handleShowModalBooking();
     };
-    
+
     return (
         <div className={clsx(styles['wrapper'])}>
             <div className={clsx('col-6', styles['wrapper-left'])}>

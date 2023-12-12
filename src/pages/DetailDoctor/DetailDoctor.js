@@ -10,7 +10,7 @@ import styles from './DetailDoctor.module.scss';
 import { getDetailDoctorService, getExaminationScheduleService } from '~/services';
 import { LANGUAGES, convertBufferToString } from '~/utils';
 import ModalBooking from '~/components/ModalBooking';
-import { languageSelector } from '~/store/seletors';
+import { languageSelector } from '~/store/selectors';
 
 const DetailDoctor = () => {
     const { id } = useParams();

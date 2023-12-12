@@ -10,7 +10,7 @@ import { getAllCodeService, getQuantityClinicService, getQuantityDoctorService }
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '~/utils';
 import { createDetailDoctorService, getDetailDoctorService, getQuantitySpecialtyService } from '~/services';
-import { languageSelector } from '~/store/seletors';
+import { languageSelector } from '~/store/selectors';
 
 const mdParser = new MarkdownIt();
 

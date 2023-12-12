@@ -10,7 +10,7 @@ import ModalAddNewUser from './ModalAddNewUser';
 import ModalEditUser from './ModalEditUser';
 import * as actions from '~/store/actions';
 import { LANGUAGES, convertBufferToString } from '~/utils';
-import { languageSelector } from '~/store/seletors';
+import { languageSelector } from '~/store/selectors';
 
 function ManageUser() {
     const [listUsers, setListUsers] = useState([]);

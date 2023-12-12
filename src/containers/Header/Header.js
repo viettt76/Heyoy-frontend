@@ -12,7 +12,7 @@ import { BarsIcon, ClockRotateLeftIcon, HeadsetIcon, SearchIcon } from '~/compon
 import { LANGUAGES, path } from '~/utils';
 import { getAppointmentByPatientService } from '~/services';
 import MenuOffcanvas from '~/components/MenuOffcanvas';
-import { languageSelector, userInfoSelector } from '~/store/seletors';
+import { languageSelector, userInfoSelector } from '~/store/selectors';
 
 const Header = () => {
     const location = useLocation();
@@ -24,7 +24,6 @@ const Header = () => {
 
     const [showMenu, setShowMenu] = useState(false);
 
-    const handleCloseMenu = () => setShowMenu(false);
     const handleShowMenu = () => setShowMenu(true);
 
     useEffect(() => {
@@ -57,7 +56,7 @@ const Header = () => {
                         <div className={clsx(styles['menu-popup-icon'])} onClick={handleShowMenu}>
                             <BarsIcon />
                         </div>
-                        <MenuOffcanvas showMenu={showMenu} handleCloseMenu={handleCloseMenu} />
+                        <MenuOffcanvas showMenu={showMenu} setShowMenu={setShowMenu} />
 
                         <Link className={clsx(styles['logo'])} to="/">
                             <img src={logo} alt="" />

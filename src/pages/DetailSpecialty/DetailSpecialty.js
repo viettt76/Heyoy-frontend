@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { LANGUAGES } from '~/utils';
 import { useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import { languageSelector } from '~/store/seletors';
+import { languageSelector } from '~/store/selectors';
 
 const DetailSpecialty = () => {
     let { id } = useParams();
