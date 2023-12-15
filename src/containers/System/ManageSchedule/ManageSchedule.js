@@ -140,14 +140,14 @@ const ManageSchedule = () => {
             </h5>
             <div className={clsx('row', 'mt-3')}>
                 {!isDoctor && (
-                    <div className={clsx('col-4')}>
+                    <div className={clsx('col-12 col-md-4')}>
                         <label>
                             <FormattedMessage id="system.manage-schedule.choose-doctor" />
                         </label>
                         <Select defaultValue={doctor} onChange={setDoctor} options={listDoctors} />
                     </div>
                 )}
-                <div className={clsx('col-4')}>
+                <div className={clsx('col-12 col-md-4')}>
                     <label style={{ display: 'block' }}>
                         <FormattedMessage id="system.manage-schedule.choose-day" />
                     </label>
@@ -180,7 +180,7 @@ const ManageSchedule = () => {
                     })}
             </div>
             <button className={clsx('btn btn-primary mt-3')} onClick={handleSave}>
-                <FormattedMessage id="system.manage-schedule.save" />
+                <FormattedMessage id="popular.save" />
             </button>
         </Container>
     );

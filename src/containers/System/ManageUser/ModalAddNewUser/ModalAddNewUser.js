@@ -152,8 +152,7 @@ function ModalAddNewUser({ isShowModalAddNewUser, toggleModalAddNewUser, handleA
                                     <Form.Control
                                         autoFocus
                                         value={email}
-                                        type="text"
-                                        aria-describedby="inputGroupPrepend"
+                                        type="email"
                                         required
                                         onChange={(e) => setEmail(e.target.value)}
                                     />
@@ -167,7 +166,6 @@ function ModalAddNewUser({ isShowModalAddNewUser, toggleModalAddNewUser, handleA
                                     <Form.Control
                                         value={password}
                                         type="password"
-                                        aria-describedby="inputGroupPrepend"
                                         required
                                         onChange={(e) => setPassword(e.target.value)}
                                     />

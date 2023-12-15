@@ -108,7 +108,7 @@ const ManageSpecialty = () => {
                 </div>
 
                 <button onClick={handleSubmit} className={clsx('btn btn-primary', styles['btn-save'])}>
-                    <FormattedMessage id="system.manage-specialty.save" />
+                    <FormattedMessage id="popular.save" />
                 </button>
             </div>
         </div>

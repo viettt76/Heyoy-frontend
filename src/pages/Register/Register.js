@@ -171,7 +171,7 @@ const Register = () => {
         <div className={clsx(styles['register-background'])}>
             <div className={clsx(styles['register-container'])}>
                 <h4 className={clsx(styles['form-label'])}>
-                    <FormattedMessage id="register.register" />
+                    <FormattedMessage id="popular.register" />
                 </h4>
                 <Form ref={formRef} validated={validated}>
                     <Row className="mb-3">
@@ -184,7 +184,6 @@ const Register = () => {
                                     autoFocus
                                     value={email}
                                     type="text"
-                                    aria-describedby="inputGroupPrepend"
                                     required
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
@@ -198,7 +197,6 @@ const Register = () => {
                                 <Form.Control
                                     value={password}
                                     type={isShowPassword ? 'text' : 'password'}
-                                    aria-describedby="inputGroupPrepend"
                                     required
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
@@ -338,12 +336,12 @@ const Register = () => {
                 </Form>
                 <div className={clsx('col-12', styles['user-features'])}>
                     <button className={clsx('btn', styles['btn-register'])} onClick={handleSubmitRegister}>
-                        <FormattedMessage id="register.register" />
+                        <FormattedMessage id="popular.register" />
                     </button>
                     <div>
                         <FormattedMessage id="register.do-have-account" />?{' '}
                         <Link className={clsx(styles['login'])} to="/login">
-                            <FormattedMessage id="register.login" />
+                            <FormattedMessage id="popular.login" />
                         </Link>
                     </div>
                 </div>

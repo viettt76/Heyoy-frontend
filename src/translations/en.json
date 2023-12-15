@@ -1,4 +1,11 @@
 {
+    "popular": {
+        "close": "Close",
+        "save": "Save",
+        "cancel": "Cancel",
+        "login": "Login",
+        "register": "Register"
+    },
     "header": {
         "at-home": "At home",
         "at-hospital": "At hospital",
@@ -10,29 +17,22 @@
         "specialty": "specialty",
         "home": "Home",
         "system": "System",
-        "login": "Login",
         "personal-information": "Personal information"
     },
     "login": {
-        "login": "Login",
         "username": "Username",
         "password": "Password",
         "forgot-password": "Forgot your password?",
-        "do-not-have-account": "Do not have account",
-        "register": "Register"
+        "do-not-have-account": "Do not have account"
     },
     "register": {
-        "register": "Register",
         "username": "Username",
         "password": "Password",
         "retype-password": "Retype password",
-        "do-have-account": "Do have account",
-        "login": "Login"
+        "do-have-account": "Do have account"
     },
     "change-information": {
-        "change-information": "Change information",
-        "save": "Save",
-        "cancel": "Cancel"
+        "change-information": "Change information"
     },
     "menu": {
         "system": {
@@ -94,9 +94,7 @@
             "upload-image": "Upload image",
             "add": "Add",
             "email-required": "Email is required",
-            "password-required": "Password is required",
-            "close": "Close",
-            "save": "Save"
+            "password-required": "Password is required"
         },
         "manage-doctor": {
             "add-description-of-doctor": "Add description of doctor",
@@ -108,29 +106,25 @@
             "enter-address": "Enter address",
             "choose-clinic": "Choose clinic",
             "choose-specialty": "Choose specialty",
-            "note": "Note",
-            "save": "Save"
+            "note": "Note"
         },
         "manage-schedule": {
             "manage-doctor's-medical-examination-plans": "Manage doctors' medical examination plans",
             "choose-doctor": "Choose doctor",
-            "choose-day": "Choose day",
-            "save": "Save"
+            "choose-day": "Choose day"
         },
         "manage-specialty": {
             "manage-specialty": "Manage specialty",
             "specialty-name": "Specialty name",
             "specialty-image": "Specialty image",
-            "specialty-description": "Specialty description",
-            "save": "Save"
+            "specialty-description": "Specialty description"
         },
         "manage-clinic": {
             "manage-clinic": "Manage clinic",
             "clinic-name": "Clinic name",
             "clinic-address": "Clinic address",
             "clinic-image": "Clinic image",
-            "clinic-description": "Clinic description",
-            "save": "Save"
+            "clinic-description": "Clinic description"
         },
         "manage-patient": {
             "doctor's-patient-management": "Doctor's patient management",
@@ -142,7 +136,9 @@
             "address": "Address",
             "reason": "Reason",
             "actions": "Actions",
-            "confirm": "Confirm"
+            "confirm": "Confirm",
+            "send-invoices/prescriptions": "Send invoices/prescriptions",
+            "invoices/prescriptions": "Invoices/prescriptions"
         }
     },
     "detail-doctor": {
@@ -179,12 +175,8 @@
         "address": "Address",
         "profession": "Profession",
         "reason-for-examination": "Reason for examination",
-        "close": "Close",
-        "save": "Save",
         "need-login-to-booking": "You need to log in to schedule an appointment",
         "please-login": "Please login",
-        "login": "Login",
-        "not-account": "If you do not already have an account",
-        "register": "Register"
+        "not-account": "If you do not already have an account"
     }
 }

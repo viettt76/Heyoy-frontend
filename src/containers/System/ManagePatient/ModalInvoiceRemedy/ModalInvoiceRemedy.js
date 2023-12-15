@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Image } from 'antd';
 import { convertBase64 } from '~/utils';
-import { useEffect } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 function ModalInvoiceRemedy({
     show,
@@ -29,7 +29,9 @@ function ModalInvoiceRemedy({
         <>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Gửi hoá đơn/đơn thuốc</Modal.Title>
+                    <Modal.Title>
+                        <FormattedMessage id="system.manage-patient.send-invoices/prescriptions" />
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="row">
@@ -42,7 +44,9 @@ function ModalInvoiceRemedy({
                             />
                         </div>
                         <div className=" col-6">
-                            <label>Hoá đơn/đơn thuốc</label>
+                            <label>
+                                <FormattedMessage id="system.manage-patient.invoices/prescriptions" />
+                            </label>
                             <input className="form-control" type="file" onChange={(e) => handleSetFile(e)} />
                             {previewImage && (
                                 <>

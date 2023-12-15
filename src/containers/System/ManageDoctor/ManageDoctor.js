@@ -377,7 +377,7 @@ const ManageDoctor = () => {
                     style={{ margin: '20px 40px', float: 'right' }}
                     onClick={handleSave}
                 >
-                    <FormattedMessage id="system.manage-doctor.save" />
+                    <FormattedMessage id="popular.save" />
                 </button>
             </div>
         </>

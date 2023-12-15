@@ -55,11 +55,18 @@ const MenuOffcanvas = ({ showMenu, setShowMenu }) => {
                             </div>
                         </li>
                     ) : (
-                        <li className={clsx(styles['menu-popup-item'])}>
-                            <Link to="/login">
-                                <FormattedMessage id="header.login" />
-                            </Link>
-                        </li>
+                        <>
+                            <li className={clsx(styles['menu-popup-item'])}>
+                                <Link to="/login">
+                                    <FormattedMessage id="popular.login" />
+                                </Link>
+                            </li>
+                            <li className={clsx(styles['menu-popup-item'])}>
+                                <Link to="/register">
+                                    <FormattedMessage id="popular.register" />
+                                </Link>
+                            </li>
+                        </>
                     )}
 
                     {isLoggedIn && (

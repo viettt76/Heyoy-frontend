@@ -124,7 +124,7 @@ const ManageClinic = () => {
                 </div>
 
                 <button onClick={handleSubmit} className={clsx('btn btn-primary', styles['btn-save'])}>
-                    <FormattedMessage id="system.manage-clinic.save" />
+                    <FormattedMessage id="popular.save" />
                 </button>
             </div>
         </div>

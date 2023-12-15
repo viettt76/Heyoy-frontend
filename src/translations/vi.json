@@ -1,4 +1,11 @@
 {
+    "popular": {
+        "close": "Đóng",
+        "save": "Lưu",
+        "cancel": "Huỷ",
+        "login": "Đăng nhập",
+        "register": "Đăng ký"
+    },
     "header": {
         "at-home": "Tại nhà",
         "at-hospital": "Tại viện",
@@ -10,11 +17,9 @@
         "specialty": "chuyên khoa",
         "home": "Trang chủ",
         "system": "Hệ thống",
-        "login": "Đăng nhập",
         "personal-information": "Thông tin cá nhân"
     },
     "login": {
-        "login": "Đăng nhập",
         "username": "Tài khoản",
         "password": "Mật khẩu",
         "forgot-password": "Quên mật khẩu?",
@@ -22,17 +27,13 @@
         "register": "Register"
     },
     "register": {
-        "register": "Đăng ký",
         "username": "Tài khoản",
         "password": "Mật khẩu",
         "retype-password": "Nhập lại mật khẩu",
-        "do-have-account": "Đã có tài khoản",
-        "login": "Đăng nhập"
+        "do-have-account": "Đã có tài khoản"
     },
     "change-information": {
-        "change-information": "Chỉnh sửa thông tin",
-        "save": "Lưu",
-        "cancel": "Huỷ"
+        "change-information": "Chỉnh sửa thông tin"
     },
     "menu": {
         "system": {
@@ -94,9 +95,7 @@
             "upload-image": "Tải ảnh",
             "add": "Thêm",
             "email-required": "Email là bắt buộc",
-            "password-required": "Mật khẩu là bắt buộc",
-            "close": "Đóng",
-            "save": "Lưu"
+            "password-required": "Mật khẩu là bắt buộc"
         },
         "manage-doctor": {
             "add-description-of-doctor": "Tạo thêm thông tin bác sĩ",
@@ -108,29 +107,25 @@
             "enter-address": "Nhập địa chỉ",
             "choose-clinic": "Chọn phòng khám",
             "choose-specialty": "Chọn chuyên khoa",
-            "note": "Ghi chú",
-            "save": "Lưu"
+            "note": "Ghi chú"
         },
         "manage-schedule": {
             "manage-doctor's-medical-examination-plans": "Quản lý kế hoạch khám bệnh của bác sĩ",
             "choose-doctor": "Chọn bác sĩ",
-            "choose-day": "Chọn ngày",
-            "save": "Lưu"
+            "choose-day": "Chọn ngày"
         },
         "manage-specialty": {
             "manage-specialty": "Quản lý chuyên khoa",
             "specialty-name": "Tên chuyên khoa",
             "specialty-image": "Ảnh chuyên khoa",
-            "specialty-description": "Miêu tả về chuyên khoa",
-            "save": "Lưu"
+            "specialty-description": "Miêu tả về chuyên khoa"
         },
         "manage-clinic": {
             "manage-clinic": "Quản lý phòng khám",
             "clinic-name": "Tên phòng khám",
             "clinic-address": "Địa chỉ phòng khám",
             "clinic-image": "Ảnh phòng khám",
-            "clinic-description": "Miêu tả về phòng khám",
-            "save": "Lưu"
+            "clinic-description": "Miêu tả về phòng khám"
         },
         "manage-patient": {
             "doctor's-patient-management": "Quản lý bệnh nhân của bác sĩ",
@@ -142,7 +137,9 @@
             "address": "Địa chỉ",
             "reason": "Lý do",
             "actions": "Hành động",
-            "confirm": "Xác nhận"
+            "confirm": "Xác nhận",
+            "send-invoices/prescriptions": "Gửi hoá đơn/đơn thuốc",
+            "invoices/prescriptions": "Hoá đơn/đơn thuốc"
         }
     },
     "detail-doctor": {
@@ -178,12 +175,8 @@
         "address": "Địa chỉ liên hệ",
         "profession": "Nghề nghiệp",
         "reason-for-examination": "Lý do khám",
-        "close": "Đóng",
-        "save": "Lưu",
         "need-login-to-booking": "Bạn cần đăng nhập để đặt lịch",
         "please-login": "Vui lòng đăng nhập",
-        "login": "Đăng nhập",
-        "not-account": "Nếu bạn chưa có tài khoản",
-        "register": "Đăng ký"
+        "not-account": "Nếu bạn chưa có tài khoản"
     }
 }

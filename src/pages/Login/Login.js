@@ -60,7 +60,7 @@ const Login = () => {
                 <div className={clsx(styles['login-container'])}>
                     <div className={clsx(styles['login-content'], 'row')}>
                         <div className={clsx('col-12', styles['form-label'])}>
-                            <FormattedMessage id="login.login" />
+                            <FormattedMessage id="popular.login" />
                         </div>
                         <div className={clsx('col-12 form-group', styles['login-input'])}>
                             <label>
@@ -98,7 +98,7 @@ const Login = () => {
                         {message && <div className={clsx(styles['error-message'])}>{message}</div>}
                         <div className={clsx('col-12')}>
                             <button className={clsx(styles['btn-login'])} onClick={handleSubmitLogin}>
-                                <FormattedMessage id="login.login" />
+                                <FormattedMessage id="popular.login" />
                             </button>
                         </div>
                         <div className={clsx('col-12', styles['user-features'])}>
@@ -108,7 +108,7 @@ const Login = () => {
                             <div>
                                 <FormattedMessage id="login.do-not-have-account" />?{' '}
                                 <Link className={clsx(styles['register'])} to="/register">
-                                    <FormattedMessage id="login.register" />
+                                    <FormattedMessage id="popular.register" />
                                 </Link>
                             </div>
                         </div>

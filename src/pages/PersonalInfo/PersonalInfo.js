@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
@@ -24,6 +24,9 @@ const PersonalInfo = () => {
     });
 
     const [disable, setDisable] = useState(true);
+
+    const formRef = useRef();
+    const [formValidated, setFormValidated] = useState(false);
 
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -106,30 +109,40 @@ const PersonalInfo = () => {
     };
 
     const handleSave = async () => {
-        let res = await updateUserService({
-            email,
-            firstName,
-            lastName,
-            address,
-            gender,
-            position,
-            phoneNumber,
-            image,
-        });
-        if (res?.errCode === 0) {
-            toast.success(
-                language === LANGUAGES.VI ? 'Cập nhật thông tin thành công' : 'Update your information successfully',
-            );
-        } else {
-            toast.error(
-                res?.message
-                    ? res.message
-                    : language === LANGUAGES.VI
-                    ? 'Cập nhật thông tin thành công'
-                    : 'Update your information successfully',
-            );
+        try {
+            if (formRef.current.checkValidity()) {
+                let res = await updateUserService({
+                    email,
+                    firstName,
+                    lastName,
+                    address,
+                    gender,
+                    position,
+                    phoneNumber,
+                    image,
+                });
+                if (res?.errCode === 0) {
+                    toast.success(
+                        language === LANGUAGES.VI
+                            ? 'Cập nhật thông tin thành công'
+                            : 'Update your information successfully',
+                    );
+                } else {
+                    toast.error(
+                        res?.message
+                            ? res.message
+                            : language === LANGUAGES.VI
+                            ? 'Cập nhật thông tin thành công'
+                            : 'Update your information successfully',
+                    );
+                }
+                setDisable(true);
+            } else {
+                setFormValidated(true)
+            }
+        } catch (error) {
+            console.log('Error personal info,', error);
         }
-        setDisable(true);
     };
 
     const handleCancel = () => {
@@ -146,20 +159,14 @@ const PersonalInfo = () => {
 
     return (
         <div className="container mt-3">
-            <Form>
+            <Form ref={formRef} validated={formValidated}>
                 <Row className="mb-3">
                     <Form.Group as={Col} md="12">
                         <Form.Label>
                             <FormattedMessage id="system.manage-user.email" />
                         </Form.Label>
                         <InputGroup>
-                            <Form.Control
-                                value={email || ''}
-                                type="text"
-                                placeholder="Email"
-                                aria-describedby="inputGroupPrepend"
-                                disabled
-                            />
+                            <Form.Control value={email || ''} type="email" placeholder="Email" disabled />
                         </InputGroup>
                     </Form.Group>
                 </Row>
@@ -300,10 +307,10 @@ const PersonalInfo = () => {
                 ) : (
                     <div>
                         <button className={clsx('btn btn-success')} onClick={handleSave}>
-                            <FormattedMessage id="change-information.save" />
+                            <FormattedMessage id="popular.save" />
                         </button>
                         <button className={clsx('btn btn-danger', styles['btn-cancel'])} onClick={handleCancel}>
-                            <FormattedMessage id="change-information.cancel" />
+                            <FormattedMessage id="popular.cancel" />
                         </button>
                     </div>
                 )}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button, Modal, Col, Form, InputGroup, Row } from 'react-bootstrap';
 import PropTypes, { oneOfType } from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,6 +33,9 @@ const ModalBooking = ({
     const [listGendersFromApi, setListGendersFromApi] = useState([]);
     const [listBookingForFromApi, setListBookingForFromApi] = useState([]);
 
+    const formRef = useRef();
+    const [formValidated, setFormValidated] = useState(false);
+
     const [who, setWho] = useState('');
     const [fullName, setFullName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -63,40 +66,50 @@ const ModalBooking = ({
     }, [listBookingForFromApi, show]);
 
     const handleSubmit = async () => {
-        dispatch(actions.appStartLoading());
-        let birthdayTimestamp = convertDateToTimestamp(birthday);
-        let res = await postBookAppointmentService({
-            who,
-            fullName,
-            phoneNumber,
-            gender,
-            birthday: birthdayTimestamp,
-            email,
-            address,
-            profession,
-            reason,
-            userId: userInfo?.id,
-            doctorId,
-            doctorName,
-            time: time.timeType,
-            date: +date,
-            language,
-        });
-        dispatch(actions.appEndLoading());
-        if (res?.errCode === 0) {
-            handleCloseModalBooking();
-            setWho(listBookingForFromApi[0]?.keyMap || '');
-            setFullName('');
-            setPhoneNumber('');
-            setGender('');
-            setBirthday('');
-            setEmail('');
-            setAddress('');
-            setProfession('');
-            setReason('');
-            toast.success(language === LANGUAGES.VI ? ' Đặt lịch thành công' : 'Booking success');
-        } else {
-            toast.error(res?.message ? res?.message : language === LANGUAGES.EN ? 'Đặt lịch thất bại' : 'Booking fail');
+        try {
+            if (formRef.current.checkValidity()) {
+                dispatch(actions.appStartLoading());
+                let birthdayTimestamp = convertDateToTimestamp(birthday);
+                let res = await postBookAppointmentService({
+                    who,
+                    fullName,
+                    phoneNumber,
+                    gender,
+                    birthday: birthdayTimestamp,
+                    email,
+                    address,
+                    profession,
+                    reason,
+                    userId: userInfo?.id,
+                    doctorId,
+                    doctorName,
+                    time: time.timeType,
+                    date: +date,
+                    language,
+                });
+                dispatch(actions.appEndLoading());
+                if (res?.errCode === 0) {
+                    handleCloseModalBooking();
+                    setWho(listBookingForFromApi[0]?.keyMap || '');
+                    setFullName('');
+                    setPhoneNumber('');
+                    setGender('');
+                    setBirthday('');
+                    setEmail('');
+                    setAddress('');
+                    setProfession('');
+                    setReason('');
+                    toast.success(language === LANGUAGES.VI ? ' Đặt lịch thành công' : 'Booking success');
+                } else {
+                    toast.error(
+                        res?.message ? res?.message : language === LANGUAGES.EN ? 'Đặt lịch thất bại' : 'Booking fail',
+                    );
+                }
+            } else {
+                setFormValidated(true);
+            }
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -143,7 +156,7 @@ const ModalBooking = ({
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form>
+                        <Form ref={formRef} validated={formValidated}>
                             <div value={who} className="mb-2" onChange={(e) => setWho(e.target.value)}>
                                 {listBookingForFromApi?.length > 0 &&
                                     listBookingForFromApi.map((booking, index) => {
@@ -171,14 +184,13 @@ const ModalBooking = ({
                                                 autoFocus
                                                 value={fullName}
                                                 type="text"
-                                                aria-describedby="inputGroupPrepend"
                                                 required
                                                 onChange={(e) => setFullName(e.target.value)}
                                             />
                                         </InputGroup>
                                     </Form.Group>
 
-                                    <Form.Group as={Col} md="6">
+                                    <Form.Group as={Col} md="6" className="mt-3 mt-md-0">
                                         <Form.Label>
                                             <FormattedMessage id="modal-booking.phone-number" />
                                         </Form.Label>
@@ -186,7 +198,6 @@ const ModalBooking = ({
                                             <Form.Control
                                                 value={phoneNumber}
                                                 type="text"
-                                                aria-describedby="inputGroupPrepend"
                                                 required
                                                 onChange={(e) => setPhoneNumber(e.target.value)}
                                             />
@@ -212,6 +223,7 @@ const ModalBooking = ({
                                                         label={
                                                             language === LANGUAGES.VI ? gender.valueVi : gender.valueEn
                                                         }
+                                                        required
                                                         name="group2"
                                                         type="radio"
                                                         value={gender.keyMap}
@@ -220,7 +232,7 @@ const ModalBooking = ({
                                             })}
                                     </Form.Group>
                                 )}
-                                <Form.Group as={Col} md="6">
+                                <Form.Group as={Col} md="6" className="mt-2 mt-md-0">
                                     <Form.Label>
                                         <FormattedMessage id="modal-booking.birthday" />
                                         &nbsp;
@@ -238,6 +250,7 @@ const ModalBooking = ({
                                         timeZone="GMT+0700"
                                         showIcon
                                         closeOnScroll={true}
+                                        required
                                         onChange={(date) => setBirthday(date)}
                                     />
                                 </Form.Group>
@@ -258,7 +271,7 @@ const ModalBooking = ({
                                         </InputGroup>
                                     </Form.Group>
 
-                                    <Form.Group as={Col} md="6">
+                                    <Form.Group as={Col} md="6" className="mt-3 mt-md-0">
                                         <Form.Label>
                                             <FormattedMessage id="modal-booking.address" />
                                         </Form.Label>
@@ -287,7 +300,7 @@ const ModalBooking = ({
                                         />
                                     </InputGroup>
                                 </Form.Group>
-                                <Form.Group as={Col} md="6">
+                                <Form.Group as={Col} md="6" className="mt-3 mt-md-0">
                                     <Form.Label>
                                         <FormattedMessage id="modal-booking.reason-for-examination" />
                                     </Form.Label>
@@ -306,10 +319,10 @@ const ModalBooking = ({
 
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleCloseModalBooking}>
-                            <FormattedMessage id="modal-booking.close" />
+                            <FormattedMessage id="popular.close" />
                         </Button>
                         <Button type="submit" onClick={handleSubmit}>
-                            <FormattedMessage id="modal-booking.save" />
+                            <FormattedMessage id="popular.save" />
                         </Button>
                     </Modal.Footer>
                 </Modal>
@@ -324,13 +337,13 @@ const ModalBooking = ({
                         <div>
                             <FormattedMessage id="modal-booking.please-login" />{' '}
                             <Link className={clsx(styles['link-login'])} to={path.LOGIN}>
-                                <FormattedMessage id="modal-booking.login" />
+                                <FormattedMessage id="popular.login" />
                             </Link>
                         </div>
                         <div>
                             <FormattedMessage id="modal-booking.not-account" />{' '}
                             <Link className={clsx(styles['link-register'])} to={path.REGISTER}>
-                                <FormattedMessage id="modal-booking.register" />
+                                <FormattedMessage id="popular.register" />
                             </Link>
                         </div>
                     </Modal.Body>

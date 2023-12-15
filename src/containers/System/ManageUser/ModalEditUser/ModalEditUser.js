@@ -126,7 +126,6 @@ function ModalEditUser({ isShowModalEditUser, currentUser, toggleModalEditUser, 
                                         value={email}
                                         type="text"
                                         placeholder="Email"
-                                        aria-describedby="inputGroupPrepend"
                                         disabled
                                         onChange={(e) => setEmail(e.target.value)}
                                     />
@@ -264,10 +263,10 @@ function ModalEditUser({ isShowModalEditUser, currentUser, toggleModalEditUser, 
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={toggleModalEditUser}>
-                        <FormattedMessage id="system.manage-user.close" />
+                        <FormattedMessage id="popular.close" />
                     </Button>
                     <Button type="submit" onClick={handleSubmit}>
-                        <FormattedMessage id="system.manage-user.save" />
+                        <FormattedMessage id="popular.save" />
                     </Button>
                 </Modal.Footer>
             </Modal>

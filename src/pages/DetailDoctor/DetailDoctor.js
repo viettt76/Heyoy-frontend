@@ -92,7 +92,7 @@ const DetailDoctor = () => {
         setTimeline(key);
         handleShowModalBooking();
     };
-    console.log(detailDoctor?.Doctor_Info?.priceData);
+    
     return (
         <div>
             <div className={clsx(styles['doctor-info'])}>

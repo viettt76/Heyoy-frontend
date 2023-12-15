@@ -127,7 +127,7 @@ const SystemHeader = () => {
 
     return (
         <div className={clsx(styles['header-container'])}>
-            <Navbar expand="lg">
+            <Navbar expand="lg" className='w-100'>
                 <Container>
                     <div className={clsx(styles['header-left'])}>
                         <div className={clsx(styles['menu-popup-icon'])} onClick={handleShowMenu}>
