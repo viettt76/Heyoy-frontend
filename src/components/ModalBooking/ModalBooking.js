@@ -47,7 +47,7 @@ const ModalBooking = ({
     const [reason, setReason] = useState('');
 
     useEffect(() => {
-        const fetchGendersFromApi = async () => {
+        const fetchDataFromApi = async () => {
             let resGender = await getAllCodeService('gender');
             if (resGender?.data) {
                 setListGendersFromApi(resGender.data);
@@ -58,7 +58,7 @@ const ModalBooking = ({
             }
         };
 
-        fetchGendersFromApi();
+        fetchDataFromApi();
     }, []);
 
     useEffect(() => {

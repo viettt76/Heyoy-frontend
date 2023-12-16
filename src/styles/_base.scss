@@ -31,6 +31,7 @@ a {
     color: #000;
 }
 
+// loading overlay
 ._loading_overlay_overlay.css-df17o1 {
     z-index: 10000000000 !important;
     position: fixed !important;
@@ -38,12 +39,14 @@ a {
     height: 100vh;
 }
 
+// markdown it
 .editor-container {
     ul {
         list-style: disc !important;
     }
 }
 
+// image [antd]
 .ant-image-preview-wrap {
     z-index: 100000 !important;
 
@@ -52,6 +55,22 @@ a {
     }
 }
 
+// react-datepicker
 .react-datepicker-popper {
     z-index: 1000;
+}
+
+// carousel [bootstrap]
+.slick-track {
+    margin-left: 0;
+}
+
+.slick-disabled {
+    display: none !important;
+}
+
+.float-left {
+    .slick-track {
+        float: left;
+    }
 }

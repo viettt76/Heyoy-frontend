@@ -3,6 +3,7 @@ import Slide from '~/components/Slide';
 import Section from '~/components/Section';
 import { getQuantityDoctorService, getQuantitySpecialtyService, getQuantityClinicService } from '~/services';
 import { convertBufferToString } from '~/utils';
+const slugify = require('slugify');
 
 const Home = () => {
     const [listDoctors, setListDoctors] = useState([]);
@@ -29,14 +30,14 @@ const Home = () => {
             data:
                 listSpecialty.length > 0 &&
                 listSpecialty.map((specialty) => {
-                    let titleVn = specialty.name;
-                    let titleEn = specialty.name;
-                    let srcImage = convertBufferToString(specialty.image);
+                    let titleVn = specialty?.name;
+                    let titleEn = specialty?.name;
+                    let srcImage = convertBufferToString(specialty?.image);
                     return {
                         titleVn,
                         titleEn,
                         src: srcImage,
-                        to: `specialty/${specialty.id}`,
+                        to: `specialty/${slugify(specialty?.name?.toLowerCase(), '-')}-${specialty?.id}`,
                     };
                 }),
         },
@@ -47,14 +48,14 @@ const Home = () => {
             data:
                 listClinic?.length > 0 &&
                 listClinic.map((clinic) => {
-                    let titleVn = clinic.name;
-                    let titleEn = clinic.name;
-                    let srcImage = convertBufferToString(clinic.image);
+                    let titleVn = clinic?.name;
+                    let titleEn = clinic?.name;
+                    let srcImage = convertBufferToString(clinic?.image);
                     return {
                         titleVn,
                         titleEn,
                         src: srcImage,
-                        to: `clinic/${clinic.id}`,
+                        to: `clinic/${slugify(clinic?.name?.toLowerCase(), '-')}-${clinic?.id}`,
                     };
                 }),
         },
@@ -65,8 +66,8 @@ const Home = () => {
             data:
                 listDoctors?.length > 0 &&
                 listDoctors.map((doctor) => {
-                    let titleVn = `${doctor.positionData.valueVi} ${doctor.lastName} ${doctor.firstName}`;
-                    let titleEn = `${doctor.positionData.valueEn} ${doctor.firstName} ${doctor.lastName}`;
+                    let titleVn = `${doctor?.positionData?.valueVi} ${doctor?.lastName} ${doctor?.firstName}`;
+                    let titleEn = `${doctor?.positionData?.valueEn} ${doctor?.firstName} ${doctor?.lastName}`;
                     let srcImage = convertBufferToString(doctor.image);
                     return {
                         titleVn,
@@ -74,7 +75,10 @@ const Home = () => {
                         src: srcImage,
                         imageTypeAvatar: true,
                         description: 'Sức khoẻ tâm thần',
-                        to: `doctor/${doctor.id}`,
+                        to: `doctor/${slugify(
+                            `${doctor?.positionData?.valueVi?.toLowerCase()} ${doctor?.lastName?.toLowerCase()} ${doctor?.firstName?.toLowerCase()}`,
+                            '-',
+                        )}-${doctor?.id}`,
                     };
                 }),
         },

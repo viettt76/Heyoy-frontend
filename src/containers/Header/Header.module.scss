@@ -63,11 +63,32 @@
 
             input {
                 width: 100%;
-
                 border-radius: 25px;
                 color: rgba(153, 153, 153, 1);
                 padding: 0 10px;
                 font-size: 15px;
+            }
+        }
+
+        .list-result-search {
+            background-color: #fff;
+            width: 500px;
+            min-width: 200px;
+            max-height: 70vh;
+            overflow-y: auto;
+
+            .result-by-field {
+                .result-item {
+                    padding: 9px 16px;
+                }
+            }
+
+            .avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 12px;
+                object-fit: contain;
             }
         }
     }

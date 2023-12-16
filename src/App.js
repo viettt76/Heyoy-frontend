@@ -1,13 +1,12 @@
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import { Fragment } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import LoadingOverlay from 'react-loading-overlay';
-import Header from './containers/Header/Header';
 import { history } from './redux';
 import { publicRoutes } from './routes';
-import Footer from './containers/Footer';
+import LayoutDefault from './layouts/LayoutDefault';
 import ScrollToTop from './containers/ScrollTop';
-import SystemHeader from './containers/System/SystemHeader';
 
 const App = () => {
     let loading = useSelector((state) => state.app.loading);
@@ -17,19 +16,31 @@ const App = () => {
             <BrowserRouter navigator={history}>
                 <ScrollToTop />
                 <div className="main-container">
-                    <Header />
-                    <SystemHeader />
-
                     <span className="content-container">
                         <Routes>
                             {publicRoutes.map((route, index) => {
                                 const Page = route.component;
-                                return <Route key={`route-${index}`} path={route.path} element={<Page />} />;
+                                let Layout = LayoutDefault;
+                                if (route.layout) {
+                                    Layout = route.layout;
+                                } else if (route.layout === null) {
+                                    Layout = Fragment;
+                                }
+                                return (
+                                    <Route
+                                        key={`route-${index}`}
+                                        path={route.path}
+                                        element={
+                                            <Layout>
+                                                <Page />
+                                            </Layout>
+                                        }
+                                    />
+                                );
                             })}
                         </Routes>
                     </span>
 
-                    <Footer />
                     <ToastContainer />
                 </div>
             </BrowserRouter>

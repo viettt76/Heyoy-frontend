@@ -9,7 +9,13 @@ import { convertBufferToString } from '~/utils';
 import { FormattedMessage } from 'react-intl';
 
 const DetailSpecialty = () => {
-    let { id } = useParams();
+    let { slug } = useParams();
+    const lastHyphenIndex = slug.lastIndexOf('-');
+    let id = -1;
+    if (lastHyphenIndex > 0) {
+        id = slug.slice(lastHyphenIndex + 1);
+    }
+
     const [listDoctors, setListDoctors] = useState([]);
     const [detailClinic, setDetailClinic] = useState({});
 
@@ -17,8 +23,9 @@ const DetailSpecialty = () => {
         let fetchListDoctors = async () => {
             let res = await getDoctorByClinicService(id);
             if (res?.data) {
-                console.log(res.data);
                 setListDoctors(res.data);
+            } else {
+                setListDoctors([]);
             }
         };
         fetchListDoctors();
@@ -48,7 +55,7 @@ const DetailSpecialty = () => {
                 })
             ) : (
                 <div style={{ fontStyle: 'italic', marginBottom: '10px', textAlign: 'center' }}>
-                    <FormattedMessage id='detail-specialty.no-doctor' />
+                    <FormattedMessage id="detail-specialty.no-doctor" />
                 </div>
             )}
             <div

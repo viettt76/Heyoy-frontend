@@ -44,8 +44,7 @@ function ManageUser() {
         dispatch(actions.getGenderUser());
         dispatch(actions.getRoleUser());
         dispatch(actions.getPositionUser());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [dispatch]);
 
     const [gendersFromApi, setGendersFromApi] = useState(adminRedux.genders || []);
     const [rolesFromApi, setRolesFromApi] = useState(adminRedux.roles || []);

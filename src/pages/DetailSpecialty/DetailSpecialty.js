@@ -12,7 +12,12 @@ import { FormattedMessage } from 'react-intl';
 import { languageSelector } from '~/store/selectors';
 
 const DetailSpecialty = () => {
-    let { id } = useParams();
+    let { slug } = useParams();
+    const lastHyphenIndex = slug.lastIndexOf('-');
+    let id = -1;
+    if (lastHyphenIndex > 0) {
+        id = slug.slice(lastHyphenIndex + 1);
+    }
 
     let language = useSelector(languageSelector);
 

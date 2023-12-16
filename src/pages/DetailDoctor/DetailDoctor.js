@@ -13,7 +13,12 @@ import ModalBooking from '~/components/ModalBooking';
 import { languageSelector } from '~/store/selectors';
 
 const DetailDoctor = () => {
-    const { id } = useParams();
+    const { slug } = useParams();
+    const lastHyphenIndex = slug.lastIndexOf('-');
+    let id = -1;
+    if (lastHyphenIndex > 0) {
+        id = slug.slice(lastHyphenIndex + 1);
+    }
 
     let language = useSelector(languageSelector);
 
@@ -92,7 +97,7 @@ const DetailDoctor = () => {
         setTimeline(key);
         handleShowModalBooking();
     };
-    
+
     return (
         <div>
             <div className={clsx(styles['doctor-info'])}>

@@ -1,21 +1,9 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './Footer.module.scss';
 import logo from '~/assets/images/logo.png';
-import { path } from '~/utils';
 
 const Footer = () => {
-    const location = useLocation();
-
-    if (
-        location.pathname.includes('/system') ||
-        location.pathname === path.LOGIN ||
-        location.pathname === path.REGISTER ||
-        location.pathname === path.VERIFY_BOOKING
-    ) {
-        return null;
-    }
-
     return (
         <div className={clsx('d-md-flex', styles['footer'])}>
             <div className={clsx('col-md-6')}>

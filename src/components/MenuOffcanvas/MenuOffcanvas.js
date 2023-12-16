@@ -95,20 +95,25 @@ const MenuOffcanvas = ({ showMenu, setShowMenu }) => {
                         </span>
                     </li>
                     {isDoctorOrAdmin && (
-                        <li className={clsx(styles['menu-popup-item'])}>
-                            <Link to="/">
-                                {' '}
-                                <FormattedMessage id="header.home" />
-                            </Link>
-                        </li>
-                    )}
-                    {isDoctorOrAdmin && (
-                        <li className={clsx(styles['menu-popup-item'])}>
-                            <Link to="/system/manage-user">
-                                {' '}
-                                <FormattedMessage id="header.system" />
-                            </Link>
-                        </li>
+                        <>
+                            <li className={clsx(styles['menu-popup-item'])}>
+                                <Link to="/">
+                                    <FormattedMessage id="header.home" />
+                                </Link>
+                            </li>
+
+                            <li className={clsx(styles['menu-popup-item'])}>
+                                <Link
+                                    to={
+                                        userInfo?.roleId === 'R1'
+                                            ? `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_USER)}`
+                                            : `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_SCHEDULE)}`
+                                    }
+                                >
+                                    <FormattedMessage id="header.system" />
+                                </Link>
+                            </li>
+                        </>
                     )}
                 </ul>
             </Offcanvas.Body>

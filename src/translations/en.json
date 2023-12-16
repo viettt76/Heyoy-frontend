@@ -48,8 +48,8 @@
             }
         },
         "admin": {
+            "manage-general": "Manage general",
             "manage-user": "Manage user",
-            "manage-admin": "Manage admin",
             "manage-doctor": "Manage doctor",
             "manage-patient": "Manage patient",
             "clinic": "Clinic",

@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import Slider from 'react-slick';
 import SectionItem from './SectionItem';
 import styles from './Section.module.scss';
-import './Section.scss';
 import { ChevronLeftIcon, ChevronRightIcon } from '../Icons';
 import { FormattedMessage } from 'react-intl';
 import PropTypes, { oneOfType } from 'prop-types';

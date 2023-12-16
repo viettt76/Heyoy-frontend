@@ -12,13 +12,14 @@ export const path = {
     SYSTEM_MANAGE_SPECIALTY: '/manage-specialty',
     SYSTEM_MANAGE_CLINIC: '/manage-clinic',
     SYSTEM_MANAGE_PATIENT: '/manage-patient',
+    SYSTEM_MANAGE_HANDBOOK: '/manage-handbook',
 
-    DETAIL_SPECIALTY: '/specialty/:id',
-    DETAIL_CLINIC: '/clinic/:id',
-    DETAIL_DOCTOR: '/doctor/:id',
+    DETAIL_SPECIALTY: '/specialty/:slug',
+    DETAIL_CLINIC: '/clinic/:slug',
+    DETAIL_DOCTOR: '/doctor/:slug',
     VERIFY_BOOKING: '/verify-booking',
 
-    MY_APPOINTMENT: '/my-appointment'
+    MY_APPOINTMENT: '/my-appointment',
 };
 
 export const LANGUAGES = {

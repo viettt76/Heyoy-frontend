@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
@@ -37,53 +37,56 @@ const ManageDoctor = () => {
     const [contentHTML, setContentHTML] = useState('');
     const [detailDoctor, setDetailDoctor] = useState({});
 
+    const buildDataInputSelect = useMemo(() => {
+        return (data, type) => {
+            let result = data.map((item) => {
+                if (type === 'doctor') {
+                    let object = {
+                        valueEn: `${item.firstName} ${item.lastName}`,
+                        valueVi: `${item.lastName} ${item.firstName}`,
+                    };
+
+                    return {
+                        label: `${item.id} - ${language === LANGUAGES.VI ? object.valueVi : object.valueEn}`,
+                        value: item.id,
+                    };
+                } else if (type === 'price') {
+                    let object = {
+                        valueEn: `${item.valueEn} $`,
+                        valueVi: `${item.valueVi} VND`,
+                    };
+                    return {
+                        label: language === LANGUAGES.VI ? object.valueVi : object.valueEn,
+                        value: item.keyMap,
+                    };
+                } else {
+                    let object = {
+                        valueEn: item.valueEn,
+                        valueVi: item.valueVi,
+                    };
+
+                    return {
+                        label: language === LANGUAGES.VI ? object.valueVi : object.valueEn,
+                        value: item.keyMap,
+                    };
+                }
+            });
+            return result;
+        };
+    }, [language]);
+
     useEffect(() => {
         const fetchAllDoctors = async () => {
             let res = await getQuantityDoctorService('all');
             if (res?.data?.length > 0) {
                 let result = buildDataInputSelect(res.data, 'doctor');
                 setListDoctorsFromApi(result);
+            } else {
+                setListDoctorsFromApi([]);
             }
         };
         fetchAllDoctors();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [language]);
-
-    const buildDataInputSelect = (data, type) => {
-        let result = data.map((item) => {
-            if (type === 'doctor') {
-                let object = {
-                    valueEn: `${item.firstName} ${item.lastName}`,
-                    valueVi: `${item.lastName} ${item.firstName}`,
-                };
-
-                return {
-                    label: `${item.id} - ${language === LANGUAGES.VI ? object.valueVi : object.valueEn}`,
-                    value: item.id,
-                };
-            } else if (type === 'price') {
-                let object = {
-                    valueEn: `${item.valueEn} $`,
-                    valueVi: `${item.valueVi} VND`,
-                };
-                return {
-                    label: language === LANGUAGES.VI ? object.valueVi : object.valueEn,
-                    value: item.keyMap,
-                };
-            } else {
-                let object = {
-                    valueEn: item.valueEn,
-                    valueVi: item.valueVi,
-                };
-
-                return {
-                    label: language === LANGUAGES.VI ? object.valueVi : object.valueEn,
-                    value: item.keyMap,
-                };
-            }
-        });
-        return result;
-    };
+    }, [language, buildDataInputSelect]);
 
     // Set the existing value
     useEffect(() => {
@@ -98,7 +101,6 @@ const ManageDoctor = () => {
                         let result = listValue.find((item) => {
                             return item?.value == value;
                         });
-                        console.log(result);
                         return result;
                     };
 
@@ -158,8 +160,7 @@ const ManageDoctor = () => {
             }
         };
         fetchDetailDoctor();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [doctor]);
+    }, [doctor, listClinicFromApi, listPaymentFromApi, listPriceFromApi, listProvinceFromApi, listSpecialtyFromApi]);
 
     useEffect(() => {
         if (!detailDoctor?.Markdown?.description) {
@@ -195,8 +196,7 @@ const ManageDoctor = () => {
             }
         };
         fetchDataFromApi();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [language]);
+    }, [language, buildDataInputSelect]);
 
     // Get list specialty, clinic from API
     useEffect(() => {

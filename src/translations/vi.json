@@ -50,7 +50,7 @@
         },
         "admin": {
             "manage-user": "Quản lý người dùng",
-            "manage-admin": "Quản lý admin",
+            "manage-general": "Quản lý chung",
             "manage-doctor": "Quản lý bác sĩ",
             "manage-patient": "Quản lý bệnh nhân",
             "clinic": "Phòng khám",

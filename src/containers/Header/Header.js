@@ -9,16 +9,22 @@ import Tippy from '@tippyjs/react/headless';
 import logo from '~/assets/images/logo.png';
 import styles from './Header.module.scss';
 import { BarsIcon, ClockRotateLeftIcon, HeadsetIcon, SearchIcon } from '~/components/Icons';
-import { LANGUAGES, path } from '~/utils';
-import { getAppointmentByPatientService } from '~/services';
+import { LANGUAGES, convertBufferToString } from '~/utils';
+import { getAppointmentByPatientService, searchService } from '~/services';
 import MenuOffcanvas from '~/components/MenuOffcanvas';
 import { languageSelector, userInfoSelector } from '~/store/selectors';
+import { useDebounce } from '~/hooks';
+const slugify = require('slugify');
 
 const Header = () => {
     const location = useLocation();
 
     const language = useSelector(languageSelector);
     const userInfo = useSelector(userInfoSelector);
+
+    const [searchKeywords, setSearchKeywords] = useState('');
+    const [searchResults, setSearchResults] = useState({});
+    const [showSearchResults, setShowSearchResults] = useState(false);
 
     const [listAppointments, setListAppointments] = useState([]);
 
@@ -40,13 +46,16 @@ const Header = () => {
         }
     }, [userInfo, location]);
 
-    if (
-        location.pathname.includes('/system') ||
-        location.pathname === path.LOGIN ||
-        location.pathname === path.REGISTER
-    ) {
-        return null;
-    }
+    let query = useDebounce(searchKeywords, 500);
+    useEffect(() => {
+        let fetchSearch = async () => {
+            let res = await searchService(query);
+            if (res?.data) {
+                setSearchResults(res.data);
+            }
+        };
+        fetchSearch();
+    }, [query]);
 
     return (
         <div className={clsx(styles['header-container'])}>
@@ -80,10 +89,122 @@ const Header = () => {
                             </li>
                         </ul>
 
-                        <div className={clsx(styles['search-input'])}>
-                            <SearchIcon width="15px" height="15px" />
-                            <input placeholder="Tìm kiếm" />
-                        </div>
+                        <Tippy
+                            interactive
+                            visible={showSearchResults && !_.isEmpty(searchResults)}
+                            placement="bottom"
+                            onClickOutside={() => setShowSearchResults(false)}
+                            render={(attrs) => (
+                                <div className={clsx(styles['list-result-search'])} tabIndex="-1" {...attrs}>
+                                    {_.isEmpty(searchResults) ? (
+                                        <div>Không thấy dữ liệu</div>
+                                    ) : (
+                                        <>
+                                            {!_.isEmpty(searchResults) && searchResults?.specialty?.length > 0 && (
+                                                <ul className={clsx(styles['result-by-field'])}>
+                                                    {searchResults.specialty.map((specialty, index) => (
+                                                        <li
+                                                            className={clsx(styles['result-item'])}
+                                                            key={`specialty-${index}`}
+                                                        >
+                                                            <Link
+                                                                to={`/specialty/${slugify(
+                                                                    specialty?.name?.toLowerCase(),
+                                                                    '-',
+                                                                )}-${specialty?.id}`}
+                                                            >
+                                                                {specialty?.image ? (
+                                                                    <img
+                                                                        className={clsx(styles['avatar'])}
+                                                                        src={convertBufferToString(specialty?.image)}
+                                                                        alt={specialty?.name}
+                                                                    />
+                                                                ) : (
+                                                                    <i className="fa-solid fa-suitcase-medical"></i>
+                                                                )}
+                                                                {specialty?.name}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                            {!_.isEmpty(searchResults) && searchResults?.clinic?.length > 0 && (
+                                                <ul className={clsx(styles['result-by-field'])}>
+                                                    {searchResults.clinic.map((clinic, index) => (
+                                                        <li
+                                                            className={clsx(styles['result-item'])}
+                                                            key={`clinic-${index}`}
+                                                        >
+                                                            <Link
+                                                                to={`/clinic/${slugify(
+                                                                    clinic?.name?.toLowerCase(),
+                                                                    '-',
+                                                                )}-${clinic?.id}`}
+                                                            >
+                                                                {clinic?.image ? (
+                                                                    <img
+                                                                        className={clsx(styles['avatar'])}
+                                                                        src={convertBufferToString(clinic?.image)}
+                                                                        alt={clinic?.name}
+                                                                    />
+                                                                ) : (
+                                                                    <i className="fa-solid fa-hospital"></i>
+                                                                )}
+                                                                {clinic?.name}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                            {!_.isEmpty(searchResults) && searchResults?.doctor?.length > 0 && (
+                                                <ul className={clsx(styles['result-by-field'])}>
+                                                    {searchResults.doctor.map((doctor, index) => (
+                                                        <li
+                                                            className={clsx(styles['result-item'])}
+                                                            key={`doctor-${index}`}
+                                                        >
+                                                            <Link
+                                                                to={`/doctor/${slugify(
+                                                                    `${doctor?.positionData?.valueVi?.toLowerCase()} ${doctor?.lastName?.toLowerCase()} ${doctor?.firstName?.toLowerCase()}`,
+                                                                    '-',
+                                                                )}-${doctor?.id}`}
+                                                            >
+                                                                {doctor?.image ? (
+                                                                    <img
+                                                                        className={clsx(styles['avatar'])}
+                                                                        src={convertBufferToString(doctor?.image)}
+                                                                        alt={
+                                                                            language === LANGUAGES.VI
+                                                                                ? `${doctor?.positionData?.valueVi} ${doctor?.lastName} ${doctor?.firstName}`
+                                                                                : `${doctor?.positionData?.valueEn} ${doctor?.firstName} ${doctor?.lastName}`
+                                                                        }
+                                                                    />
+                                                                ) : (
+                                                                    <i className="fa-solid fa-user-doctor"></i>
+                                                                )}
+                                                                {language === LANGUAGES.VI
+                                                                    ? `${doctor?.positionData?.valueVi} ${doctor?.lastName} ${doctor?.firstName}`
+                                                                    : `${doctor?.positionData?.valueEn} ${doctor?.firstName} ${doctor?.lastName}`}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </>
+                                    )}
+                                </div>
+                            )}
+                        >
+                            <div className={clsx(styles['search-input'])}>
+                                <SearchIcon width="15px" height="15px" />
+                                <input
+                                    value={searchKeywords}
+                                    placeholder="Tìm kiếm"
+                                    onChange={(e) => setSearchKeywords(e.target.value)}
+                                    onFocus={() => setShowSearchResults(true)}
+                                />
+                            </div>
+                        </Tippy>
                     </div>
 
                     {userInfo?.roleId === 'R3' && (

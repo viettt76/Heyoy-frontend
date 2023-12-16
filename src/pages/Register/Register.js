@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { useRef } from 'react';
-import { LANGUAGES, convertBase64 } from '~/utils';
+import { LANGUAGES, convertBase64, path } from '~/utils';
 import { toast } from 'react-toastify';
 import { languageSelector } from '~/store/selectors';
 
@@ -143,7 +143,7 @@ const Register = () => {
                 };
                 let res = await createUserService(dataUser);
                 if (res?.errCode === 0) {
-                    navigate('/login');
+                    navigate(path.LOGIN);
                     toast.success(
                         language === LANGUAGES.VI ? 'Tạo tài khoản thành công!' : 'Create account successfully!',
                     );

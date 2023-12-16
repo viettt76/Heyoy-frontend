@@ -6,18 +6,18 @@ import clsx from 'clsx';
 
 import styles from './SystemHeader.module.scss';
 import { BarsIcon } from '~/components/Icons';
-import { LANGUAGES, convertBufferToString } from '~/utils';
+import { LANGUAGES, convertBufferToString, path } from '~/utils';
 import MenuMultiLevelHover from '~/components/MenuMultiLevelHover';
 import MenuOffcanvas from '~/components/MenuOffcanvas';
 import { languageSelector, userInfoSelector } from '~/store/selectors';
 
 const adminMenus = [
     {
-        name: 'menu.admin.manage-user',
+        name: 'menu.admin.manage-general',
         menu: [
             {
-                name: 'menu.admin.manage-admin',
-                to: '/system/manage-admin',
+                name: 'menu.admin.manage-user',
+                to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_USER)}`,
                 // submenu: [
                 //     {
                 //         name: 'Quản trị viên',
@@ -26,16 +26,16 @@ const adminMenus = [
             },
             {
                 name: 'menu.admin.manage-doctor',
-                to: '/system/manage-doctor',
+                to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_DOCTOR)}`,
             },
 
             {
                 name: 'menu.admin.manage-patient',
-                to: '/system/manage-patient',
+                to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_PATIENT)}`,
             },
             {
                 name: 'menu.doctor.manage-schedule',
-                to: '/system/manage-schedule',
+                to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_SCHEDULE)}`,
             },
         ],
     },
@@ -44,7 +44,7 @@ const adminMenus = [
         menu: [
             {
                 name: 'menu.admin.manage-clinic',
-                to: '/system/manage-clinic',
+                to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_CLINIC)}`,
             },
         ],
     },
@@ -53,7 +53,7 @@ const adminMenus = [
         menu: [
             {
                 name: 'menu.admin.manage-specialty',
-                to: '/system/manage-specialty',
+                to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_SPECIALTY)}`,
             },
         ],
     },
@@ -62,7 +62,7 @@ const adminMenus = [
         menu: [
             {
                 name: 'menu.admin.manage-handbook',
-                to: '/system/manage-handbook',
+                to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_HANDBOOK)}`,
             },
         ],
     },
@@ -74,11 +74,11 @@ const doctorMenus = [
         menu: [
             {
                 name: 'menu.doctor.manage-schedule',
-                to: '/system/manage-schedule',
+                to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_SCHEDULE)}`,
             },
             {
                 name: 'menu.doctor.manage-patient',
-                to: '/system/manage-patient',
+                to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_PATIENT)}`,
             },
         ],
     },
@@ -121,13 +121,9 @@ const SystemHeader = () => {
 
     const handleShowMenu = () => setShowMenu(true);
 
-    if (!location.pathname.includes('/system')) {
-        return null;
-    }
-
     return (
         <div className={clsx(styles['header-container'])}>
-            <Navbar expand="lg" className='w-100'>
+            <Navbar expand="lg" className="w-100">
                 <Container>
                     <div className={clsx(styles['header-left'])}>
                         <div className={clsx(styles['menu-popup-icon'])} onClick={handleShowMenu}>

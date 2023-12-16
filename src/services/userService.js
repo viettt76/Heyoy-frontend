@@ -34,3 +34,9 @@ export const getAllCodeService = (type) => {
         params: { type },
     });
 };
+
+export const searchService = (keyword) => {
+    return axios.get('/api/search', {
+        params: { keyword },
+    });
+};
