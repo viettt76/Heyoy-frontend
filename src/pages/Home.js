@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import slugify from 'slugify';
 import Slide from '~/components/Slide';
 import Section from '~/components/Section';
 import { getQuantityDoctorService, getQuantitySpecialtyService, getQuantityClinicService } from '~/services';
 import { convertBufferToString } from '~/utils';
-const slugify = require('slugify');
 
 const Home = () => {
     const [listDoctors, setListDoctors] = useState([]);
@@ -37,7 +37,7 @@ const Home = () => {
                         titleVn,
                         titleEn,
                         src: srcImage,
-                        to: `specialty/${slugify(specialty?.name?.toLowerCase(), '-')}-${specialty?.id}`,
+                        to: `/specialty/${slugify(specialty?.name?.toLowerCase(), '-')}-${specialty?.id}`,
                     };
                 }),
         },
@@ -55,7 +55,7 @@ const Home = () => {
                         titleVn,
                         titleEn,
                         src: srcImage,
-                        to: `clinic/${slugify(clinic?.name?.toLowerCase(), '-')}-${clinic?.id}`,
+                        to: `/clinic/${slugify(clinic?.name?.toLowerCase(), '-')}-${clinic?.id}`,
                     };
                 }),
         },
@@ -74,8 +74,7 @@ const Home = () => {
                         titleEn,
                         src: srcImage,
                         imageTypeAvatar: true,
-                        description: 'Sức khoẻ tâm thần',
-                        to: `doctor/${slugify(
+                        to: `/doctor/${slugify(
                             `${doctor?.positionData?.valueVi?.toLowerCase()} ${doctor?.lastName?.toLowerCase()} ${doctor?.firstName?.toLowerCase()}`,
                             '-',
                         )}-${doctor?.id}`,

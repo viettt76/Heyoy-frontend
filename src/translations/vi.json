@@ -4,9 +4,13 @@
         "save": "Lưu",
         "cancel": "Huỷ",
         "login": "Đăng nhập",
-        "register": "Đăng ký"
+        "register": "Đăng ký",
+        "no-data": "Không có dữ liệu",
+        "search": "Tìm kiếm"
     },
     "header": {
+        "Specialty": "Chuyên khoa",
+        "clinic": "Phòng khám",
         "at-home": "Tại nhà",
         "at-hospital": "Tại viện",
         "live-healthy": "Sống khoẻ",
@@ -178,5 +182,9 @@
         "need-login-to-booking": "Bạn cần đăng nhập để đặt lịch",
         "please-login": "Vui lòng đăng nhập",
         "not-account": "Nếu bạn chưa có tài khoản"
+    },
+    "list-by-topic": {
+        "list": "Danh sách",
+        "no-have": "Không có"
     }
 }

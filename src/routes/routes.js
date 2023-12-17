@@ -13,7 +13,12 @@ import DetailSpecialty from '~/pages/DetailSpecialty';
 import DetailClinic from '~/pages/DetailClinic';
 import DetailDoctor from '~/pages/DetailDoctor';
 
+import ListSpecialty from '~/pages/ListSpecialty';
+import ListClinic from '~/pages/ListClinic';
+import ListDoctor from '~/pages/ListDoctor';
+
 import VerifyBooking from '~/pages/VerifyBooking';
+
 import NotFound from '~/pages/NotFound';
 
 export const publicRoutes = [
@@ -27,6 +32,10 @@ export const publicRoutes = [
     { path: path.DETAIL_SPECIALTY, component: DetailSpecialty },
     { path: path.DETAIL_CLINIC, component: DetailClinic },
     { path: path.DETAIL_DOCTOR, component: DetailDoctor },
+
+    { path: '/list/specialty', component: ListSpecialty },
+    { path: '/list/clinic', component: ListClinic },
+    { path: '/list/doctor', component: ListDoctor },
 
     { path: path.VERIFY_BOOKING, component: VerifyBooking },
 

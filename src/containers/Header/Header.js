@@ -5,16 +5,16 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import clsx from 'clsx';
 import _ from 'lodash';
+import slugify from 'slugify';
 import Tippy from '@tippyjs/react/headless';
 import logo from '~/assets/images/logo.png';
 import styles from './Header.module.scss';
 import { BarsIcon, ClockRotateLeftIcon, HeadsetIcon, SearchIcon } from '~/components/Icons';
-import { LANGUAGES, convertBufferToString } from '~/utils';
+import { LANGUAGES, convertBufferToString, useFormatMessage } from '~/utils';
 import { getAppointmentByPatientService, searchService } from '~/services';
 import MenuOffcanvas from '~/components/MenuOffcanvas';
 import { languageSelector, userInfoSelector } from '~/store/selectors';
 import { useDebounce } from '~/hooks';
-const slugify = require('slugify');
 
 const Header = () => {
     const location = useLocation();
@@ -52,10 +52,17 @@ const Header = () => {
             let res = await searchService(query);
             if (res?.data) {
                 setSearchResults(res.data);
+            } else {
+                setSearchResults({});
             }
         };
         fetchSearch();
     }, [query]);
+
+    useEffect(() => {
+        setSearchKeywords('');
+        setShowSearchResults(false);
+    }, [location]);
 
     return (
         <div className={clsx(styles['header-container'])}>
@@ -73,18 +80,18 @@ const Header = () => {
 
                         <ul className={[clsx(styles['nav-menu'])]}>
                             <li className={clsx('d-md-block', 'd-none', styles['menu-item'])}>
-                                <NavLink to="/dich-vu/tai-nha">
-                                    <FormattedMessage id="header.at-home" />
+                                <NavLink to="/list/specialty">
+                                    <FormattedMessage id="header.Specialty" />
                                 </NavLink>
                             </li>
                             <li className={clsx('d-md-block', 'd-none', styles['menu-item'])}>
-                                <NavLink to="/dich-vu/tai-vien">
-                                    <FormattedMessage id="header.at-hospital" />
+                                <NavLink to="/list/clinic">
+                                    <FormattedMessage id="header.clinic" />
                                 </NavLink>
                             </li>
                             <li className={clsx('d-md-block', 'd-none', styles['menu-item'])}>
-                                <NavLink to="/dich-vu/song-khoe">
-                                    <FormattedMessage id="header.live-healthy" />
+                                <NavLink to="/list/doctor">
+                                    <FormattedMessage id="header.doctor" />
                                 </NavLink>
                             </li>
                         </ul>
@@ -97,7 +104,9 @@ const Header = () => {
                             render={(attrs) => (
                                 <div className={clsx(styles['list-result-search'])} tabIndex="-1" {...attrs}>
                                     {_.isEmpty(searchResults) ? (
-                                        <div>Không thấy dữ liệu</div>
+                                        <div>
+                                            <FormattedMessage id="popular.no-data" />
+                                        </div>
                                     ) : (
                                         <>
                                             {!_.isEmpty(searchResults) && searchResults?.specialty?.length > 0 && (
@@ -199,7 +208,7 @@ const Header = () => {
                                 <SearchIcon width="15px" height="15px" />
                                 <input
                                     value={searchKeywords}
-                                    placeholder="Tìm kiếm"
+                                    placeholder={useFormatMessage('popular.search')}
                                     onChange={(e) => setSearchKeywords(e.target.value)}
                                     onFocus={() => setShowSearchResults(true)}
                                 />

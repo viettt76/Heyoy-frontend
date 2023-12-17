@@ -4,10 +4,13 @@
         "save": "Save",
         "cancel": "Cancel",
         "login": "Login",
-        "register": "Register"
+        "register": "Register",
+        "no-data": "No data",
+        "search": "Search"
     },
     "header": {
-        "at-home": "At home",
+        "Specialty": "Specialty",
+        "clinic": "Clinic",
         "at-hospital": "At hospital",
         "live-healthy": "Live healthy",
         "appointment-schedule": "Appointment schedule",
@@ -164,7 +167,6 @@
         "hide-less": "Hide less",
         "no-doctor": "This specialty currently has no doctors"
     },
-
     "modal-booking": {
         "make-an-appointment": "Make an appointment",
         "price": "Examination price",
@@ -178,5 +180,9 @@
         "need-login-to-booking": "You need to log in to schedule an appointment",
         "please-login": "Please login",
         "not-account": "If you do not already have an account"
+    },
+    "list-by-topic": {
+        "list": "List of",
+        "no-have": "There are no"
     }
 }
