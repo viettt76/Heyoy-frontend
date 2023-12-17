@@ -20,7 +20,9 @@
         "specialty": "specialty",
         "home": "Home",
         "system": "System",
-        "personal-information": "Personal information"
+        "personal-information": "Personal information",
+        "please-contact": "Please contact",
+        "for-support": "for support"
     },
     "login": {
         "username": "Username",

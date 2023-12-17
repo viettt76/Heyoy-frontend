@@ -3,7 +3,7 @@ import slugify from 'slugify';
 import Slide from '~/components/Slide';
 import Section from '~/components/Section';
 import { getQuantityDoctorService, getQuantitySpecialtyService, getQuantityClinicService } from '~/services';
-import { convertBufferToString } from '~/utils';
+import { convertBufferToString, path } from '~/utils';
 
 const Home = () => {
     const [listDoctors, setListDoctors] = useState([]);
@@ -27,6 +27,7 @@ const Home = () => {
             label: 'homepage.specialty',
             numberItemInSlide: 3,
             buttonSeeMore: true,
+            seeMoreTo: path.LIST_SPECIALTY,
             data:
                 listSpecialty.length > 0 &&
                 listSpecialty.map((specialty) => {
@@ -45,6 +46,7 @@ const Home = () => {
             label: 'homepage.clinic',
             numberItemInSlide: 3,
             buttonSeeMore: true,
+            seeMoreTo: path.LIST_CLINIC,
             data:
                 listClinic?.length > 0 &&
                 listClinic.map((clinic) => {
@@ -63,6 +65,7 @@ const Home = () => {
             label: 'homepage.outstanding-doctor',
             numberItemInSlide: 4,
             buttonSeeMore: true,
+            seeMoreTo: path.LIST_DOCTOR,
             data:
                 listDoctors?.length > 0 &&
                 listDoctors.map((doctor) => {
@@ -109,6 +112,7 @@ const Home = () => {
                                 key={`section-${index}`}
                                 label={section.label}
                                 buttonSeeMore={section.buttonSeeMore}
+                                seeMoreTo={section.seeMoreTo}
                                 listSectionItems={section.data}
                                 numberItemInSlide={section.numberItemInSlide}
                             />

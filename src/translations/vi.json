@@ -21,14 +21,15 @@
         "specialty": "chuyên khoa",
         "home": "Trang chủ",
         "system": "Hệ thống",
-        "personal-information": "Thông tin cá nhân"
+        "personal-information": "Thông tin cá nhân",
+        "please-contact": "Vui lòng liên hệ",
+        "for-support": "để được hỗ trợ"
     },
     "login": {
         "username": "Tài khoản",
         "password": "Mật khẩu",
         "forgot-password": "Quên mật khẩu?",
-        "do-not-have-account": "Do not have account",
-        "register": "Register"
+        "do-not-have-account": "Chưa có tài khoản"
     },
     "register": {
         "username": "Tài khoản",

@@ -48,8 +48,10 @@ const ListByTopic = ({ topicVi, topicEn, data }) => {
                     listByTopic.map((item, index) => {
                         return (
                             <Link to={item?.to} className="col-lg-3 col-md-4 col-sm-6" key={`item-${index}`}>
-                                <img className="w-100" src={item?.image} alt={item?.name} />
-                                <p>{item?.name}</p>
+                                <div className={clsx(styles['wrapper-image'])}>
+                                    <img className={clsx(styles['image'])} src={item?.image} alt={item?.name} />
+                                </div>
+                                <p className="text-center">{item?.name}</p>
                             </Link>
                         );
                     })

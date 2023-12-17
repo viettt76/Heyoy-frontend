@@ -29,7 +29,7 @@ const Register = () => {
     const [lastName, setLastName] = useState('');
     const [gender, setGender] = useState('');
     const [position, setPosition] = useState('');
-    const [role, setRole] = useState('');
+    const [role, setRole] = useState('R3');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address, setAddress] = useState('');
     const [image, setImage] = useState();
@@ -57,7 +57,7 @@ const Register = () => {
         setPositionsFromApi(adminRedux.positions);
 
         setGender(gendersFromApi[0]?.keyMap);
-        setRole(rolesFromApi[0]?.keyMap);
+        setRole(rolesFromApi[2]?.keyMap);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [adminRedux]);
 
@@ -73,7 +73,7 @@ const Register = () => {
 
     useEffect(() => {
         setGender(gendersFromApi[0]?.keyMap);
-        setRole(rolesFromApi[0]?.keyMap);
+        setRole(rolesFromApi[2]?.keyMap);
     }, [gendersFromApi, rolesFromApi]);
 
     useEffect(() => {
@@ -239,7 +239,7 @@ const Register = () => {
                         </Form.Group>
                     </Row>
                     <Row className="mb-3">
-                        <Form.Group as={Col} md="4">
+                        <Form.Group as={Col} md="6">
                             <Form.Label>
                                 <FormattedMessage id="system.manage-user.gender" />
                             </Form.Label>
@@ -256,7 +256,19 @@ const Register = () => {
                             </Form.Select>
                         </Form.Group>
 
-                        <Form.Group as={Col} md="4">
+                        <Form.Group as={Col} md="6">
+                            <Form.Label>
+                                <FormattedMessage id="system.manage-user.phone-number" />
+                            </Form.Label>
+                            <Form.Control
+                                value={phoneNumber}
+                                required
+                                type="text"
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                            />
+                        </Form.Group>
+
+                        {/* <Form.Group as={Col} md="4">
                             <Form.Label>
                                 <FormattedMessage id="system.manage-user.role" />
                             </Form.Label>
@@ -270,9 +282,9 @@ const Register = () => {
                                         );
                                     })}
                             </Form.Select>
-                        </Form.Group>
+                        </Form.Group> */}
 
-                        {role === 'R2' && (
+                        {/* {role === 'R2' && (
                             <Form.Group as={Col} md="4">
                                 <Form.Label>
                                     <FormattedMessage id="system.manage-user.position" />
@@ -288,21 +300,10 @@ const Register = () => {
                                         })}
                                 </Form.Select>
                             </Form.Group>
-                        )}
+                        )} */}
                     </Row>
                     <Row className="mb-3">
-                        <Form.Group as={Col} md="5">
-                            <Form.Label>
-                                <FormattedMessage id="system.manage-user.phone-number" />
-                            </Form.Label>
-                            <Form.Control
-                                value={phoneNumber}
-                                required
-                                type="text"
-                                onChange={(e) => setPhoneNumber(e.target.value)}
-                            />
-                        </Form.Group>
-                        <Form.Group as={Col} md="5">
+                        <Form.Group as={Col} md="6">
                             <Form.Label>
                                 <FormattedMessage id="system.manage-user.address" />
                             </Form.Label>

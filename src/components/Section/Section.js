@@ -5,6 +5,7 @@ import styles from './Section.module.scss';
 import { ChevronLeftIcon, ChevronRightIcon } from '../Icons';
 import { FormattedMessage } from 'react-intl';
 import PropTypes, { oneOfType } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const NextArrow = ({ className, style, onClick }) => {
     return (
@@ -22,7 +23,7 @@ const PrevArrow = ({ className, style, onClick }) => {
     );
 };
 
-const Section = ({ label, buttonSeeMore, listSectionItems, numberItemInSlide = 1 }) => {
+const Section = ({ label, buttonSeeMore, seeMoreTo, listSectionItems, numberItemInSlide = 1 }) => {
     return (
         <div className={clsx(styles['wrapper'])}>
             <div className={clsx(styles['section-top'])}>
@@ -30,9 +31,9 @@ const Section = ({ label, buttonSeeMore, listSectionItems, numberItemInSlide = 1
                     <FormattedMessage id={label} />
                 </h5>
                 {buttonSeeMore && (
-                    <button className={clsx(styles['btn-see-more'])}>
+                    <Link to={seeMoreTo} className={clsx(styles['btn-see-more'])}>
                         <FormattedMessage id="homepage.see-more" />
-                    </button>
+                    </Link>
                 )}
             </div>
             <Slider

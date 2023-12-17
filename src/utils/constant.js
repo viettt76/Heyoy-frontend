@@ -14,6 +14,10 @@ export const path = {
     SYSTEM_MANAGE_PATIENT: '/manage-patient',
     SYSTEM_MANAGE_HANDBOOK: '/manage-handbook',
 
+    LIST_SPECIALTY: '/list/specialty',
+    LIST_CLINIC: '/list/clinic',
+    LIST_DOCTOR: '/list/doctor',
+
     DETAIL_SPECIALTY: '/specialty/:slug',
     DETAIL_CLINIC: '/clinic/:slug',
     DETAIL_DOCTOR: '/doctor/:slug',

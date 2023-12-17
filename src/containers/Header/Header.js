@@ -10,7 +10,7 @@ import Tippy from '@tippyjs/react/headless';
 import logo from '~/assets/images/logo.png';
 import styles from './Header.module.scss';
 import { BarsIcon, ClockRotateLeftIcon, HeadsetIcon, SearchIcon } from '~/components/Icons';
-import { LANGUAGES, convertBufferToString, useFormatMessage } from '~/utils';
+import { LANGUAGES, convertBufferToString, path, useFormatMessage } from '~/utils';
 import { getAppointmentByPatientService, searchService } from '~/services';
 import MenuOffcanvas from '~/components/MenuOffcanvas';
 import { languageSelector, userInfoSelector } from '~/store/selectors';
@@ -66,8 +66,8 @@ const Header = () => {
 
     return (
         <div className={clsx(styles['header-container'])}>
-            <Navbar expand="lg">
-                <Container>
+            <Navbar expand="lg" className="w-100">
+                <Container className="d-flex flex-nowrap justify-content-between w-100">
                     <div className={clsx(styles['header-left'])}>
                         <div className={clsx(styles['menu-popup-icon'])} onClick={handleShowMenu}>
                             <BarsIcon />
@@ -80,17 +80,17 @@ const Header = () => {
 
                         <ul className={[clsx(styles['nav-menu'])]}>
                             <li className={clsx('d-md-block', 'd-none', styles['menu-item'])}>
-                                <NavLink to="/list/specialty">
+                                <NavLink to={path.LIST_SPECIALTY}>
                                     <FormattedMessage id="header.Specialty" />
                                 </NavLink>
                             </li>
                             <li className={clsx('d-md-block', 'd-none', styles['menu-item'])}>
-                                <NavLink to="/list/clinic">
+                                <NavLink to={path.LIST_CLINIC}>
                                     <FormattedMessage id="header.clinic" />
                                 </NavLink>
                             </li>
                             <li className={clsx('d-md-block', 'd-none', styles['menu-item'])}>
-                                <NavLink to="/list/doctor">
+                                <NavLink to={path.LIST_DOCTOR}>
                                     <FormattedMessage id="header.doctor" />
                                 </NavLink>
                             </li>
@@ -219,47 +219,53 @@ const Header = () => {
                     {userInfo?.roleId === 'R3' && (
                         <div className={clsx(styles['header-right'])}>
                             <Tippy
-                                arrow={true}
                                 placement="bottom"
                                 interactive
-                                delay={[100, 200]}
+                                delay={[200, 500]}
                                 render={(attrs) => (
-                                    <ul className={clsx(styles['list-appointment'])} tabIndex="-1" {...attrs}>
-                                        {listAppointments?.length > 0 &&
-                                            listAppointments.map((appointment, index) => {
-                                                let date = appointment?.date;
-                                                let day = new Date(date).getDate();
-                                                let month = new Date(date).getMonth() + 1;
-                                                let year = new Date(date).getFullYear();
-                                                date = `${day}/${month}/${year}`;
-                                                return (
-                                                    <li
-                                                        key={`appointment-${index}`}
-                                                        className={clsx(styles['appointment'])}
-                                                    >
-                                                        <div>
-                                                            <FormattedMessage id="header.day" /> {date},{' '}
-                                                            {language === LANGUAGES.VI
-                                                                ? appointment?.timeTypeBookingData?.valueVi
-                                                                : appointment?.timeTypeBookingData?.valueEn}
-                                                        </div>
-                                                        <div>
-                                                            <FormattedMessage id="header.doctor" />{' '}
-                                                            {language === LANGUAGES.VI
-                                                                ? `${appointment?.doctorUserData?.lastName} ${appointment?.doctorUserData?.firstName}`
-                                                                : `${appointment?.doctorUserData?.firstName} ${appointment?.doctorUserData?.lastName}`}
-                                                            , <FormattedMessage id="header.specialty" />{' '}
-                                                            {appointment?.Doctor_Info?.specialtyData?.name}
-                                                        </div>
-                                                        <div>
-                                                            {language === LANGUAGES.VI
-                                                                ? appointment?.statusBookingData?.valueVi
-                                                                : appointment?.statusBookingData?.valueEn}
-                                                        </div>
-                                                    </li>
-                                                );
-                                            })}
-                                    </ul>
+                                    <div className={clsx(styles['wrapper-tippy'])} tabIndex="-1" {...attrs}>
+                                        <ul className={clsx(styles['list-appointment'])}>
+                                            {listAppointments?.length > 0 ? (
+                                                listAppointments.map((appointment, index) => {
+                                                    let date = appointment?.date;
+                                                    let day = new Date(date).getDate();
+                                                    let month = new Date(date).getMonth() + 1;
+                                                    let year = new Date(date).getFullYear();
+                                                    date = `${day}/${month}/${year}`;
+                                                    return (
+                                                        <li
+                                                            key={`appointment-${index}`}
+                                                            className={clsx(styles['appointment'])}
+                                                        >
+                                                            <div>
+                                                                <FormattedMessage id="header.day" /> {date},{' '}
+                                                                {language === LANGUAGES.VI
+                                                                    ? appointment?.timeTypeBookingData?.valueVi
+                                                                    : appointment?.timeTypeBookingData?.valueEn}
+                                                            </div>
+                                                            <div>
+                                                                <FormattedMessage id="header.doctor" />{' '}
+                                                                {language === LANGUAGES.VI
+                                                                    ? `${appointment?.doctorUserData?.lastName} ${appointment?.doctorUserData?.firstName}`
+                                                                    : `${appointment?.doctorUserData?.firstName} ${appointment?.doctorUserData?.lastName}`}
+                                                                , <FormattedMessage id="header.specialty" />{' '}
+                                                                {appointment?.Doctor_Info?.specialtyData?.name}
+                                                            </div>
+                                                            <div>
+                                                                {language === LANGUAGES.VI
+                                                                    ? appointment?.statusBookingData?.valueVi
+                                                                    : appointment?.statusBookingData?.valueEn}
+                                                            </div>
+                                                        </li>
+                                                    );
+                                                })
+                                            ) : (
+                                                <li className={clsx(styles['appointment'], styles['no-appointment'])}>
+                                                    Không có lịch hẹn nào
+                                                </li>
+                                            )}
+                                        </ul>
+                                    </div>
                                 )}
                             >
                                 <div className={clsx(styles['header-right-item'])}>
@@ -270,12 +276,25 @@ const Header = () => {
                                 </div>
                             </Tippy>
 
-                            <div className={clsx(styles['header-right-item'])}>
-                                <HeadsetIcon />
-                                <span className={clsx(styles['header-right-item-label'])}>
-                                    <FormattedMessage id="header.support" />
-                                </span>
-                            </div>
+                            <Tippy
+                                interactive
+                                placement="bottom"
+                                render={(attrs) => (
+                                    <div className={clsx(styles['wrapper-tippy'])} tabIndex="-1" {...attrs}>
+                                        <div className={clsx(styles['contact'])}>
+                                            <FormattedMessage id="header.please-contact" /> 0123456789{' '}
+                                            <FormattedMessage id="header.for-support" />
+                                        </div>
+                                    </div>
+                                )}
+                            >
+                                <div className={clsx(styles['header-right-item'])}>
+                                    <HeadsetIcon />
+                                    <span className={clsx(styles['header-right-item-label'])}>
+                                        <FormattedMessage id="header.support" />
+                                    </span>
+                                </div>
+                            </Tippy>
                         </div>
                     )}
                 </Container>

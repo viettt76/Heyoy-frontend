@@ -33,9 +33,9 @@ export const publicRoutes = [
     { path: path.DETAIL_CLINIC, component: DetailClinic },
     { path: path.DETAIL_DOCTOR, component: DetailDoctor },
 
-    { path: '/list/specialty', component: ListSpecialty },
-    { path: '/list/clinic', component: ListClinic },
-    { path: '/list/doctor', component: ListDoctor },
+    { path: path.LIST_SPECIALTY, component: ListSpecialty },
+    { path: path.LIST_CLINIC, component: ListClinic },
+    { path: path.LIST_DOCTOR, component: ListDoctor },
 
     { path: path.VERIFY_BOOKING, component: VerifyBooking },
 
