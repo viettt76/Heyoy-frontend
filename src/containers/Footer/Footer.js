@@ -2,25 +2,28 @@ import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './Footer.module.scss';
 import logo from '~/assets/images/logo.png';
+import { FormattedMessage } from 'react-intl';
 
 const Footer = () => {
     return (
-        <div className={clsx('d-md-flex', styles['footer'])}>
+        <div className={clsx('d-md-flex flex-wrap', styles['footer'])}>
             <div className={clsx('col-md-6')}>
                 <Link to="/">
                     <img className={clsx(styles['logo'])} src={logo} alt="logo" width="60px" />
                 </Link>
                 <div>
                     <span>
-                        <b>Công ty Cổ phần Công nghệ BookingCare</b>
+                        <b>
+                            <FormattedMessage id="footer.name-company" />
+                        </b>
                     </span>
                     <span>
-                        <i className="fa-solid fa-location-dot"></i> &nbsp;Lô B4/D21, Khu đô thị mới Cầu Giấy, Phường
-                        Dịch Vọng Hậu, Quận Cầu Giấy, Thành phố Hà Nội, Việt Nam
+                        <i className="fa-solid fa-location-dot"></i> &nbsp;{' '}
+                        <FormattedMessage id="footer.address-company" />
                     </span>
                     <span>
-                        <i className="fa-solid fa-check"></i> &nbsp;ĐKKD số. 0106790291. Sở KHĐT Hà Nội cấp ngày
-                        16/03/2015
+                        <i className="fa-solid fa-check"></i> &nbsp;
+                        <FormattedMessage id="footer.business-registration-date" />
                     </span>
                 </div>
                 <div className={clsx('mt-3')}>
@@ -29,60 +32,88 @@ const Footer = () => {
                 </div>
                 <div>
                     <span>
-                        <b>Văn phòng tại TP Hồ Chí Minh</b>
+                        <b>
+                            <FormattedMessage id="footer.office" />
+                        </b>
                     </span>
-                    <span>Số 01, Hồ Bá Kiện, Phường 15, Quận 10</span>
+                    <span>
+                        <FormattedMessage id="footer.address-office" />
+                    </span>
                 </div>
                 <div className={clsx('mt-3')}>
                     <span>
-                        <b>Hỗ trợ khách hàng</b>
+                        <b>
+                            <FormattedMessage id="footer.customer-support" />
+                        </b>
                     </span>
-                    <span>support@bookingcare.vn (7h - 18h)</span>
+                    <span>support@bookingcare.vn</span>
                 </div>
                 <div className={clsx('mt-3')}>
                     <span>
                         <b>Hotline</b>
                     </span>
                     <span>
-                        <span className={clsx(styles['hotline'])}>024-7301-2468</span> (7h - 18h)
+                        <span className={clsx(styles['hotline'])}>024-7301-2468</span>
                     </span>
                 </div>
             </div>
-            <ul className={clsx('col-md-3', 'mt-md-0', 'mt-3', styles['list-menu'])}>
+            <ul className={clsx('col-lg-3 col-md-6', 'mt-md-0', 'mt-5', styles['list-menu'])}>
                 <li>
-                    <Link to="/">Liên hệ hợp tác</Link>
+                    <Link to="/">
+                        <FormattedMessage id="footer.contact-for-cooperation" />
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/">Danh bạ y tế</Link>
+                    <Link to="/">
+                        <FormattedMessage id="footer.medical-directory" />
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/">Sức khỏe doanh nghiệp</Link>
+                    <Link to="/">
+                        <FormattedMessage id="footer.business-health" />
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/">Gói chuyển đổi số doanh nghiệp</Link>
+                    <Link to="/">
+                        <FormattedMessage id="footer.enterprise-digital-transformation-package" />
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/">Tuyển dụng</Link>
+                    <Link to="/">
+                        <FormattedMessage id="footer.recruitment" />
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/">Câu hỏi thường gặp</Link>
+                    <Link to="/">
+                        <FormattedMessage id="footer.frequently-asked-questions" />
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/">Điều khoản sử dụng</Link>
+                    <Link to="/">
+                        <FormattedMessage id="footer.term" />
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/">Chính sách Bảo mật</Link>
+                    <Link to="/">
+                        <FormattedMessage id="footer.privacy-policy" />
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/">Quy trình hỗ trợ giải quyết khiếu nại</Link>
+                    <Link to="/">
+                        <FormattedMessage id="footer.complaint-resolution-support-process" />
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/">Quy chế hoạt động</Link>
+                    <Link to="/">
+                        <FormattedMessage id="footer.operating-regulations" />
+                    </Link>
                 </li>
             </ul>
-            <div className={clsx('col-md-3')}>
+            <div className={clsx('col-lg-3 col-md-12 mt-md-5 mt-sm-5')}>
                 <span>
-                    <b style={{ whiteSpace: 'nowrap' }}>Đối tác bảo trợ nội dung</b>
+                    <b style={{ whiteSpace: 'nowrap' }}>
+                        <FormattedMessage id="footer.content-sponsorship-partners" />
+                    </b>
                 </span>
                 <div className={clsx('mt-md-2', styles['partner'])}>
                     <img
@@ -92,7 +123,10 @@ const Footer = () => {
                     />
                     <div className={clsx(styles['partner-content'])}>
                         <b>Hello Doctor</b>
-                        <span>Bảo trợ chuyên mục nội dung “sức khỏe tinh thần”</span>
+                        <span>
+                            <FormattedMessage id="footer.sponsor-the-content-section" /> “
+                            <FormattedMessage id="footer.mental-health" />”
+                        </span>
                     </div>
                 </div>
                 <div className={clsx('mt-md-3', styles['partner'])}>
@@ -102,8 +136,13 @@ const Footer = () => {
                         alt=""
                     />
                     <div className={clsx(styles['partner-content'])}>
-                        <b>Hệ thống y khoa chuyên sâu quốc tế Bernard</b>
-                        <span>Bảo trợ chuyên mục nội dung “y khoa chuyên sâu”</span>
+                        <b>
+                            <FormattedMessage id="footer.international-specialized-medical-system" />
+                        </b>
+                        <span>
+                            <FormattedMessage id="footer.sponsor-the-content-section" /> “
+                            <FormattedMessage id="footer.specialized-medicine" />”
+                        </span>
                     </div>
                 </div>
             </div>

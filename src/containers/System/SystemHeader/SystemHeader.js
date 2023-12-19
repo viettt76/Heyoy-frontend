@@ -28,11 +28,10 @@ const adminMenus = [
                 name: 'menu.admin.manage-doctor',
                 to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_DOCTOR)}`,
             },
-
-            {
-                name: 'menu.admin.manage-patient',
-                to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_PATIENT)}`,
-            },
+            // {
+            //     name: 'menu.admin.manage-patient',
+            //     to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_PATIENT)}`,
+            // },
             {
                 name: 'menu.doctor.manage-schedule',
                 to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_SCHEDULE)}`,

@@ -24,6 +24,7 @@
         background-color: #edfffa;
         min-width: 13vw;
         max-width: 18vw;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
 
         .menu-item {
             position: relative;
@@ -40,7 +41,7 @@
                 background-color: #b5e9da;
             }
 
-            &:hover>.submenu {
+            &:hover > .submenu {
                 display: block;
             }
 
