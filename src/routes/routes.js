@@ -1,6 +1,7 @@
 import { path } from '~/utils';
 
 import LayoutSystem from '~/layouts/LayoutSystem';
+import LayoutOnlyHeader from '~/layouts/LayoutOnlyHeader';
 
 import Home from '~/pages/Home';
 import Login from '~/pages/Login';
@@ -37,7 +38,7 @@ export const publicRoutes = [
     { path: path.LIST_CLINIC, component: ListClinic },
     { path: path.LIST_DOCTOR, component: ListDoctor },
 
-    { path: path.VERIFY_BOOKING, component: VerifyBooking },
+    { path: path.VERIFY_BOOKING, component: VerifyBooking, layout: LayoutOnlyHeader },
 
     { path: '*', component: NotFound, layout: null },
 ];
