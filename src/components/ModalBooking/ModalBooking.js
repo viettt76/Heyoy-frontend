@@ -69,7 +69,7 @@ const ModalBooking = ({
         try {
             if (formRef.current.checkValidity()) {
                 dispatch(actions.appStartLoading());
-                let birthdayTimestamp = convertDateToTimestamp(birthday);
+                let birthdayTimestamp = who === 'BF2' ? convertDateToTimestamp(birthday) : '';
                 let res = await postBookAppointmentService({
                     who,
                     fullName,
@@ -232,28 +232,30 @@ const ModalBooking = ({
                                             })}
                                     </Form.Group>
                                 )}
-                                <Form.Group as={Col} md="6" className="mt-2 mt-md-0">
-                                    <Form.Label>
-                                        <FormattedMessage id="modal-booking.birthday" />
-                                        &nbsp;
-                                    </Form.Label>
-                                    <DatePicker
-                                        className={clsx('form-control', styles['date-picker'])}
-                                        selected={birthday}
-                                        showMonthDropdown
-                                        showYearDropdown
-                                        scrollableYearDropdown
-                                        adjustDateOnChange
-                                        yearDropdownItemNumber={100}
-                                        maxDate={new Date()}
-                                        dateFormat="dd/MM/yyyy"
-                                        timeZone="GMT+0700"
-                                        showIcon
-                                        closeOnScroll={true}
-                                        required
-                                        onChange={(date) => setBirthday(date)}
-                                    />
-                                </Form.Group>
+                                {who !== 'BF1' && (
+                                    <Form.Group as={Col} md="6" className="mt-2 mt-md-0">
+                                        <Form.Label>
+                                            <FormattedMessage id="modal-booking.birthday" />
+                                            &nbsp;
+                                        </Form.Label>
+                                        <DatePicker
+                                            className={clsx('form-control', styles['date-picker'])}
+                                            selected={birthday}
+                                            showMonthDropdown
+                                            showYearDropdown
+                                            scrollableYearDropdown
+                                            adjustDateOnChange
+                                            yearDropdownItemNumber={100}
+                                            maxDate={new Date()}
+                                            dateFormat="dd/MM/yyyy"
+                                            timeZone="GMT+0700"
+                                            showIcon
+                                            closeOnScroll={true}
+                                            required
+                                            onChange={(date) => setBirthday(date)}
+                                        />
+                                    </Form.Group>
+                                )}
                             </Row>
                             {who !== 'BF1' && (
                                 <Row className="mb-3">

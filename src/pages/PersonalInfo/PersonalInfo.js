@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { toast } from 'react-toastify';
+import DatePicker from 'react-datepicker';
 import clsx from 'clsx';
 import styles from './PersonalInfo.module.scss';
 import { getUserService, updateUserService } from '~/services';
 import { languageSelector, userInfoSelector } from '~/store/selectors';
-import { LANGUAGES, convertBase64, convertBufferToString } from '~/utils';
+import { LANGUAGES, convertBase64, convertBufferToString, convertDateToTimestamp } from '~/utils';
 import * as actions from '~/store/actions';
 
 const PersonalInfo = () => {
@@ -33,6 +34,7 @@ const PersonalInfo = () => {
     const [lastName, setLastName] = useState('');
     const [address, setAddress] = useState('');
     const [gender, setGender] = useState('');
+    const [birthday, setBirthday] = useState('');
     const [position, setPosition] = useState('');
     const [role, setRole] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -46,7 +48,7 @@ const PersonalInfo = () => {
         dispatch(actions.getGenderUser());
         dispatch(actions.getRoleUser());
         dispatch(actions.getPositionUser());
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         setGendersFromApi(adminRedux.genders);
@@ -57,7 +59,12 @@ const PersonalInfo = () => {
         let fetchInfoUser = async () => {
             let res = await getUserService(userInfo?.id);
             if (res?.listUsers) {
-                setUserInfoFromApi(res.listUsers);
+                let dataUser = res.listUsers;
+                dataUser = {
+                    ...dataUser,
+                    birthday: new Date(dataUser?.birthday),
+                };
+                setUserInfoFromApi(dataUser);
             }
         };
         fetchInfoUser();
@@ -69,13 +76,14 @@ const PersonalInfo = () => {
         setLastName(userInfoFromApi?.lastName);
         setAddress(userInfoFromApi?.address);
         setGender(userInfoFromApi?.gender);
+        setBirthday(userInfoFromApi?.birthday != 'Invalid Date' && userInfoFromApi.birthday);
         setPosition(userInfoFromApi?.positionId);
         setRole(userInfoFromApi?.roleId);
         setPhoneNumber(userInfoFromApi?.phoneNumber);
         setImage(userInfoFromApi?.image);
         setPreview(convertBufferToString(userInfoFromApi?.image || ''));
     }, [userInfoFromApi]);
-
+    
     const handleChangeInfo = () => {
         dispatch(
             actions.getInfoTemporary({
@@ -83,6 +91,7 @@ const PersonalInfo = () => {
                 lastName,
                 address,
                 gender,
+                birthday,
                 position,
                 phoneNumber,
                 image,
@@ -111,12 +120,14 @@ const PersonalInfo = () => {
     const handleSave = async () => {
         try {
             if (formRef.current.checkValidity()) {
+                let birthdayTimestamp = convertDateToTimestamp(birthday);
                 let res = await updateUserService({
                     email,
                     firstName,
                     lastName,
                     address,
                     gender,
+                    birthday: birthdayTimestamp,
                     position,
                     phoneNumber,
                     image,
@@ -138,7 +149,7 @@ const PersonalInfo = () => {
                 }
                 setDisable(true);
             } else {
-                setFormValidated(true)
+                setFormValidated(true);
             }
         } catch (error) {
             console.log('Error personal info,', error);
@@ -150,6 +161,7 @@ const PersonalInfo = () => {
         setLastName(userInfoTemporary?.lastName);
         setAddress(userInfoTemporary?.address);
         setGender(userInfoTemporary?.gender);
+        setBirthday(userInfoTemporary?.birthday);
         setPosition(userInfoTemporary?.positionId);
         setPhoneNumber(userInfoTemporary?.phoneNumber);
         setImage(userInfoTemporary?.image);
@@ -223,8 +235,33 @@ const PersonalInfo = () => {
                         </Form.Select>
                     </Form.Group>
 
+                    <Form.Group as={Col} md="3" className="mt-2 mt-md-0">
+                        <Form.Label className="d-block">
+                            <FormattedMessage id="modal-booking.birthday" />
+                        </Form.Label>
+                        {birthday && (
+                            <DatePicker
+                                className={clsx('form-control')}
+                                selected={birthday}
+                                showMonthDropdown
+                                showYearDropdown
+                                scrollableYearDropdown
+                                adjustDateOnChange
+                                yearDropdownItemNumber={100}
+                                maxDate={new Date()}
+                                dateFormat="dd/MM/yyyy"
+                                timeZone="GMT+0700"
+                                disabled={disable}
+                                showIcon
+                                closeOnScroll={true}
+                                required
+                                onChange={(date) => setBirthday(date)}
+                            />
+                        )}
+                    </Form.Group>
+
                     {role === 'R2' && (
-                        <Form.Group as={Col} md="4">
+                        <Form.Group as={Col} md="5">
                             <Form.Label>
                                 <FormattedMessage id="system.manage-user.position" />
                             </Form.Label>

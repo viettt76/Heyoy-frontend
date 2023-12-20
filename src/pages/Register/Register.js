@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
+import DatePicker from 'react-datepicker';
 
 import * as actions from '~/store/actions';
 import styles from './Register.module.scss';
@@ -9,7 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { useRef } from 'react';
-import { LANGUAGES, convertBase64, path } from '~/utils';
+import { LANGUAGES, convertBase64, convertDateToTimestamp, path } from '~/utils';
 import { toast } from 'react-toastify';
 import { languageSelector } from '~/store/selectors';
 
@@ -31,6 +32,7 @@ const Register = () => {
     const [position, setPosition] = useState('');
     const [role, setRole] = useState('R3');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [birthday, setBirthday] = useState('');
     const [address, setAddress] = useState('');
     const [image, setImage] = useState();
     const [preview, setPreview] = useState();
@@ -129,6 +131,7 @@ const Register = () => {
         try {
             const form = formRef.current;
             if (form.checkValidity() === true) {
+                let birthdayTimestamp = convertDateToTimestamp(birthday);
                 let dataUser = {
                     email,
                     password,
@@ -136,6 +139,7 @@ const Register = () => {
                     lastName,
                     address,
                     gender,
+                    birthday: birthdayTimestamp,
                     position,
                     role,
                     phoneNumber,
@@ -256,15 +260,25 @@ const Register = () => {
                             </Form.Select>
                         </Form.Group>
 
-                        <Form.Group as={Col} md="6">
-                            <Form.Label>
-                                <FormattedMessage id="system.manage-user.phone-number" />
+                        <Form.Group as={Col} md="6" className="mt-2 mt-md-0">
+                            <Form.Label className="d-block">
+                                <FormattedMessage id="modal-booking.birthday" />
                             </Form.Label>
-                            <Form.Control
-                                value={phoneNumber}
+                            <DatePicker
+                                className={clsx('form-control')}
+                                selected={birthday}
+                                showMonthDropdown
+                                showYearDropdown
+                                scrollableYearDropdown
+                                adjustDateOnChange
+                                yearDropdownItemNumber={100}
+                                maxDate={new Date()}
+                                dateFormat="dd/MM/yyyy"
+                                timeZone="GMT+0700"
+                                showIcon
+                                closeOnScroll={true}
                                 required
-                                type="text"
-                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                onChange={(date) => setBirthday(date)}
                             />
                         </Form.Group>
 
@@ -303,7 +317,19 @@ const Register = () => {
                         )} */}
                     </Row>
                     <Row className="mb-3">
-                        <Form.Group as={Col} md="6">
+                        <Form.Group as={Col} md="5">
+                            <Form.Label>
+                                <FormattedMessage id="system.manage-user.phone-number" />
+                            </Form.Label>
+                            <Form.Control
+                                value={phoneNumber}
+                                required
+                                type="text"
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group as={Col} md="5">
                             <Form.Label>
                                 <FormattedMessage id="system.manage-user.address" />
                             </Form.Label>
@@ -314,6 +340,7 @@ const Register = () => {
                                 onChange={(e) => setAddress(e.target.value)}
                             />
                         </Form.Group>
+
                         <Form.Group as={Col} md="2">
                             <Form.Label>
                                 <FormattedMessage id="system.manage-user.avatar" />

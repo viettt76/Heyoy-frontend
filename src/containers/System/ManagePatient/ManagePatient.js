@@ -154,7 +154,7 @@ const ManageSchedule = () => {
                     <tbody>
                         {listPatients?.length > 0 &&
                             listPatients.map((patient, index) => {
-                                let date = patient?.Patient_Info?.birthday;
+                                let date = patient?.Patient_Info?.User?.birthday;
                                 let day = new Date(date).getDate();
                                 let month = new Date(date).getMonth() + 1;
                                 let year = new Date(date).getFullYear();
