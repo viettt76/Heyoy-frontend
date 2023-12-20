@@ -56,15 +56,15 @@ const adminMenus = [
             },
         ],
     },
-    {
-        name: 'menu.admin.handbook',
-        menu: [
-            {
-                name: 'menu.admin.manage-handbook',
-                to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_HANDBOOK)}`,
-            },
-        ],
-    },
+    // {
+    //     name: 'menu.admin.handbook',
+    //     menu: [
+    //         {
+    //             name: 'menu.admin.manage-handbook',
+    //             to: `${path.SYSTEM.replace('/*', path.SYSTEM_MANAGE_HANDBOOK)}`,
+    //         },
+    //     ],
+    // },
 ];
 
 const doctorMenus = [

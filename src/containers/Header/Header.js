@@ -211,6 +211,7 @@ const Header = () => {
                                     placeholder={useFormatMessage('popular.search')}
                                     onChange={(e) => setSearchKeywords(e.target.value)}
                                     onFocus={() => setShowSearchResults(true)}
+                                    spellCheck={false}
                                 />
                             </div>
                         </Tippy>

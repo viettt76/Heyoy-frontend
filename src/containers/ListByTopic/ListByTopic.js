@@ -39,6 +39,7 @@ const ListByTopic = ({ topicVi, topicEn, data }) => {
                             value={searchInput}
                             placeholder={`Tìm kiếm ${topicVi?.toLowerCase()}`}
                             onChange={(e) => setSearchInput(e.target.value)}
+                            spellCheck={false}
                         />
                     </div>
                 </div>
