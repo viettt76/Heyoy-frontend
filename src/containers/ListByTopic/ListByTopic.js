@@ -48,7 +48,7 @@ const ListByTopic = ({ topicVi, topicEn, data }) => {
                 {listByTopic?.length > 0 ? (
                     listByTopic.map((item, index) => {
                         return (
-                            <Link to={item?.to} className="col-lg-3 col-md-4 col-sm-6" key={`item-${index}`}>
+                            <Link to={item?.to} className="col-xl-3 col-lg-4 col-md-6 col-12" key={`item-${index}`}>
                                 <div className={clsx(styles['wrapper-image'])}>
                                     <img className={clsx(styles['image'])} src={item?.image} alt={item?.name} />
                                 </div>

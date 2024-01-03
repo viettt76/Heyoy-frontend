@@ -83,7 +83,7 @@ const PersonalInfo = () => {
         setImage(userInfoFromApi?.image);
         setPreview(convertBufferToString(userInfoFromApi?.image || ''));
     }, [userInfoFromApi]);
-    
+
     const handleChangeInfo = () => {
         dispatch(
             actions.getInfoTemporary({
@@ -197,7 +197,7 @@ const PersonalInfo = () => {
                             onChange={(e) => setFirstName(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group as={Col} md="6">
+                    <Form.Group as={Col} md="6" className="mt-md-0 mt-3">
                         <Form.Label>
                             <FormattedMessage id="system.manage-user.last-name" />
                         </Form.Label>
@@ -235,7 +235,7 @@ const PersonalInfo = () => {
                         </Form.Select>
                     </Form.Group>
 
-                    <Form.Group as={Col} md="3" className="mt-2 mt-md-0">
+                    <Form.Group as={Col} md="3" className="mt-3 mt-md-0">
                         <Form.Label className="d-block">
                             <FormattedMessage id="modal-booking.birthday" />
                         </Form.Label>
@@ -297,7 +297,7 @@ const PersonalInfo = () => {
                             onChange={(e) => setPhoneNumber(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group as={Col} md="5">
+                    <Form.Group as={Col} md="5" className="mt-md-0 mt-3">
                         <Form.Label>
                             <FormattedMessage id="system.manage-user.address" />
                         </Form.Label>
@@ -309,7 +309,7 @@ const PersonalInfo = () => {
                             onChange={(e) => setAddress(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group as={Col} md="2">
+                    <Form.Group as={Col} md="2" className=" mt-3 mt-md-0">
                         <Form.Label>
                             <FormattedMessage id="system.manage-user.avatar" />
                         </Form.Label>

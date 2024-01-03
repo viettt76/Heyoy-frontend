@@ -30,15 +30,13 @@
 }
 
 .wrapper-image {
-    width: 261px;
-    height: 151px;
+    width: 100%;
     display: flex;
     align-items: center;
-    max-width: 100%;
-    max-height: 151px;
 }
+
 .image {
     width: 100%;
-    max-height: 151px;
     object-fit: contain;
+    aspect-ratio: 500/300;
 }

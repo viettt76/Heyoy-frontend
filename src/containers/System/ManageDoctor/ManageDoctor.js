@@ -163,16 +163,20 @@ const ManageDoctor = () => {
     }, [doctor, listClinicFromApi, listPaymentFromApi, listPriceFromApi, listProvinceFromApi, listSpecialtyFromApi]);
 
     useEffect(() => {
-        if (!detailDoctor?.Markdown?.description) {
-            setDescription('');
-        } else if (!detailDoctor?.Markdown?.contentHTML) {
-            setContentHTML('');
-        } else if (!detailDoctor?.Markdown?.contentMarkdown) {
-            setContentMarkdown('');
-        } else {
+        if (detailDoctor?.Markdown?.description) {
             setDescription(detailDoctor?.Markdown?.description);
+        } else {
+            setDescription('');
+        }
+        if (detailDoctor?.Markdown?.contentHTML) {
             setContentHTML(detailDoctor?.Markdown?.contentHTML);
+        } else {
+            setContentHTML('');
+        }
+        if (detailDoctor?.Markdown?.contentMarkdown) {
             setContentMarkdown(detailDoctor?.Markdown?.contentMarkdown);
+        } else {
+            setContentMarkdown('');
         }
     }, [detailDoctor]);
 
